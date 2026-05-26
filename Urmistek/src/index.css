@@ -1,0 +1,48 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  font-family: "Raleway", "Arial Narrow Bold", sans-serif;
+  font-optical-sizing: auto;
+  /* overflow: hidden; */
+  font-style: normal;
+  font-family: "Roboto", "Arial", sans-serif;
+}
+
+/* Hide the scrollbar but still allow scrolling */
+
+/* For Webkit-based browsers (Chrome, Safari, etc.) */
+/* Hide the scrollbar while keeping scrolling functionality */
+html,
+body {
+  overflow: hidden; /* Hide overflow */
+  height: 100%; /* Ensure full height */
+}
+
+/* Hide scrollbar in Chrome, Safari, and other WebKit browsers */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* For Firefox */
+html {
+  scrollbar-width: none; /* Hide scrollbar in Firefox */
+}
+
+/* Allow scrolling on the page, but no scrollbar */
+body {
+  overflow-y: scroll; /* Allows scrolling, but hides the scrollbar */
+}
+
+main {
+  height: 100vh;
+  width: 100%;
+  background-color: #111;
+  color: white;
+  overflow: hidden;
+}

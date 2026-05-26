@@ -1,0 +1,291 @@
+/* ===== PREMIUM CORPORATE EDITORIAL MATRIX LAYOUT ===== */
+
+.think-section {
+  padding: 120px 0;
+  background-color: #ffffff; /* Rich stark black baseline directly honoring the reference style */
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #ffffff;
+}
+
+.think-container {
+  max-width: 1440px;
+  width: 92%;
+  margin: 0 auto;
+}
+
+/* --- MATRIX ROW HEADER --- */
+.think-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid #222222;
+  padding-bottom: 32px;
+  margin-bottom: 48px;
+}
+
+.think-sup {
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  color: #252729;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.think-main-title {
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: #000000;
+}
+
+.think-global-filter-btn {
+  background: transparent;
+  border: 1px solid #333333;
+  color: #ffffff;
+  padding: 12px 24px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 0; /* Clean industrial crisp edges */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.think-global-filter-btn:hover {
+  border-color: #ffffff;
+  background-color: #111111;
+}
+
+/* --- STARK CHESSBOARD INTERACTION GRID --- */
+.think-editorial-matrix {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 horizontal blocks matches high end corporate monitor arrays */
+  gap: 20px;
+}
+
+/* Core Base Card Mechanics */
+.think-matrix-card {
+  position: relative;
+  height: 520px;
+  background-color: #111111;
+  border: 1px solid #222222;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  cursor: pointer;
+}
+
+/* Card Background Image States */
+.card-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%; /* Image cuts nicely half way across standard card rest states */
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(20%);
+  transition: height 0.4s cubic-bezier(0.25, 1, 0.5, 1), filter 0.4s ease;
+}
+
+.think-matrix-card:hover .card-bg-image {
+  height: 100%; /* Spans full background exactly like the left accent card on hover */
+  filter: grayscale(0%) brightness(40%);
+}
+
+/* Foreground Container Wrapper */
+.card-foreground-content {
+  position: relative;
+  z-index: 3;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  box-sizing: border-box;
+  background: linear-gradient(to top, rgba(17,17,17,1) 0%, rgba(17,17,17,0.85) 45%, rgba(17,17,17,0) 100%);
+  transition: background 0.4s ease;
+}
+
+.think-matrix-card:hover .card-foreground-content {
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 100%);
+}
+
+/* Typography States */
+.card-content-type {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #a3acb9;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.card-content-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #ffffff;
+  margin: 0 0 20px 0;
+  letter-spacing: -0.01em;
+  transition: color 0.3s ease;
+}
+
+/* --- THE ACCENTURE SLIDING DRAWER SYSTEM --- */
+.card-lower-drawer {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-preview-text {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #cccccc;
+  margin: 0;
+}
+
+/* Hidden narrative text block that drops into viewport on hover */
+.card-hidden-narrative {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #ffffff;
+  margin: 0;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease;
+}
+
+.think-matrix-card:hover .card-hidden-narrative {
+  max-height: 150px;
+  opacity: 1;
+  margin-top: 16px;
+}
+
+/* Dynamic Interactive CTA Trigger button */
+.card-action-trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-top: 24px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.think-matrix-card:hover .card-action-trigger {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.trigger-icon {
+  font-size: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.think-matrix-card:hover .trigger-icon {
+  transform: translateX(4px);
+}
+
+/* --- SPECIALIZED CARD VARIATION STYLES (Light Slate Perspective) --- */
+.think-matrix-card.light-vector {
+  background-color: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+.think-matrix-card.light-vector .card-foreground-content {
+  background: #f8fafc;
+}
+
+.think-matrix-card.light-vector .card-content-title,
+.think-matrix-card.light-vector .card-preview-text {
+  color: #111111;
+}
+
+.think-matrix-card.light-vector .card-content-type {
+  color: #64748b;
+}
+
+.think-matrix-card.light-vector .card-hidden-narrative,
+.think-matrix-card.light-vector .card-action-trigger {
+  color: #0066ff; /* Sophisticated contrasting accent pop color on expand */
+}
+
+/* Animated Vector canvas location inside light perspective variant */
+.card-vector-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.think-matrix-card.light-vector:hover .card-vector-canvas {
+  opacity: 0.15;
+}
+
+/* --- CARD DECORATIVE CORNER SIGNALS --- */
+.card-corner-indicator {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  font-size: 1.1rem;
+  color: #444444;
+  z-index: 4;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.think-matrix-card:hover .card-corner-indicator {
+  transform: rotate(45deg);
+  color: #0066ff;
+}
+
+.think-matrix-card.light-vector .card-corner-indicator {
+  color: #cbd5e1;
+}
+
+/* --- SYSTEM RESPONSIVE BREAKER BLUEPRINTS --- */
+@media (max-width: 1200px) {
+  .think-editorial-matrix {
+    grid-template-columns: repeat(2, 1fr); /* Snaps neatly to a clean balanced 2x2 multi-card layout block */
+  }
+}
+
+@media (max-width: 768px) {
+  .think-section {
+    padding: 80px 0;
+  }
+  
+  .think-section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  
+  .think-global-filter-btn {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .think-editorial-matrix {
+    grid-template-columns: 1fr;
+  }
+  
+  .think-matrix-card {
+    height: 460px;
+  }
+}

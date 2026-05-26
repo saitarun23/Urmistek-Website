@@ -1,0 +1,258 @@
+/* ===== PREMIUM ENTERPRISE SYSTEMS SECTION ===== */
+
+.enterprise-section {
+  position: relative;
+  background: #000000;
+  overflow: hidden;
+  padding: 140px 0;
+  font-family: "Inter", sans-serif;
+  color: #ffffff;
+}
+
+/* BACKGROUND WATERMARK */
+.enterprise-section::before {
+  content: "URMISTEK";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18vw;
+  font-weight: 900;
+  letter-spacing: -0.08em;
+  color: rgba(255, 255, 255, 0.025);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* BACKGROUND BLUR EFFECTS */
+.enterprise-blur {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  z-index: 0;
+}
+
+.enterprise-blur-one {
+  width: 400px;
+  height: 400px;
+  background: rgba(37, 99, 235, 0.18);
+  top: -100px;
+  left: -120px;
+}
+
+.enterprise-blur-two {
+  width: 300px;
+  height: 300px;
+  background: rgba(255, 255, 255, 0.05);
+  bottom: -100px;
+  right: -100px;
+}
+
+.enterprise-container {
+  width: 92%;
+  max-width: 1500px;
+  margin: auto;
+  position: relative;
+  z-index: 2;
+
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+}
+
+/* ===== LEFT SIDE ===== */
+
+.enterprise-left {
+  position: sticky;
+  top: 120px;
+  height: fit-content;
+}
+
+.enterprise-top-label {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.enterprise-line {
+  width: 50px;
+  height: 1px;
+  background: #2563eb;
+}
+
+.enterprise-top-label p {
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  color: #6b7280;
+  margin: 0;
+}
+
+.enterprise-title {
+  font-size: clamp(4rem, 9vw, 8rem);
+  line-height: 0.9;
+  font-weight: 900;
+  letter-spacing: -0.08em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.enterprise-title span {
+  display: block;
+  color: #2563eb;
+}
+
+.enterprise-description {
+  margin-top: 40px;
+  max-width: 520px;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #9ca3af;
+}
+
+/* ===== RIGHT SIDE ===== */
+
+.enterprise-right {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ROWS */
+
+.enterprise-row {
+  display: flex;
+  gap: 40px;
+  padding: 50px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.5s ease;
+  position: relative;
+}
+
+.enterprise-row:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.enterprise-row::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 0%;
+  height: 1px;
+  background: #2563eb;
+  transition: width 0.5s ease;
+}
+
+.enterprise-row:hover::after {
+  width: 100%;
+}
+
+.enterprise-row:hover {
+  padding-left: 24px;
+}
+
+/* LEFT NUMBER */
+
+.enterprise-row-number {
+  font-size: 0.9rem;
+  color: #4b5563;
+  font-weight: 600;
+  min-width: 40px;
+  padding-top: 8px;
+}
+
+/* CONTENT */
+
+.enterprise-row-content {
+  flex: 1;
+}
+
+.enterprise-row-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.enterprise-row-top span {
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  color: #6b7280;
+}
+
+.enterprise-dot {
+  width: 8px;
+  height: 8px;
+  background: #1f2937;
+  border-radius: 50%;
+  transition: all 0.4s ease;
+}
+
+.enterprise-row:hover .enterprise-dot {
+  background: #2563eb;
+  box-shadow: 0 0 16px #2563eb;
+}
+
+.enterprise-row-content h3 {
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  margin: 0 0 18px;
+  transition: color 0.4s ease;
+}
+
+.enterprise-row:hover h3 {
+  color: #2563eb;
+}
+
+.enterprise-row-content p {
+  max-width: 620px;
+  font-size: 1rem;
+  line-height: 1.9;
+  color: #9ca3af;
+  margin: 0;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 1100px) {
+
+  .enterprise-container {
+    grid-template-columns: 1fr;
+    gap: 70px;
+  }
+
+  .enterprise-left {
+    position: relative;
+    top: 0;
+  }
+
+  .enterprise-title {
+    font-size: clamp(3rem, 12vw, 6rem);
+  }
+}
+
+@media (max-width: 768px) {
+
+  .enterprise-section {
+    padding: 100px 0;
+  }
+
+  .enterprise-row {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .enterprise-row:hover {
+    padding-left: 0;
+  }
+
+  .enterprise-row-content h3 {
+    font-size: 2rem;
+  }
+
+  .enterprise-description {
+    font-size: 1rem;
+  }
+}

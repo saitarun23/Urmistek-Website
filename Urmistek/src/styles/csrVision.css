@@ -1,0 +1,288 @@
+/* ===== FUTURISTIC CSR SECTION ===== */
+
+.csr-section {
+  position: relative;
+  background: #000;
+  overflow: hidden;
+  padding: 180px 0;
+  color: #fff;
+  font-family: "Inter", sans-serif;
+}
+
+/* ===== GRID ===== */
+
+.csr-grid {
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+
+  background-size: 90px 90px;
+
+  mask-image: radial-gradient(circle at center, black 35%, transparent 85%);
+}
+
+/* ===== GLOW ===== */
+
+.csr-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(140px);
+}
+
+.csr-glow-one {
+  width: 500px;
+  height: 500px;
+  background: rgba(37,99,235,0.18);
+  top: -180px;
+  left: -120px;
+}
+
+.csr-glow-two {
+  width: 400px;
+  height: 400px;
+  background: rgba(255,255,255,0.05);
+  bottom: -100px;
+  right: -100px;
+}
+
+/* ===== WATERMARK ===== */
+
+.csr-watermark {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  font-size: 22vw;
+  font-weight: 900;
+
+  letter-spacing: -0.08em;
+
+  color: rgba(255,255,255,0.02);
+
+  pointer-events: none;
+}
+
+/* ===== CONTAINER ===== */
+
+.csr-container {
+  width: 92%;
+  max-width: 1550px;
+  margin: auto;
+
+  position: relative;
+  z-index: 3;
+
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 100px;
+}
+
+/* ===== LEFT ===== */
+
+.csr-left {
+  position: sticky;
+  top: 120px;
+  height: fit-content;
+}
+
+.csr-top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.csr-line {
+  width: 50px;
+  height: 1px;
+  background: #2563eb;
+}
+
+.csr-top p {
+  margin: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.25em;
+  color: #6b7280;
+}
+
+.csr-title {
+  font-size: clamp(4rem, 9vw, 9rem);
+  line-height: 0.88;
+  font-weight: 900;
+  letter-spacing: -0.09em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.csr-title span {
+  display: block;
+
+  background: linear-gradient(
+    to right,
+    #ffffff,
+    #2563eb
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.csr-description {
+  margin-top: 40px;
+
+  max-width: 580px;
+
+  font-size: 1.1rem;
+  line-height: 2;
+
+  color: #9ca3af;
+}
+
+/* ===== RIGHT ===== */
+
+.csr-right {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* ===== CARD ===== */
+
+.csr-card {
+  position: relative;
+
+  padding: 50px;
+
+  background: rgba(255,255,255,0.03);
+
+  border: 1px solid rgba(255,255,255,0.06);
+
+  overflow: hidden;
+
+  transition: all 0.5s ease;
+
+  backdrop-filter: blur(20px);
+}
+
+.csr-card:hover {
+  transform: translateY(-10px);
+
+  border-color: rgba(37,99,235,0.3);
+
+  background: rgba(255,255,255,0.05);
+}
+
+/* ===== NUMBER ===== */
+
+.csr-card-number {
+  position: absolute;
+
+  top: 20px;
+  right: 30px;
+
+  font-size: 5rem;
+  font-weight: 900;
+
+  color: rgba(255,255,255,0.04);
+
+  letter-spacing: -0.08em;
+}
+
+/* ===== CONTENT ===== */
+
+.csr-card-content {
+  position: relative;
+  z-index: 3;
+}
+
+.csr-card-content h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+
+  line-height: 1.1;
+
+  margin: 0 0 24px;
+
+  font-weight: 700;
+
+  letter-spacing: -0.05em;
+
+  transition: color 0.4s ease;
+}
+
+.csr-card:hover h2 {
+  color: #2563eb;
+}
+
+.csr-card-content p {
+  max-width: 580px;
+
+  font-size: 1rem;
+  line-height: 2;
+
+  color: #9ca3af;
+
+  margin: 0;
+}
+
+/* ===== HOVER LINE ===== */
+
+.csr-hover-line {
+  position: absolute;
+
+  left: 0;
+  bottom: 0;
+
+  width: 0%;
+  height: 2px;
+
+  background: #2563eb;
+
+  transition: width 0.5s ease;
+}
+
+.csr-card:hover .csr-hover-line {
+  width: 100%;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 1100px) {
+
+  .csr-container {
+    grid-template-columns: 1fr;
+    gap: 80px;
+  }
+
+  .csr-left {
+    position: relative;
+    top: 0;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .csr-section {
+    padding: 120px 0;
+  }
+
+  .csr-title {
+    font-size: clamp(3rem, 14vw, 6rem);
+  }
+
+  .csr-card {
+    padding: 35px;
+  }
+
+  .csr-card-content h2 {
+    font-size: 2rem;
+  }
+
+}

@@ -1,0 +1,1170 @@
+import React, { useState, useEffect, useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "../styles/Navbar.css"; // Styling for the navbar
+
+// import React, { useState, useRef, useEffect } from 'react';
+
+const FlyoutLink = ({ children, href, FlyoutContent, onClick }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const [isNotVisible, setIsNotVisible] = useState(false);
+  const flyoutRef = useRef(null);
+
+  const toggleVisibility = (e) => {
+    e.preventDefault();
+    setIsHovered((prev) => !prev);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (flyoutRef.current && !flyoutRef.current.contains(event.target)) {
+        setIsNotVisible(true);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
+  const handleLinkClick = (e) => {
+    setIsHovered(false);
+    setIsNotVisible(true);
+
+    if (onClick) {
+      // If the onClick prop is passed, execute it
+      onClick(e);
+    }
+  };
+
+  return (
+    <div
+      className="flyout-link"
+      ref={flyoutRef}
+      style={{ position: "relative" }}
+    >
+      <a
+        href={href}
+        className="flyout-link-anchor"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        onClick={(e) => {
+          // Execute internal logic first (close flyout)
+          handleLinkClick(e);
+
+          // Then execute the passed `onClick` prop if it exists (this can be your toggleMenu or other logic)
+          if (onClick) onClick(e);
+        }}
+      >
+        {children}
+        <span className="flyout-link-underline"></span>
+      </a>
+      <div
+        style={{
+          visibility: "none", // Hide by default
+          position: "absolute",
+          top: "100%",
+          height: "4vh",
+          width: "10vw",
+        }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      ></div>
+      {FlyoutContent && (
+        <div
+          className={`flyout-content ${
+            isHovered && window.innerWidth > 768 ? "visible" : ""
+          } ${isNotVisible ? "display-problem" : ""}`}
+          onClick={handleLinkClick} // Handle click on flyout content
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          style={{ maxWidth: "1000px" }}
+        >
+          {FlyoutContent}
+        </div>
+      )}
+    </div>
+  );
+};
+
+const Navbar = ({ onCareerButtonClick }) => {
+  const navigate = useNavigate();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMobileView, setIsMobileView] = useState(window.innerWidth < 768);
+  const lastScrollY = useRef(0);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  // Handle navbar hiding on scroll
+  const handleScroll = () => {
+    const contentDiv = document.getElementsByClassName("constart")[0];
+    const navbar = document.getElementsByClassName("navbar-container")[0];
+
+    if (contentDiv && navbar) {
+      const currentScrollY = contentDiv.scrollTop;
+
+      if (currentScrollY > lastScrollY.current) {
+        navbar.style.transition = "transform 0.6s ease";
+        navbar.style.transform = "translateY(-100%)"; // Hide navbar
+      } else {
+        navbar.style.transform = "translateY(0)"; // Show navbar
+      }
+
+      lastScrollY.current = currentScrollY;
+    }
+  };
+  useEffect(() => {
+    function handleResize() {
+      setIsMobileView(window.innerWidth < 768);
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return (
+    <div className={`navbar-container`}>
+      {/* Logo Section */}
+      <div className="navbar-logo">
+        <Link to="/" className="naming">
+          <div
+            style={{
+              top: "12.5%",
+              position: "absolute", // Ensure this element is contained within its parent
+              width: "8vh",
+              height: "8vh",
+              backgroundImage: 'url("/src/assets/images/logo.png")',
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              borderRadius: "0",
+              transition: "all 0.3s ease", // Smooth transition
+              zIndex: 1, // Bring it to the front
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.width = "15vw"; // Expand width
+              e.target.style.backgroundImage = 'url("/src/assets/images/logoname.png")'; // Change background image
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.width = "8vh"; // Reset width
+              e.target.style.backgroundImage = 'url("/src/assets/images/logo.png")'; // Reset background image
+            }}
+          />
+        </Link>
+      </div>
+
+      {/* Centered Menu */}
+      <nav className={`navbar-menu ${isMenuOpen ? "open" : ""}`}>
+        <FlyoutLink
+          onClick={(e) => {
+            // Only perform the scroll and toggle logic for the main "Our Company" click
+            const section = document.getElementById("our-company");
+            const container = document.querySelector(".constart"); // Using className to get the scroll container
+
+            if (section && container) {
+              const containerTop = container.getBoundingClientRect().top;
+              const sectionTop = section.getBoundingClientRect().top;
+
+              const offset = sectionTop - containerTop - 300; // Adjust 200 for your navbar height
+
+              container.scrollTo({
+                top: container.scrollTop + offset,
+                behavior: "smooth",
+              });
+            }
+
+            if (window.innerWidth < 768) {
+              setTimeout(() => {
+                toggleMenu(); // Call the toggleMenu after scrolling with a slight delay
+              }, 100);
+            }
+          }}
+          FlyoutContent={
+            <div className="flyout-menu">
+              <div className="flyout-section">
+                <ul
+                  style={{
+                    listStyle: "none",
+                    padding: 0,
+                    margin: 0,
+                    color: "#989898",
+                  }}
+                >
+                  <li
+                    style={{
+                      marginBottom: "8px",
+                      transition: "transform 0.3s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.transform = "translateX(10px)";
+                      e.target.style.color = "crimson";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.transform = "translateX(0)";
+                      e.target.style.color = "#989898";
+                    }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate("/leadership");
+                      if (window.innerWidth < 768) toggleMenu();
+                    }}
+                  >
+                    Who We Are
+                  </li>
+                  <li
+                    style={{
+                      marginBottom: "8px",
+                      transition: "transform 0.3s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.transform = "translateX(10px)";
+                      e.target.style.color = "crimson";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.transform = "translateX(0)";
+                      e.target.style.color = "#989898";
+                    }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate("/leadership");
+                      if (window.innerWidth < 768) toggleMenu();
+                    }}
+                  >
+                    Leadership
+                  </li>
+                  <li
+                    style={{
+                      marginBottom: "8px",
+                      transition: "transform 0.3s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.transform = "translateX(10px)";
+                      e.target.style.color = "crimson";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.transform = "translateX(0)";
+                      e.target.style.color = "#989898";
+                    }}
+                    onClick={(e) => {
+                      e.stopPropagation(); // Stop click event from bubbling to the parent FlyoutLink
+                      const section = document.getElementById("clients");
+                      if (section) {
+                        section.scrollIntoView({ behavior: "smooth" });
+                      }
+                    }}
+                  >
+                    Clients
+                  </li>
+                  <li
+                    style={{
+                      marginBottom: "8px",
+                      transition: "transform 0.3s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.transform = "translateX(10px)";
+                      e.target.style.color = "crimson";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.transform = "translateX(0)";
+                      e.target.style.color = "#989898";
+                    }}
+                    onClick={(e) => {
+                      e.stopPropagation(); // Stop click event from bubbling to the parent FlyoutLink
+                      onCareerButtonClick(); // Call the career button logic
+                    }}
+                  >
+                    Careers
+                  </li>
+                </ul>
+              </div>
+            </div>
+          }
+        >
+          Our Company
+        </FlyoutLink>
+
+        <FlyoutLink
+          onClick={() => {
+            if (window.innerWidth < 768) {
+              toggleMenu();
+            }
+          }}
+          FlyoutContent={
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                padding: "20px 10px",
+                backgroundColor: "white",
+                color: "black",
+                borderRadius: "8px",
+                width: "50vw",
+                // maxWidth: "2000px",
+                margin: "0 auto",
+              }}
+            >
+              {/* Column 1 */}
+              <div style={{ flex: "1", textAlign: "left" }}>
+                <h3
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: "bold",
+                    marginBottom: "10px",
+                  }}
+                >
+                  Staff Augmentation
+                </h3>
+                <ul
+                  style={{
+                    listStyle: "none",
+                    padding: 0,
+                    margin: 0,
+                    color: "#989898",
+                  }}
+                >
+                  <li
+                    style={{
+                      marginBottom: "8px",
+                      transition: "transform 0.3s ease",
+                    }}
+                    onMouseEnter={(e) =>
+                      (e.target.style.transform = "translateX(10px)")(
+                        (e.target.style.color = "crimson")
+                      )
+                    }
+                    onMouseLeave={(e) =>
+                      (e.target.style.transform = "translateX(0)")(
+                        (e.target.style.color = " #989898")
+                      )
+                    }
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent event bubbling
+
+                      const section = document.getElementById(
+                        "Technology Staffing"
+                      );
+                      const container = document.querySelector(".constart");
+
+                      if (section && container) {
+                        const containerTop =
+                          container.getBoundingClientRect().top;
+                        const sectionTop = section.getBoundingClientRect().top;
+
+                        const offset = sectionTop - containerTop - 60; // Adjust for header height
+
+                        container.scrollTo({
+                          top: container.scrollTop + offset,
+                          behavior: "smooth",
+                        });
+                      }
+
+                      if (window.innerWidth < 768) {
+                        setTimeout(() => {
+                          toggleMenu();
+                        }, 100);
+                      }
+                    }}
+                  >
+                    Technology
+                  </li>
+                  <li
+                    style={{
+                      marginBottom: "8px",
+                      transition: "transform 0.3s ease",
+                    }}
+                    onMouseEnter={(e) =>
+                      (e.target.style.transform = "translateX(10px)")(
+                        (e.target.style.color = "crimson")
+                      )
+                    }
+                    onMouseLeave={(e) =>
+                      (e.target.style.transform = "translateX(0)")(
+                        (e.target.style.color = " #989898")
+                      )
+                    }
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent the click from bubbling to parent elements
+
+                      const section =
+                        document.getElementById("Remote Staffing");
+                      const container = document.querySelector(".constart");
+
+                      if (section && container) {
+                        const containerTop =
+                          container.getBoundingClientRect().top;
+                        const sectionTop = section.getBoundingClientRect().top;
+
+                        const offset = sectionTop - containerTop - 60; // 60px scroll padding
+
+                        container.scrollTo({
+                          top: container.scrollTop + offset,
+                          behavior: "smooth",
+                        });
+                      }
+
+                      if (window.innerWidth < 768) {
+                        setTimeout(() => {
+                          toggleMenu();
+                        }, 100);
+                      }
+                    }}
+                  >
+                    Remote
+                  </li>
+                  <li
+                    style={{
+                      marginBottom: "8px",
+                      transition: "transform 0.3s ease",
+                      cursor: "pointer", // Makes it clear it's clickable
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.transform = "translateX(10px)";
+                      e.target.style.color = "crimson";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.transform = "translateX(0)";
+                      e.target.style.color = "#989898";
+                    }}
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent the click from bubbling to parent elements
+
+                      const section =
+                        document.getElementById("Contract Staffing");
+                      const container = document.querySelector(".constart");
+
+                      if (section && container) {
+                        const containerTop =
+                          container.getBoundingClientRect().top;
+                        const sectionTop = section.getBoundingClientRect().top;
+
+                        const offset = sectionTop - containerTop - 60; // 60px scroll padding
+
+                        container.scrollTo({
+                          top: container.scrollTop + offset,
+                          behavior: "smooth",
+                        });
+                      }
+
+                      if (window.innerWidth < 768) {
+                        setTimeout(() => {
+                          toggleMenu();
+                        }, 100);
+                      }
+                    }}
+                  >
+                    Contract
+                  </li>
+
+                  <li
+                    style={{
+                      marginBottom: "8px",
+                      transition: "transform 0.3s ease",
+                    }}
+                    onMouseEnter={(e) =>
+                      (e.target.style.transform = "translateX(10px)")(
+                        (e.target.style.color = "crimson")
+                      )
+                    }
+                    onMouseLeave={(e) =>
+                      (e.target.style.transform = "translateX(0)")(
+                        (e.target.style.color = " #989898")
+                      )
+                    }
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent click from bubbling up
+
+                      const section = document.getElementById(
+                        "Recruitment Process Outsourcing"
+                      );
+                      const container = document.querySelector(".constart");
+
+                      if (section && container) {
+                        const containerTop =
+                          container.getBoundingClientRect().top;
+                        const sectionTop = section.getBoundingClientRect().top;
+
+                        const offset = sectionTop - containerTop - 60; // 60px scroll padding
+
+                        container.scrollTo({
+                          top: container.scrollTop + offset,
+                          behavior: "smooth",
+                        });
+                      }
+
+                      if (window.innerWidth < 768) {
+                        setTimeout(() => {
+                          toggleMenu();
+                        }, 100);
+                      }
+                    }}
+                  >
+                    RPO
+                  </li>
+                </ul>
+              </div>
+
+              {/* Column 2 */}
+              <div style={{ flex: "1", textAlign: "left" }}>
+                <h3
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: "bold",
+                    marginBottom: "10px",
+                  }}
+                >
+                  Accessibility
+                </h3>
+                <ul
+                  style={{
+                    listStyle: "none",
+                    padding: 0,
+                    margin: 0,
+                    color: "#989898",
+                    gap: "100px",
+                  }}
+                >
+                  <li
+                    style={{
+                      marginBottom: "8px",
+                      transition: "transform 0.3s ease",
+                    }}
+                    onMouseEnter={(e) =>
+                      (e.target.style.transform = "translateX(10px)")(
+                        (e.target.style.color = "crimson")
+                      )
+                    }
+                    onMouseLeave={(e) =>
+                      (e.target.style.transform = "translateX(0)")(
+                        (e.target.style.color = " #989898")
+                      )
+                    }
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent click from bubbling up
+
+                      const section = document.getElementById(
+                        "Document Accessibility"
+                      );
+                      const container = document.querySelector(".constart");
+
+                      if (section && container) {
+                        const containerTop =
+                          container.getBoundingClientRect().top;
+                        const sectionTop = section.getBoundingClientRect().top;
+
+                        const offset = sectionTop - containerTop - 60; // 60px scroll padding
+
+                        container.scrollTo({
+                          top: container.scrollTop + offset,
+                          behavior: "smooth",
+                        });
+                      }
+
+                      if (window.innerWidth < 768) {
+                        setTimeout(() => {
+                          toggleMenu();
+                        }, 100);
+                      }
+                    }}
+                  >
+                    Document Accessibility
+                  </li>
+                  <li
+                    style={{
+                      marginBottom: "8px",
+                      transition: "transform 0.3s ease",
+                    }}
+                    onMouseEnter={(e) =>
+                      (e.target.style.transform = "translateX(10px)")(
+                        (e.target.style.color = "crimson")
+                      )
+                    }
+                    onMouseLeave={(e) =>
+                      (e.target.style.transform = "translateX(0)")(
+                        (e.target.style.color = " #989898")
+                      )
+                    }
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent click from bubbling up
+
+                      const section = document.getElementById(
+                        "Alt-Text Description"
+                      );
+                      const container = document.querySelector(".constart");
+
+                      if (section && container) {
+                        const containerTop =
+                          container.getBoundingClientRect().top;
+                        const sectionTop = section.getBoundingClientRect().top;
+
+                        const offset = sectionTop - containerTop - 60; // 60px scroll padding
+
+                        container.scrollTo({
+                          top: container.scrollTop + offset,
+                          behavior: "smooth",
+                        });
+                      }
+
+                      if (window.innerWidth < 768) {
+                        setTimeout(() => {
+                          toggleMenu();
+                        }, 100);
+                      }
+                    }}
+                  >
+                    Alt-Text Description
+                  </li>
+                  <li
+                    style={{
+                      marginBottom: "8px",
+                      transition: "transform 0.3s ease",
+                    }}
+                    onMouseEnter={(e) =>
+                      (e.target.style.transform = "translateX(10px)")(
+                        (e.target.style.color = "crimson")
+                      )
+                    }
+                    onMouseLeave={(e) =>
+                      (e.target.style.transform = "translateX(0)")(
+                        (e.target.style.color = " #989898")
+                      )
+                    }
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent click from bubbling up
+
+                      const section = document.getElementById(
+                        "Web/Mobile Accessibility"
+                      );
+                      const container = document.querySelector(".constart");
+
+                      if (section && container) {
+                        const containerTop =
+                          container.getBoundingClientRect().top;
+                        const sectionTop = section.getBoundingClientRect().top;
+
+                        const offset = sectionTop - containerTop - 60; // 60px scroll padding
+
+                        container.scrollTo({
+                          top: container.scrollTop + offset,
+                          behavior: "smooth",
+                        });
+                      }
+
+                      if (window.innerWidth < 768) {
+                        setTimeout(() => {
+                          toggleMenu();
+                        }, 100);
+                      }
+                    }}
+                  >
+                    Web/Mobile Accessibility
+                  </li>
+                  <li
+                    style={{
+                      marginBottom: "8px",
+                      transition: "transform 0.3s ease",
+                    }}
+                    onMouseEnter={(e) =>
+                      (e.target.style.transform = "translateX(10px)")(
+                        (e.target.style.color = "crimson")
+                      )
+                    }
+                    onMouseLeave={(e) =>
+                      (e.target.style.transform = "translateX(0)")(
+                        (e.target.style.color = " #989898")
+                      )
+                    }
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent click from bubbling up
+
+                      const section = document.getElementById(
+                        "Software Accessibility"
+                      );
+                      const container = document.querySelector(".constart");
+
+                      if (section && container) {
+                        const containerTop =
+                          container.getBoundingClientRect().top;
+                        const sectionTop = section.getBoundingClientRect().top;
+
+                        const offset = sectionTop - containerTop - 60; // 60px scroll padding
+
+                        container.scrollTo({
+                          top: container.scrollTop + offset,
+                          behavior: "smooth",
+                        });
+                      }
+
+                      if (window.innerWidth < 768) {
+                        setTimeout(() => {
+                          toggleMenu();
+                        }, 100);
+                      }
+                    }}
+                  >
+                    Software Accessibility
+                  </li>
+                  <li
+                    style={{
+                      marginBottom: "8px",
+                      transition: "transform 0.3s ease",
+                    }}
+                    onMouseEnter={(e) =>
+                      (e.target.style.transform = "translateX(10px)")(
+                        (e.target.style.color = "crimson")
+                      )
+                    }
+                    onMouseLeave={(e) =>
+                      (e.target.style.transform = "translateX(0)")(
+                        (e.target.style.color = " #989898")
+                      )
+                    }
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent click from bubbling up
+
+                      const section = document.getElementById(
+                        "Multimedia Accessibility"
+                      );
+                      const container = document.querySelector(".constart");
+
+                      if (section && container) {
+                        const containerTop =
+                          container.getBoundingClientRect().top;
+                        const sectionTop = section.getBoundingClientRect().top;
+
+                        const offset = sectionTop - containerTop - 60; // 60px scroll padding
+
+                        container.scrollTo({
+                          top: container.scrollTop + offset,
+                          behavior: "smooth",
+                        });
+                      }
+
+                      if (window.innerWidth < 768) {
+                        setTimeout(() => {
+                          toggleMenu();
+                        }, 100);
+                      }
+                    }}
+                  >
+                    Multimedia Accessibility
+                  </li>
+                </ul>
+              </div>
+
+              {/* Column 3 */}
+              <div style={{ flex: "1", textAlign: "left" }}>
+                <h3
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: "bold",
+                    marginBottom: "10px",
+                  }}
+                >
+                  Cybersecurity
+                </h3>
+                <ul
+                  style={{
+                    listStyle: "none",
+                    padding: 0,
+                    margin: 0,
+                    color: "#989898",
+                  }}
+                >
+                  <li
+                    style={{
+                      marginBottom: "8px",
+                      transition: "transform 0.3s ease",
+                    }}
+                    onMouseEnter={(e) => (
+                      (e.target.style.transform = "translateX(10px)"),
+                      (e.target.style.color = "crimson")
+                    )}
+                    onMouseLeave={(e) =>
+                      (e.target.style.transform = "translateX(0)")(
+                        (e.target.style.color = " #989898")
+                      )
+                    }
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent click from bubbling up
+
+                      const section = document.getElementById("Firewalls");
+                      const container = document.querySelector(".constart");
+
+                      if (section && container) {
+                        const containerTop =
+                          container.getBoundingClientRect().top;
+                        const sectionTop = section.getBoundingClientRect().top;
+
+                        const offset = sectionTop - containerTop - 60; // 60px scroll padding
+
+                        container.scrollTo({
+                          top: container.scrollTop + offset,
+                          behavior: "smooth",
+                        });
+                      }
+
+                      if (window.innerWidth < 768) {
+                        setTimeout(() => {
+                          toggleMenu();
+                        }, 100);
+                      }
+                    }}
+                  >
+                    Firewalls
+                  </li>
+                  <li
+                    style={{
+                      marginBottom: "8px",
+                      transition: "transform 0.3s ease",
+                    }}
+                    onMouseEnter={(e) => (
+                      (e.target.style.transform = "translateX(10px)"),
+                      (e.target.style.color = "crimson")
+                    )}
+                    onMouseLeave={(e) =>
+                      (e.target.style.transform = "translateX(0)")(
+                        (e.target.style.color = " #989898")
+                      )
+                    }
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent click from bubbling up
+
+                      const section =
+                        document.getElementById("Email Protection");
+                      const container = document.querySelector(".constart");
+
+                      if (section && container) {
+                        const containerTop =
+                          container.getBoundingClientRect().top;
+                        const sectionTop = section.getBoundingClientRect().top;
+
+                        const offset = sectionTop - containerTop - 60; // 60px scroll padding
+
+                        container.scrollTo({
+                          top: container.scrollTop + offset,
+                          behavior: "smooth",
+                        });
+                      }
+
+                      if (window.innerWidth < 768) {
+                        setTimeout(() => {
+                          toggleMenu();
+                        }, 100);
+                      }
+                    }}
+                  >
+                    Email Protection
+                  </li>
+                  <li
+                    style={{
+                      marginBottom: "8px",
+                      transition: "transform 0.3s ease",
+                    }}
+                    onMouseEnter={(e) => (
+                      (e.target.style.transform = "translateX(10px)"),
+                      (e.target.style.color = "crimson")
+                    )}
+                    onMouseLeave={(e) =>
+                      (e.target.style.transform = "translateX(0)")(
+                        (e.target.style.color = " #989898")
+                      )
+                    }
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent click from bubbling up
+
+                      const section =
+                        document.getElementById("Wi-Fi Protection");
+                      const container = document.querySelector(".constart");
+
+                      if (section && container) {
+                        const containerTop =
+                          container.getBoundingClientRect().top;
+                        const sectionTop = section.getBoundingClientRect().top;
+
+                        const offset = sectionTop - containerTop - 60; // 60px scroll padding
+
+                        container.scrollTo({
+                          top: container.scrollTop + offset,
+                          behavior: "smooth",
+                        });
+                      }
+
+                      if (window.innerWidth < 768) {
+                        setTimeout(() => {
+                          toggleMenu();
+                        }, 100);
+                      }
+                    }}
+                  >
+                    Wi-Fi Protection
+                  </li>
+                  <li
+                    style={{
+                      marginBottom: "8px",
+                      transition: "transform 0.3s ease",
+                    }}
+                    onMouseEnter={(e) => (
+                      (e.target.style.transform = "translateX(10px)"),
+                      (e.target.style.color = "crimson")
+                    )}
+                    onMouseLeave={(e) =>
+                      (e.target.style.transform = "translateX(0)")(
+                        (e.target.style.color = " #989898")
+                      )
+                    }
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent click from bubbling up
+
+                      const section = document.getElementById("Security Plans");
+                      const container = document.querySelector(".constart");
+
+                      if (section && container) {
+                        const containerTop =
+                          container.getBoundingClientRect().top;
+                        const sectionTop = section.getBoundingClientRect().top;
+
+                        const offset = sectionTop - containerTop - 60; // 60px scroll padding
+
+                        container.scrollTo({
+                          top: container.scrollTop + offset,
+                          behavior: "smooth",
+                        });
+                      }
+
+                      if (window.innerWidth < 768) {
+                        setTimeout(() => {
+                          toggleMenu();
+                        }, 100);
+                      }
+                    }}
+                  >
+                    Security Plans
+                  </li>
+                </ul>
+              </div>
+
+              {/* Column 4 */}
+              <div style={{ flex: "1", textAlign: "left" }}>
+                <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                  <li
+                    style={{
+                      marginBottom: "8px",
+                      fontWeight: "bold",
+                      transition: "transform 0.3s ease",
+                    }}
+                    onMouseEnter={(e) =>
+                      (e.target.style.transform = "translateX(10px)")
+                    }
+                    onMouseLeave={(e) =>
+                      (e.target.style.transform = "translateX(0)")
+                    }
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent click from bubbling up
+
+                      const section = document.getElementById("contentProd");
+                      const container = document.querySelector(".constart");
+
+                      if (section && container) {
+                        const containerTop =
+                          container.getBoundingClientRect().top;
+                        const sectionTop = section.getBoundingClientRect().top;
+
+                        const offset = sectionTop - containerTop - 60; // 60px scroll padding
+
+                        container.scrollTo({
+                          top: container.scrollTop + offset,
+                          behavior: "smooth",
+                        });
+                      }
+
+                      if (window.innerWidth < 768) {
+                        setTimeout(() => {
+                          toggleMenu();
+                        }, 100);
+                      }
+                    }}
+                  >
+                    CONTENT <br /> PRODUCTION
+                  </li>
+                  <li
+                    style={{
+                      marginBottom: "8px",
+                      fontWeight: "bold",
+                      transition: "transform 0.3s ease",
+                    }}
+                    onMouseEnter={(e) =>
+                      (e.target.style.transform = "translateX(10px)")
+                    }
+                    onMouseLeave={(e) =>
+                      (e.target.style.transform = "translateX(0)")
+                    }
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent click from bubbling up
+
+                      const section = document.getElementById("digitaltran");
+                      const container = document.querySelector(".constart");
+
+                      if (section && container) {
+                        const containerTop =
+                          container.getBoundingClientRect().top;
+                        const sectionTop = section.getBoundingClientRect().top;
+
+                        const offset = sectionTop - containerTop - 60; // 60px scroll padding
+
+                        container.scrollTo({
+                          top: container.scrollTop + offset,
+                          behavior: "smooth",
+                        });
+                      }
+
+                      if (window.innerWidth < 768) {
+                        setTimeout(() => {
+                          toggleMenu();
+                        }, 100);
+                      }
+                    }}
+                  >
+                    DIGITAL
+                    <br /> TRANSFORMATION
+                  </li>
+                </ul>
+              </div>
+            </div>
+          }
+        >
+          Our Services
+        </FlyoutLink>
+
+        <FlyoutLink
+          onClick={() => {
+            navigate("/products");
+            if (window.innerWidth < 768) {
+              toggleMenu();
+            }
+          }}
+        >
+          Our Products
+        </FlyoutLink>
+
+        <FlyoutLink
+          onClick={() => {
+            navigate("/csr-vision");
+            if (window.innerWidth < 768) {
+              toggleMenu();
+            }
+          }}
+        >
+          <div
+            onClick={(e) => {
+              e.preventDefault(); // Prevent default link behavior
+              const targetElement = document.getElementById("csr");
+              if (targetElement) {
+                targetElement.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                });
+              }
+            }}
+          >
+            CSR
+          </div>
+        </FlyoutLink>
+
+        {isMobileView && (
+          <>
+            <FlyoutLink
+              onClick={() => {
+                toggleMenu();
+                onCareerButtonClick();
+              }}
+            >
+              <div>Careers</div>
+            </FlyoutLink>
+
+            <FlyoutLink
+              onClick={(e) => {
+                e.stopPropagation(); // Prevent click from bubbling up
+                toggleMenu();
+                const section = document.getElementById("main3");
+                const container = document.querySelector(".constart");
+
+                if (section && container) {
+                  const containerTop = container.getBoundingClientRect().top;
+                  const sectionTop = section.getBoundingClientRect().top;
+
+                  const offset = sectionTop - containerTop + 140; // 60px scroll padding
+
+                  container.scrollTo({
+                    top: container.scrollTop + offset,
+                    behavior: "smooth",
+                  });
+                }
+
+                if (window.innerWidth < 768) {
+                  setTimeout(() => {
+                    toggleMenu();
+                  }, 100);
+                }
+              }}
+            >
+              <div
+                style={{
+                  backgroundColor: "white",
+                  color: "black",
+                  padding: "8px 12px",
+                  borderRadius: "4px",
+                }}
+              >
+                Contact
+              </div>
+            </FlyoutLink>
+          </>
+        )}
+      </nav>
+
+      <div
+        className="navbar-careers"
+        style={{ overflow: "hidden" }}
+        onClick={(e) => {
+          e.stopPropagation(); // Prevent click from bubbling up
+
+          const section = document.getElementById("main3");
+          const container = document.querySelector(".constart");
+
+          if (section && container) {
+            const containerTop = container.getBoundingClientRect().top;
+            const sectionTop = section.getBoundingClientRect().top;
+
+            const offset = sectionTop - containerTop + 140; // 60px scroll padding
+
+            container.scrollTo({
+              top: container.scrollTop + offset,
+              behavior: "smooth",
+            });
+          }
+
+          if (window.innerWidth < 768) {
+            setTimeout(() => {
+              toggleMenu();
+            }, 100);
+          }
+        }}
+      >
+        <button className="careers-button">
+          {" "}
+          <div>CONTACT</div>
+        </button>
+      </div>
+
+      <div className="navbar-hamburger" onClick={toggleMenu}>
+        <span className="line"></span>
+        <span className="line"></span>
+        <span className="line"></span>
+      </div>
+    </div>
+  );
+};
+
+export default Navbar;

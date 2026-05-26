@@ -1,0 +1,350 @@
+/* ===== THE SPLIT-SCREEN BROADCAST CONSOLE SYSTEM ===== */
+
+.broadcast-section {
+  background-color: #000000;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid #111115;
+}
+
+/* Stark Split Layout Framework */
+.broadcast-console-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Exact split presentation */
+  min-height: 100vh;
+  height: 750px;
+}
+
+/* --- LEFT COLUMN: FIXED VISUAL CANVAS MULTIPLEXER --- */
+.console-visual-viewport {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background-color: #050508;
+}
+
+/* Layered Image Strata Stack */
+.viewport-image-strata {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(1.06);
+  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 1;
+}
+
+.viewport-image-strata.active {
+  opacity: 0.85;
+  transform: scale(1);
+  z-index: 2;
+}
+
+/* Industrial Tech Glass Shader Tint */
+.viewport-glass-tint {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(0,0,0,0) 60%, rgba(0,0,0,1) 100%),
+              linear-gradient(0deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 40%);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Telemetry Media Control Dock */
+.viewport-control-dock {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.dock-playback-btn {
+  background-color: rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dock-playback-btn:hover {
+  background-color: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+}
+
+.dock-matrix-string {
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: #64748b;
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dock-icon {
+  color: #0066ff; /* Signature Urmistek accent */
+}
+
+/* --- RIGHT COLUMN: OVERLAPPING VERTICAL COMMAND STACK --- */
+.console-content-pane {
+  background-color: #000000;
+  padding: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  border-left: 1px solid #111115;
+  position: relative;
+  z-index: 4;
+}
+
+/* Header Index Layout */
+.pane-header-context {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pane-badge {
+  font-family: monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  color: #64748b;
+}
+
+.pane-serial-tracker {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  font-weight: 700;
+}
+
+.tracker-current {
+  font-size: 1.5rem;
+  color: #0066ff;
+}
+
+.tracker-divider {
+  font-size: 0.9rem;
+  color: #22222a;
+  margin: 0 4px;
+}
+
+.tracker-total {
+  font-size: 0.95rem;
+  color: #4b5563;
+}
+
+/* Vertical Narrative Sliding Track Window */
+.pane-narrative-window {
+  position: relative;
+  height: 360px; /* Locked window containing the shifting slides */
+  overflow: hidden;
+  margin: auto 0;
+}
+
+.narrative-track-scroller {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.narrative-slide-unit {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.unit-cipher-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.unit-cipher-tag {
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: #4b5563;
+  letter-spacing: 0.05em;
+}
+
+.unit-metric-pill {
+  font-family: monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  background-color: rgba(0, 102, 255, 0.1);
+  color: #0066ff;
+  padding: 4px 10px;
+  border: 1px solid rgba(0, 102, 255, 0.2);
+  letter-spacing: 0.04em;
+}
+
+.unit-main-title {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  margin: 0 0 20px 0;
+}
+
+.unit-paragraph-desc {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: #94a3b8;
+  margin: 0;
+}
+
+/* Footer Control Links and Arrow Keys Interface */
+.pane-interface-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.console-action-link {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  padding-bottom: 8px;
+}
+
+.action-link-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background-color: #0066ff;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.console-action-link:hover .action-link-bar {
+  width: 100%;
+}
+
+.console-navigation-arrows {
+  display: flex;
+  gap: 1px;
+  background-color: #111115;
+  border: 1px solid #111115;
+}
+
+.nav-arrow-btn {
+  background-color: #000000;
+  border: none;
+  color: #ffffff;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nav-arrow-btn:hover {
+  background-color: #0066ff;
+  color: #ffffff;
+}
+
+/* --- SYSTEM RESPONSIVE BREAKER SPECIFICATIONS --- */
+@media (max-width: 1024px) {
+  .broadcast-console-grid {
+    grid-template-columns: 1fr;
+    height: auto;
+    min-height: auto;
+  }
+  
+  .console-visual-viewport {
+    height: 400px;
+  }
+  
+  .viewport-glass-tint {
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 50%);
+  }
+
+  .console-content-pane {
+    padding: 40px 24px;
+    border-left: none;
+    border-top: 1px solid #111115;
+  }
+  
+  .pane-narrative-window {
+    height: auto;
+    margin: 40px 0;
+  }
+  
+  .narrative-slide-unit {
+    height: auto;
+  }
+  
+  /* Reset dynamic vertical translation on tablet/mobile screens */
+  .narrative-track-scroller {
+    transform: none !important;
+    display: block;
+  }
+  
+  .narrative-slide-unit {
+    display: none;
+  }
+  
+  .narrative-slide-unit:nth-child(1) {
+    display: flex; /* Fallback baseline showing primary layout item */
+  }
+  
+  /* Custom display override matching the active hook state */
+  .narrative-track-scroller > .narrative-slide-unit {
+    display: none;
+  }
+  .narrative-track-scroller > .narrative-slide-unit:nth-child(1n) {
+    display: none;
+  }
+  
+  .pane-interface-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+  }
+  
+  .console-navigation-arrows {
+    width: 100%;
+  }
+  
+  .nav-arrow-btn {
+    flex: 1;
+  }
+}

@@ -1,0 +1,188 @@
+/* ===== PREMIUM LEADERSHIP VISION - CINEMATIC LAYERED FRAME ===== */
+
+.vision-section {
+  padding: 140px 0;
+  background-color: #000000; /* Stark black baseline for premium contrast */
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.vision-container {
+  max-width: 1440px;
+  width: 92%;
+  margin: 0 auto;
+}
+
+/* Asymmetrical Architectural Layout Blueprint */
+.vision-architectural-layout {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 100px;
+  align-items: center;
+}
+
+/* --- LEFT COLUMN: PORTRAIT FRAME WITH FLOATING GEOMETRY --- */
+.vision-portrait-frame {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+/* Subtle underlying architectural background shape */
+.portrait-backdrop-geometry {
+  position: absolute;
+  top: 0;
+  left: -20px;
+  width: 70%;
+  height: 90%;
+  border: 1px solid #222222;
+  background-color: #090909;
+  z-index: 1;
+}
+
+.portrait-image-wrapper {
+  position: relative;
+  z-index: 2;
+  width: 90%;
+  height: 410px;
+  overflow: hidden;
+  border-left: 4px solid #0066ff; /* Urmistek primary bold signature accent bar */
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.vision-portrait-frame:hover .portrait-img {
+  transform: scale(1.02);
+}
+
+/* Tech-inspired bottom positioning tag */
+.portrait-floating-tag {
+  position: absolute;
+  bottom: 10px;
+  right: -20px;
+  z-index: 3;
+  background-color: #111111;
+  border: 1px solid #222222;
+  padding: 12px 20px;
+  font-family: monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: #a3acb9;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tag-vector {
+  color: #0066ff;
+  font-size: 0.85rem;
+}
+
+/* --- RIGHT COLUMN: STATEMENT TERMINAL BLOCK --- */
+.vision-statement-pane {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.quote-icon-anchor {
+  font-size: 4rem;
+  color: #111111; /* Massive ghosted vector asset underlaying the section background */
+  position: absolute;
+  top: -50px;
+  left: -20px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.vision-pane-sup {
+  position: relative;
+  z-index: 2;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.vision-quote-text {
+  position: relative;
+  z-index: 2;
+  font-size: clamp(1.65rem, 2.8vw, 2.25rem);
+  font-weight: 500;
+  line-height: 1.45;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  margin: 0 0 40px 0;
+}
+
+/* Sign-off Credentials Block */
+.vision-sign-off-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.sign-off-divider {
+  width: 60px;
+  height: 2px;
+  background-color: #0066ff;
+  margin-bottom: 20px;
+}
+
+.leader-name {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 4px 0;
+  letter-spacing: -0.01em;
+}
+
+.leader-role {
+  font-size: 0.95rem;
+  color: #a3acb9;
+  margin: 0;
+}
+
+/* --- SYSTEM RESPONSIVE MEDIA QUERIES --- */
+@media (max-width: 1024px) {
+  .vision-architectural-layout {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+  
+  .vision-portrait-frame {
+    max-width: 500px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  
+  .portrait-image-wrapper {
+    height: 420px;
+  }
+
+  .portrait-floating-tag {
+    right: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .vision-section {
+    padding: 80px 0;
+  }
+
+  .vision-quote-text {
+    font-size: 1.45rem;
+  }
+}
