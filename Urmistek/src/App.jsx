@@ -8,6 +8,8 @@ import GlobalImpact from "./components/GlobalImpact";
 import EnterpriseSystems from "./components/EnterpriseSystems";
 import LeadershipVision from "./components/LeadershipVision";
 import FutureCareer from "./components/FutureCareer"; 
+import DigitalTransformation from "./pages/DigitalTransformation";
+import CyberSecurity from "./pages/CyberSecurity";
 import StaffAugmentation from "./pages/StaffAugmentation";
 import UrmistekProducts from "./pages/UrmistekProducts";
 import CSRVision from "./pages/CSRVision";
@@ -34,6 +36,8 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/digital-transformation" element={<DigitalTransformation />} />
+        <Route path="/cyber-security" element={<CyberSecurity />} />
         <Route path="/staff-augmentation" element={<StaffAugmentation />} />
         <Route path="/products" element={<UrmistekProducts />} />
         <Route path="/csr-vision" element={<CSRVision />} />

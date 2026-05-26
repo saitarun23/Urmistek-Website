@@ -335,6 +335,7 @@ const Navbar = ({ onCareerButtonClick }) => {
                     }}
                     onClick={(e) => {
                       e.stopPropagation();
+                      navigate("/digital-transformation");
                       if (window.innerWidth < 768) toggleMenu();
                     }}
                   >
@@ -355,7 +356,7 @@ const Navbar = ({ onCareerButtonClick }) => {
                     }}
                     onClick={(e) => {
                       e.stopPropagation();
-                      navigate("/leadership");
+                      navigate("/cyber-security");
                       if (window.innerWidth < 768) toggleMenu();
                     }}
                   >
