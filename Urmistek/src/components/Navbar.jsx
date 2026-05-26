@@ -207,7 +207,7 @@ const Navbar = ({ onCareerButtonClick }) => {
                     }}
                     onClick={(e) => {
                       e.stopPropagation();
-                      navigate("/leadership");
+                      
                       if (window.innerWidth < 768) toggleMenu();
                     }}
                   >
@@ -228,7 +228,7 @@ const Navbar = ({ onCareerButtonClick }) => {
                     }}
                     onClick={(e) => {
                       e.stopPropagation();
-                      navigate("/leadership");
+                      navigate("/leadership-vision");
                       if (window.innerWidth < 768) toggleMenu();
                     }}
                   >

@@ -1,358 +1,255 @@
-/* ===== VOID CYBER EXPERIENCE ===== */
+/* ===== VOID CYBER EXPERIENCE - FIXED BACKDROP SCROLL SYSTEM ===== */
 
 .void-security-section {
   position: relative;
-  min-height: 100vh;
-  background: #050505;
+  background: #000000;
   overflow: hidden;
-  padding: 130px 0;
+  padding: 140px 0;
   font-family: "Inter", sans-serif;
-  color: #fff;
+  color: #ffffff;
 }
 
-/* ===== NOISE ===== */
-
-.void-noise {
+/* --- THE FROZEN LAYER PLATFORM --- */
+.void-fixed-canvas-wrapper {
   position: absolute;
-  inset: 0;
-
-  background-image:
-    radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
-
-  background-size: 26px 26px;
-
-  opacity: 0.35;
-}
-
-/* ===== LIGHTS ===== */
-
-.void-light {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(140px);
-}
-
-.void-light-one {
-  width: 450px;
-  height: 450px;
-
-  background: rgba(37,99,235,0.22);
-
-  top: -150px;
-  left: -100px;
-}
-
-.void-light-two {
-  width: 400px;
-  height: 400px;
-
-  background: rgba(255,255,255,0.05);
-
-  bottom: -120px;
-  right: -80px;
-}
-
-/* ===== HUGE TEXT ===== */
-
-.void-bg-text {
-  position: absolute;
-
-  top: 50%;
-  left: 50%;
-
-  transform: translate(-50%, -50%);
-
-  font-size: 20vw;
-  font-weight: 900;
-
-  letter-spacing: -0.1em;
-
-  color: rgba(255,255,255,0.02);
-
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Glues this wrapper structure completely frozen during viewport scrolling changes */
+  background-attachment: fixed;
+  z-index: 1;
   pointer-events: none;
 }
 
-/* ===== CONTAINER ===== */
-
-.void-container {
-  width: 92%;
-  max-width: 1700px;
-  margin: auto;
-
-  position: relative;
-  z-index: 3;
+/* The structural cyber background text that stays perfectly still on scroll */
+.void-bg-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20vw;
+  font-weight: 900;
+  line-height: 0.85;
+  letter-spacing: -0.08em;
+  color: rgba(255, 255, 255, 0.04); /* Adjusted visibility to read clean behind solid colors */
+  text-transform: uppercase;
+  /* user-select: none; */
+  background-attachment: fixed;
 }
 
-/* ===== HERO ===== */
+/* Micro-Mesh technical noise layer (also locked in place) */
+.void-noise {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-attachment: fixed;
+}
 
+/* --- MOVING CONTAINER LAYER (Slides over the frozen canvas elements) --- */
+.void-container {
+  width: 92%;
+  max-width: 1600px;
+  margin: auto;
+  position: relative;
+  z-index: 2; /* Sits stacked safely on top of fixed backdrop */
+}
+
+/* Hero Title Header Details */
 .void-hero {
-  margin-bottom: 140px;
+  margin-bottom: 120px;
 }
 
 .void-hero-top {
   display: flex;
   align-items: center;
   gap: 16px;
-
-  margin-bottom: 30px;
+  margin-bottom: 24px;
 }
 
 .void-mini-line {
-  width: 50px;
+  width: 40px;
   height: 1px;
-
   background: #2563eb;
 }
 
 .void-hero-top p {
   margin: 0;
-
-  font-size: 0.78rem;
-  letter-spacing: 0.35em;
-
-  color: #6b7280;
+  font-family: monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
+  color: #64748b;
 }
 
 .void-title {
-  font-size: clamp(5rem, 9vw, 9rem);
-
-  line-height: 0.82;
-
-  font-weight: 550;
-
-  letter-spacing: -0.1em;
-
+  font-size: clamp(3rem, 7.5vw, 7.5rem);
+  line-height: 0.9;
+  font-weight: 800;
+  letter-spacing: -0.03em;
   margin: 0;
-
   text-transform: uppercase;
 }
 
 .void-title span {
   display: block;
-
-  background: linear-gradient(
-    to right,
-    #ffffff,
-    #2563eb
-  );
-
+  background: linear-gradient(135deg, #ffffff 40%, #475569 100%);
+  -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* ===== FLOATING LAYOUT ===== */
-
+/* Asymmetric Positioning Matrix */
 .void-layout {
   position: relative;
-
-  min-height: 1200px;
+  min-height: 1150px;
 }
 
-/* ===== CARD ===== */
-
+/* --- PREMIUM PERMANENT BLOCK COLOR CARD LAYOUT --- */
 .void-card {
   position: absolute;
-
-  width: 420px;
-  min-height: 320px;
-
-  padding: 40px;
-
+  width: 440px;
+  min-height: 340px;
+  /* Colors are permanently visible without waiting for a user mouse hover event */
+  background-color: var(--card-base-color); 
+  border: 1px solid rgba(255, 255, 255, 0.05);
   overflow: hidden;
-
-  border: 1px solid rgba(255,255,255,0.06);
-
-  backdrop-filter: blur(20px);
-
-  background: rgba(255,255,255,0.03);
-
-  transition:
-    transform 0.7s ease,
-    background 0.7s ease,
-    border-color 0.7s ease;
+  box-sizing: border-box;
+  
+  /* Blends the card color system beautifully over the locked background text */
+  mix-blend-mode: screen; 
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
 }
 
+/* Exact positional coordinates mapping across your layout rows */
+.void-card-1 { top: 0; left: 0; }
+.void-card-2 { top: 140px; right: 0; }
+.void-card-3 { top: 500px; left: 100px; }
+.void-card-4 { top: 740px; right: 100px; }
+
+/* Micro subtle hover change to feel highly interactive */
 .void-card:hover {
-  transform:
-    translateY(-20px)
-    scale(1.03)
-    rotate(-2deg);
-
-  border-color: rgba(37,99,235,0.4);
-
-  background: rgba(255,255,255,0.05);
+  transform: translateY(-8px);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
-/* ===== DIFFERENT POSITIONS ===== */
-
-.void-card-1 {
-  top: 0;
-  left: 0;
-}
-
-.void-card-2 {
-  top: 180px;
-  right: 0;
-}
-
-.void-card-3 {
-  top: 520px;
-  left: 120px;
-}
-
-.void-card-4 {
-  top: 760px;
-  right: 120px;
-}
-
-/* ===== GLASS ===== */
-
-.void-card-glass {
+/* Technical Vector Canvas Area */
+.void-card-vector-canvas {
   position: absolute;
-
   inset: 0;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,0.06),
-      transparent
-    );
-
+  z-index: 1;
   pointer-events: none;
 }
 
-/* ===== TOP ===== */
+.vector-svg {
+  width: 100%;
+  height: 100%;
+  opacity: 0.4; /* Permanently layered across the card */
+}
+
+/* Foreground content boundaries isolating typography typography properties */
+.void-card-inner-wrapper {
+  position: relative;
+  z-index: 2;
+  padding: 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 340px;
+  box-sizing: border-box;
+}
 
 .void-card-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  position: relative;
-  z-index: 3;
-
-  margin-bottom: 70px;
+  margin-bottom: 40px;
 }
 
-.void-card-top span {
-  font-size: 0.78rem;
-
-  letter-spacing: 0.25em;
-
-  color: #6b7280;
+.void-card-index {
+  font-size: 0.85rem;
+  font-family: monospace;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.1em;
 }
 
-/* ===== SIGNAL ===== */
-
-.void-signal {
-  width: 14px;
-  height: 14px;
-
-  border-radius: 50%;
-
-  background: #2563eb;
-
-  box-shadow:
-    0 0 20px #2563eb,
-    0 0 60px #2563eb;
-}
-
-/* ===== CONTENT ===== */
-
-.void-card-content {
-  position: relative;
-  z-index: 3;
+.void-card-label-string {
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.05em;
 }
 
 .void-card-content h2 {
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
-
-  line-height: 0.92;
-
-  font-weight: 800;
-
-  letter-spacing: -0.06em;
-
-  margin: 0 0 30px;
-
-  transition: color 0.5s ease;
-}
-
-.void-card:hover h2 {
-  color: #2563eb;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  margin: 0 0 16px 0;
 }
 
 .void-card-content p {
-  max-width: 320px;
-
-  font-size: 1rem;
-  line-height: 2;
-
-  color: #9ca3af;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.8); /* Highly legible on top of deep solid tones */
+  margin: 0;
+  max-width: 340px;
 }
 
-/* ===== WORD ===== */
-
-.void-word {
-  position: absolute;
-
-  right: -10px;
-  bottom: -10px;
-
-  font-size: 5vw;
-  font-weight: 900;
-
-  letter-spacing: -0.08em;
-
-  color: rgba(255,255,255,0.03);
-
-  transition: transform 0.7s ease;
+/* Bottom Action Elements Trigger */
+.void-card-footer-trigger {
+  margin-top: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #ffffff;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 16px;
 }
 
-.void-card:hover .void-word {
-  transform: translateX(-15px);
-}
-
-/* ===== RESPONSIVE ===== */
-
+/* --- SYSTEM ADAPTATION RESPONSIVE BREAKPOINTS --- */
 @media (max-width: 1200px) {
-
   .void-layout {
     display: flex;
     flex-direction: column;
-    gap: 40px;
-
+    gap: 24px;
     min-height: auto;
   }
 
   .void-card {
     position: relative;
-
     width: 100%;
     top: auto !important;
     left: auto !important;
     right: auto !important;
+    min-height: auto;
   }
-
+  
+  .void-card-inner-wrapper {
+    min-height: auto;
+    padding: 32px;
+  }
 }
 
 @media (max-width: 768px) {
-
   .void-security-section {
     padding: 100px 0;
   }
 
   .void-title {
-    font-size: clamp(4rem, 18vw, 6rem);
-  }
-
-  .void-card {
-    padding: 30px;
+    font-size: clamp(2.5rem, 12vw, 4.5rem);
   }
 
   .void-card-content h2 {
-    font-size: 2.3rem;
+    font-size: 1.65rem;
   }
-
+  
+  .void-fixed-canvas-wrapper {
+    display: none; /* Safely drops fixed calculations on handheld touchscreens to prevent viewport jitter */
+  }
 }

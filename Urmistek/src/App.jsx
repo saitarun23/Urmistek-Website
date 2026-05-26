@@ -6,7 +6,7 @@ import Hero from "./components/Hero";
 import WhatWeThink from "./components/WhatWeThink";
 import GlobalImpact from "./components/GlobalImpact";
 import EnterpriseSystems from "./components/EnterpriseSystems";
-import LeadershipVision from "./components/LeadershipVision";
+import LeadershipVision from "./pages/LeadershipVision";
 import FutureCareer from "./components/FutureCareer"; 
 import DigitalTransformation from "./pages/DigitalTransformation";
 import CyberSecurity from "./pages/CyberSecurity";
@@ -20,7 +20,6 @@ function Home() {
     // IMPORTANT: keep this wrapper if your Navbar scroll logic uses ".constart"
     <div className="constart">
       <Hero />
-      {/* <LeadershipVision /> */}
       <WhatWeThink />
       <GlobalImpact />
       <FutureCareer />
@@ -36,6 +35,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/leadership-vision" element={<LeadershipVision />} />
         <Route path="/digital-transformation" element={<DigitalTransformation />} />
         <Route path="/cyber-security" element={<CyberSecurity />} />
         <Route path="/staff-augmentation" element={<StaffAugmentation />} />
