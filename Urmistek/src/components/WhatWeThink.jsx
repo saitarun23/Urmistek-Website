@@ -95,8 +95,8 @@ const WhatWeThink = () => {
         {/* Top Accent Navigation Header */}
         <div className="think-section-header">
           <div className="think-title-group">
-            {/* <span className="think-sup">GLOBAL INTELLIGENCE</span>
-            <h2 className="think-main-title">What We Think</h2> */}
+            {/* <span className="think-sup">GLOBAL INTELLIGENCE</span> */}
+            <h2 className="think-main-title">At Urmistek, innovation begins with ideas that inspire transformation and redefine possibilities.</h2>
           </div>
           {/* <button className="think-global-filter-btn">
             <span>Browse All Insights</span>

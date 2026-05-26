@@ -286,36 +286,32 @@ const Navbar = ({ onCareerButtonClick }) => {
         </FlyoutLink>
 
         <FlyoutLink
-          onClick={() => {
+          onClick={(e) => {
+            // Only perform the scroll and toggle logic for the main "Our Company" click
+            const section = document.getElementById("our-company");
+            const container = document.querySelector(".constart"); // Using className to get the scroll container
+
+            if (section && container) {
+              const containerTop = container.getBoundingClientRect().top;
+              const sectionTop = section.getBoundingClientRect().top;
+
+              const offset = sectionTop - containerTop - 300; // Adjust 200 for your navbar height
+
+              container.scrollTo({
+                top: container.scrollTop + offset,
+                behavior: "smooth",
+              });
+            }
+
             if (window.innerWidth < 768) {
-              toggleMenu();
+              setTimeout(() => {
+                toggleMenu(); // Call the toggleMenu after scrolling with a slight delay
+              }, 100);
             }
           }}
           FlyoutContent={
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                padding: "20px 10px",
-                backgroundColor: "white",
-                color: "black",
-                borderRadius: "8px",
-                width: "50vw",
-                // maxWidth: "2000px",
-                margin: "0 auto",
-              }}
-            >
-              {/* Column 1 */}
-              <div style={{ flex: "1", textAlign: "left" }}>
-                <h3
-                  style={{
-                    fontSize: "16px",
-                    fontWeight: "bold",
-                    marginBottom: "10px",
-                  }}
-                >
-                  Staff Augmentation
-                </h3>
+            <div className="flyout-menu">
+              <div className="flyout-section">
                 <ul
                   style={{
                     listStyle: "none",
@@ -328,96 +324,6 @@ const Navbar = ({ onCareerButtonClick }) => {
                     style={{
                       marginBottom: "8px",
                       transition: "transform 0.3s ease",
-                    }}
-                    onMouseEnter={(e) =>
-                      (e.target.style.transform = "translateX(10px)")(
-                        (e.target.style.color = "crimson")
-                      )
-                    }
-                    onMouseLeave={(e) =>
-                      (e.target.style.transform = "translateX(0)")(
-                        (e.target.style.color = " #989898")
-                      )
-                    }
-                    onClick={(e) => {
-                      e.stopPropagation(); // Prevent event bubbling
-
-                      const section = document.getElementById(
-                        "Technology Staffing"
-                      );
-                      const container = document.querySelector(".constart");
-
-                      if (section && container) {
-                        const containerTop =
-                          container.getBoundingClientRect().top;
-                        const sectionTop = section.getBoundingClientRect().top;
-
-                        const offset = sectionTop - containerTop - 60; // Adjust for header height
-
-                        container.scrollTo({
-                          top: container.scrollTop + offset,
-                          behavior: "smooth",
-                        });
-                      }
-
-                      if (window.innerWidth < 768) {
-                        setTimeout(() => {
-                          toggleMenu();
-                        }, 100);
-                      }
-                    }}
-                  >
-                    Technology
-                  </li>
-                  <li
-                    style={{
-                      marginBottom: "8px",
-                      transition: "transform 0.3s ease",
-                    }}
-                    onMouseEnter={(e) =>
-                      (e.target.style.transform = "translateX(10px)")(
-                        (e.target.style.color = "crimson")
-                      )
-                    }
-                    onMouseLeave={(e) =>
-                      (e.target.style.transform = "translateX(0)")(
-                        (e.target.style.color = " #989898")
-                      )
-                    }
-                    onClick={(e) => {
-                      e.stopPropagation(); // Prevent the click from bubbling to parent elements
-
-                      const section =
-                        document.getElementById("Remote Staffing");
-                      const container = document.querySelector(".constart");
-
-                      if (section && container) {
-                        const containerTop =
-                          container.getBoundingClientRect().top;
-                        const sectionTop = section.getBoundingClientRect().top;
-
-                        const offset = sectionTop - containerTop - 60; // 60px scroll padding
-
-                        container.scrollTo({
-                          top: container.scrollTop + offset,
-                          behavior: "smooth",
-                        });
-                      }
-
-                      if (window.innerWidth < 768) {
-                        setTimeout(() => {
-                          toggleMenu();
-                        }, 100);
-                      }
-                    }}
-                  >
-                    Remote
-                  </li>
-                  <li
-                    style={{
-                      marginBottom: "8px",
-                      transition: "transform 0.3s ease",
-                      cursor: "pointer", // Makes it clear it's clickable
                     }}
                     onMouseEnter={(e) => {
                       e.target.style.transform = "translateX(10px)";
@@ -425,609 +331,79 @@ const Navbar = ({ onCareerButtonClick }) => {
                     }}
                     onMouseLeave={(e) => {
                       e.target.style.transform = "translateX(0)";
-                      e.target.style.color = "#989898";
+                      e.target.style.color = "#3a3939";
                     }}
                     onClick={(e) => {
-                      e.stopPropagation(); // Prevent the click from bubbling to parent elements
-
-                      const section =
-                        document.getElementById("Contract Staffing");
-                      const container = document.querySelector(".constart");
-
-                      if (section && container) {
-                        const containerTop =
-                          container.getBoundingClientRect().top;
-                        const sectionTop = section.getBoundingClientRect().top;
-
-                        const offset = sectionTop - containerTop - 60; // 60px scroll padding
-
-                        container.scrollTo({
-                          top: container.scrollTop + offset,
-                          behavior: "smooth",
-                        });
-                      }
-
-                      if (window.innerWidth < 768) {
-                        setTimeout(() => {
-                          toggleMenu();
-                        }, 100);
-                      }
+                      e.stopPropagation();
+                      if (window.innerWidth < 768) toggleMenu();
                     }}
                   >
-                    Contract
-                  </li>
-
-                  <li
-                    style={{
-                      marginBottom: "8px",
-                      transition: "transform 0.3s ease",
-                    }}
-                    onMouseEnter={(e) =>
-                      (e.target.style.transform = "translateX(10px)")(
-                        (e.target.style.color = "crimson")
-                      )
-                    }
-                    onMouseLeave={(e) =>
-                      (e.target.style.transform = "translateX(0)")(
-                        (e.target.style.color = " #989898")
-                      )
-                    }
-                    onClick={(e) => {
-                      e.stopPropagation(); // Prevent click from bubbling up
-
-                      const section = document.getElementById(
-                        "Recruitment Process Outsourcing"
-                      );
-                      const container = document.querySelector(".constart");
-
-                      if (section && container) {
-                        const containerTop =
-                          container.getBoundingClientRect().top;
-                        const sectionTop = section.getBoundingClientRect().top;
-
-                        const offset = sectionTop - containerTop - 60; // 60px scroll padding
-
-                        container.scrollTo({
-                          top: container.scrollTop + offset,
-                          behavior: "smooth",
-                        });
-                      }
-
-                      if (window.innerWidth < 768) {
-                        setTimeout(() => {
-                          toggleMenu();
-                        }, 100);
-                      }
-                    }}
-                  >
-                    RPO
-                  </li>
-                </ul>
-              </div>
-
-              {/* Column 2 */}
-              <div style={{ flex: "1", textAlign: "left" }}>
-                <h3
-                  style={{
-                    fontSize: "16px",
-                    fontWeight: "bold",
-                    marginBottom: "10px",
-                  }}
-                >
-                  Accessibility
-                </h3>
-                <ul
-                  style={{
-                    listStyle: "none",
-                    padding: 0,
-                    margin: 0,
-                    color: "#989898",
-                    gap: "100px",
-                  }}
-                >
-                  <li
-                    style={{
-                      marginBottom: "8px",
-                      transition: "transform 0.3s ease",
-                    }}
-                    onMouseEnter={(e) =>
-                      (e.target.style.transform = "translateX(10px)")(
-                        (e.target.style.color = "crimson")
-                      )
-                    }
-                    onMouseLeave={(e) =>
-                      (e.target.style.transform = "translateX(0)")(
-                        (e.target.style.color = " #989898")
-                      )
-                    }
-                    onClick={(e) => {
-                      e.stopPropagation(); // Prevent click from bubbling up
-
-                      const section = document.getElementById(
-                        "Document Accessibility"
-                      );
-                      const container = document.querySelector(".constart");
-
-                      if (section && container) {
-                        const containerTop =
-                          container.getBoundingClientRect().top;
-                        const sectionTop = section.getBoundingClientRect().top;
-
-                        const offset = sectionTop - containerTop - 60; // 60px scroll padding
-
-                        container.scrollTo({
-                          top: container.scrollTop + offset,
-                          behavior: "smooth",
-                        });
-                      }
-
-                      if (window.innerWidth < 768) {
-                        setTimeout(() => {
-                          toggleMenu();
-                        }, 100);
-                      }
-                    }}
-                  >
-                    Document Accessibility
+                    Digital Transformation
                   </li>
                   <li
                     style={{
                       marginBottom: "8px",
                       transition: "transform 0.3s ease",
                     }}
-                    onMouseEnter={(e) =>
-                      (e.target.style.transform = "translateX(10px)")(
-                        (e.target.style.color = "crimson")
-                      )
-                    }
-                    onMouseLeave={(e) =>
-                      (e.target.style.transform = "translateX(0)")(
-                        (e.target.style.color = " #989898")
-                      )
-                    }
+                    onMouseEnter={(e) => {
+                      e.target.style.transform = "translateX(10px)";
+                      e.target.style.color = "crimson";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.transform = "translateX(0)";
+                      e.target.style.color = "#3a3939";
+                    }}
                     onClick={(e) => {
-                      e.stopPropagation(); // Prevent click from bubbling up
-
-                      const section = document.getElementById(
-                        "Alt-Text Description"
-                      );
-                      const container = document.querySelector(".constart");
-
-                      if (section && container) {
-                        const containerTop =
-                          container.getBoundingClientRect().top;
-                        const sectionTop = section.getBoundingClientRect().top;
-
-                        const offset = sectionTop - containerTop - 60; // 60px scroll padding
-
-                        container.scrollTo({
-                          top: container.scrollTop + offset,
-                          behavior: "smooth",
-                        });
-                      }
-
-                      if (window.innerWidth < 768) {
-                        setTimeout(() => {
-                          toggleMenu();
-                        }, 100);
-                      }
+                      e.stopPropagation();
+                      navigate("/leadership");
+                      if (window.innerWidth < 768) toggleMenu();
                     }}
                   >
-                    Alt-Text Description
+                    Cyber Security
                   </li>
                   <li
                     style={{
                       marginBottom: "8px",
                       transition: "transform 0.3s ease",
                     }}
-                    onMouseEnter={(e) =>
-                      (e.target.style.transform = "translateX(10px)")(
-                        (e.target.style.color = "crimson")
-                      )
-                    }
-                    onMouseLeave={(e) =>
-                      (e.target.style.transform = "translateX(0)")(
-                        (e.target.style.color = " #989898")
-                      )
-                    }
+                    onMouseEnter={(e) => {
+                      e.target.style.transform = "translateX(10px)";
+                      e.target.style.color = "crimson";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.transform = "translateX(0)";
+                      e.target.style.color = "#3a3939";
+                    }}
                     onClick={(e) => {
-                      e.stopPropagation(); // Prevent click from bubbling up
-
-                      const section = document.getElementById(
-                        "Web/Mobile Accessibility"
-                      );
-                      const container = document.querySelector(".constart");
-
-                      if (section && container) {
-                        const containerTop =
-                          container.getBoundingClientRect().top;
-                        const sectionTop = section.getBoundingClientRect().top;
-
-                        const offset = sectionTop - containerTop - 60; // 60px scroll padding
-
-                        container.scrollTo({
-                          top: container.scrollTop + offset,
-                          behavior: "smooth",
-                        });
-                      }
-
-                      if (window.innerWidth < 768) {
-                        setTimeout(() => {
-                          toggleMenu();
-                        }, 100);
+                      e.stopPropagation(); // Stop click event from bubbling to the parent FlyoutLink
+                      navigate("/staff-augmentation");
+                      const section = document.getElementById("clients");
+                      if (section) {
+                        section.scrollIntoView({ behavior: "smooth" });
                       }
                     }}
                   >
-                    Web/Mobile Accessibility
+                    Staff Augmentation
                   </li>
                   <li
                     style={{
                       marginBottom: "8px",
                       transition: "transform 0.3s ease",
                     }}
-                    onMouseEnter={(e) =>
-                      (e.target.style.transform = "translateX(10px)")(
-                        (e.target.style.color = "crimson")
-                      )
-                    }
-                    onMouseLeave={(e) =>
-                      (e.target.style.transform = "translateX(0)")(
-                        (e.target.style.color = " #989898")
-                      )
-                    }
+                    onMouseEnter={(e) => {
+                      e.target.style.transform = "translateX(10px)";
+                      e.target.style.color = "crimson";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.transform = "translateX(0)";
+                      e.target.style.color = "#3a3939";
+                    }}
                     onClick={(e) => {
-                      e.stopPropagation(); // Prevent click from bubbling up
-
-                      const section = document.getElementById(
-                        "Software Accessibility"
-                      );
-                      const container = document.querySelector(".constart");
-
-                      if (section && container) {
-                        const containerTop =
-                          container.getBoundingClientRect().top;
-                        const sectionTop = section.getBoundingClientRect().top;
-
-                        const offset = sectionTop - containerTop - 60; // 60px scroll padding
-
-                        container.scrollTo({
-                          top: container.scrollTop + offset,
-                          behavior: "smooth",
-                        });
-                      }
-
-                      if (window.innerWidth < 768) {
-                        setTimeout(() => {
-                          toggleMenu();
-                        }, 100);
-                      }
+                      e.stopPropagation(); // Stop click event from bubbling to the parent FlyoutLink
+                      onCareerButtonClick(); // Call the career button logic
                     }}
                   >
-                    Software Accessibility
-                  </li>
-                  <li
-                    style={{
-                      marginBottom: "8px",
-                      transition: "transform 0.3s ease",
-                    }}
-                    onMouseEnter={(e) =>
-                      (e.target.style.transform = "translateX(10px)")(
-                        (e.target.style.color = "crimson")
-                      )
-                    }
-                    onMouseLeave={(e) =>
-                      (e.target.style.transform = "translateX(0)")(
-                        (e.target.style.color = " #989898")
-                      )
-                    }
-                    onClick={(e) => {
-                      e.stopPropagation(); // Prevent click from bubbling up
-
-                      const section = document.getElementById(
-                        "Multimedia Accessibility"
-                      );
-                      const container = document.querySelector(".constart");
-
-                      if (section && container) {
-                        const containerTop =
-                          container.getBoundingClientRect().top;
-                        const sectionTop = section.getBoundingClientRect().top;
-
-                        const offset = sectionTop - containerTop - 60; // 60px scroll padding
-
-                        container.scrollTo({
-                          top: container.scrollTop + offset,
-                          behavior: "smooth",
-                        });
-                      }
-
-                      if (window.innerWidth < 768) {
-                        setTimeout(() => {
-                          toggleMenu();
-                        }, 100);
-                      }
-                    }}
-                  >
-                    Multimedia Accessibility
-                  </li>
-                </ul>
-              </div>
-
-              {/* Column 3 */}
-              <div style={{ flex: "1", textAlign: "left" }}>
-                <h3
-                  style={{
-                    fontSize: "16px",
-                    fontWeight: "bold",
-                    marginBottom: "10px",
-                  }}
-                >
-                  Cybersecurity
-                </h3>
-                <ul
-                  style={{
-                    listStyle: "none",
-                    padding: 0,
-                    margin: 0,
-                    color: "#989898",
-                  }}
-                >
-                  <li
-                    style={{
-                      marginBottom: "8px",
-                      transition: "transform 0.3s ease",
-                    }}
-                    onMouseEnter={(e) => (
-                      (e.target.style.transform = "translateX(10px)"),
-                      (e.target.style.color = "crimson")
-                    )}
-                    onMouseLeave={(e) =>
-                      (e.target.style.transform = "translateX(0)")(
-                        (e.target.style.color = " #989898")
-                      )
-                    }
-                    onClick={(e) => {
-                      e.stopPropagation(); // Prevent click from bubbling up
-
-                      const section = document.getElementById("Firewalls");
-                      const container = document.querySelector(".constart");
-
-                      if (section && container) {
-                        const containerTop =
-                          container.getBoundingClientRect().top;
-                        const sectionTop = section.getBoundingClientRect().top;
-
-                        const offset = sectionTop - containerTop - 60; // 60px scroll padding
-
-                        container.scrollTo({
-                          top: container.scrollTop + offset,
-                          behavior: "smooth",
-                        });
-                      }
-
-                      if (window.innerWidth < 768) {
-                        setTimeout(() => {
-                          toggleMenu();
-                        }, 100);
-                      }
-                    }}
-                  >
-                    Firewalls
-                  </li>
-                  <li
-                    style={{
-                      marginBottom: "8px",
-                      transition: "transform 0.3s ease",
-                    }}
-                    onMouseEnter={(e) => (
-                      (e.target.style.transform = "translateX(10px)"),
-                      (e.target.style.color = "crimson")
-                    )}
-                    onMouseLeave={(e) =>
-                      (e.target.style.transform = "translateX(0)")(
-                        (e.target.style.color = " #989898")
-                      )
-                    }
-                    onClick={(e) => {
-                      e.stopPropagation(); // Prevent click from bubbling up
-
-                      const section =
-                        document.getElementById("Email Protection");
-                      const container = document.querySelector(".constart");
-
-                      if (section && container) {
-                        const containerTop =
-                          container.getBoundingClientRect().top;
-                        const sectionTop = section.getBoundingClientRect().top;
-
-                        const offset = sectionTop - containerTop - 60; // 60px scroll padding
-
-                        container.scrollTo({
-                          top: container.scrollTop + offset,
-                          behavior: "smooth",
-                        });
-                      }
-
-                      if (window.innerWidth < 768) {
-                        setTimeout(() => {
-                          toggleMenu();
-                        }, 100);
-                      }
-                    }}
-                  >
-                    Email Protection
-                  </li>
-                  <li
-                    style={{
-                      marginBottom: "8px",
-                      transition: "transform 0.3s ease",
-                    }}
-                    onMouseEnter={(e) => (
-                      (e.target.style.transform = "translateX(10px)"),
-                      (e.target.style.color = "crimson")
-                    )}
-                    onMouseLeave={(e) =>
-                      (e.target.style.transform = "translateX(0)")(
-                        (e.target.style.color = " #989898")
-                      )
-                    }
-                    onClick={(e) => {
-                      e.stopPropagation(); // Prevent click from bubbling up
-
-                      const section =
-                        document.getElementById("Wi-Fi Protection");
-                      const container = document.querySelector(".constart");
-
-                      if (section && container) {
-                        const containerTop =
-                          container.getBoundingClientRect().top;
-                        const sectionTop = section.getBoundingClientRect().top;
-
-                        const offset = sectionTop - containerTop - 60; // 60px scroll padding
-
-                        container.scrollTo({
-                          top: container.scrollTop + offset,
-                          behavior: "smooth",
-                        });
-                      }
-
-                      if (window.innerWidth < 768) {
-                        setTimeout(() => {
-                          toggleMenu();
-                        }, 100);
-                      }
-                    }}
-                  >
-                    Wi-Fi Protection
-                  </li>
-                  <li
-                    style={{
-                      marginBottom: "8px",
-                      transition: "transform 0.3s ease",
-                    }}
-                    onMouseEnter={(e) => (
-                      (e.target.style.transform = "translateX(10px)"),
-                      (e.target.style.color = "crimson")
-                    )}
-                    onMouseLeave={(e) =>
-                      (e.target.style.transform = "translateX(0)")(
-                        (e.target.style.color = " #989898")
-                      )
-                    }
-                    onClick={(e) => {
-                      e.stopPropagation(); // Prevent click from bubbling up
-
-                      const section = document.getElementById("Security Plans");
-                      const container = document.querySelector(".constart");
-
-                      if (section && container) {
-                        const containerTop =
-                          container.getBoundingClientRect().top;
-                        const sectionTop = section.getBoundingClientRect().top;
-
-                        const offset = sectionTop - containerTop - 60; // 60px scroll padding
-
-                        container.scrollTo({
-                          top: container.scrollTop + offset,
-                          behavior: "smooth",
-                        });
-                      }
-
-                      if (window.innerWidth < 768) {
-                        setTimeout(() => {
-                          toggleMenu();
-                        }, 100);
-                      }
-                    }}
-                  >
-                    Security Plans
-                  </li>
-                </ul>
-              </div>
-
-              {/* Column 4 */}
-              <div style={{ flex: "1", textAlign: "left" }}>
-                <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-                  <li
-                    style={{
-                      marginBottom: "8px",
-                      fontWeight: "bold",
-                      transition: "transform 0.3s ease",
-                    }}
-                    onMouseEnter={(e) =>
-                      (e.target.style.transform = "translateX(10px)")
-                    }
-                    onMouseLeave={(e) =>
-                      (e.target.style.transform = "translateX(0)")
-                    }
-                    onClick={(e) => {
-                      e.stopPropagation(); // Prevent click from bubbling up
-
-                      const section = document.getElementById("contentProd");
-                      const container = document.querySelector(".constart");
-
-                      if (section && container) {
-                        const containerTop =
-                          container.getBoundingClientRect().top;
-                        const sectionTop = section.getBoundingClientRect().top;
-
-                        const offset = sectionTop - containerTop - 60; // 60px scroll padding
-
-                        container.scrollTo({
-                          top: container.scrollTop + offset,
-                          behavior: "smooth",
-                        });
-                      }
-
-                      if (window.innerWidth < 768) {
-                        setTimeout(() => {
-                          toggleMenu();
-                        }, 100);
-                      }
-                    }}
-                  >
-                    CONTENT <br /> PRODUCTION
-                  </li>
-                  <li
-                    style={{
-                      marginBottom: "8px",
-                      fontWeight: "bold",
-                      transition: "transform 0.3s ease",
-                    }}
-                    onMouseEnter={(e) =>
-                      (e.target.style.transform = "translateX(10px)")
-                    }
-                    onMouseLeave={(e) =>
-                      (e.target.style.transform = "translateX(0)")
-                    }
-                    onClick={(e) => {
-                      e.stopPropagation(); // Prevent click from bubbling up
-
-                      const section = document.getElementById("digitaltran");
-                      const container = document.querySelector(".constart");
-
-                      if (section && container) {
-                        const containerTop =
-                          container.getBoundingClientRect().top;
-                        const sectionTop = section.getBoundingClientRect().top;
-
-                        const offset = sectionTop - containerTop - 60; // 60px scroll padding
-
-                        container.scrollTo({
-                          top: container.scrollTop + offset,
-                          behavior: "smooth",
-                        });
-                      }
-
-                      if (window.innerWidth < 768) {
-                        setTimeout(() => {
-                          toggleMenu();
-                        }, 100);
-                      }
-                    }}
-                  >
-                    DIGITAL
-                    <br /> TRANSFORMATION
+                    Content Production
                   </li>
                 </ul>
               </div>
@@ -1036,6 +412,8 @@ const Navbar = ({ onCareerButtonClick }) => {
         >
           Our Services
         </FlyoutLink>
+
+        
 
         <FlyoutLink
           onClick={() => {

@@ -1,0 +1,259 @@
+/* ===== PREMIUM STAFF AUGMENTATION SYSTEM ===== */
+
+.aug-section {
+  padding: 120px 0;
+  background-color: #000000; /* Clean off-white surface framework */
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #ffffff;
+}
+
+.aug-container {
+  max-width: 1440px;
+  width: 92%;
+  margin: 0 auto;
+}
+
+/* --- MATRIX ROW HEADER --- */
+.aug-section-header {
+  border-bottom: 1px solid #dce2e2;
+  padding-bottom: 40px;
+  margin-bottom: 48px;
+}
+
+.aug-main-title {
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.03em;
+  margin: 0;
+  color: #ffffff;
+  max-width: 1100px;
+}
+
+/* --- STARK INTERACTION GRID LAYOUT --- */
+.aug-editorial-matrix {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+/* Core Base Card Mechanics */
+.aug-matrix-card {
+  position: relative;
+  height: 520px;
+  background-color: #111115; /* Standardized Dark Background Core */
+  border: 1px solid #1e1e24;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+/* Card Background Image States */
+.aug-card-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(30%) brightness(90%);
+  transition: height 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+}
+
+.aug-matrix-card:hover .aug-card-bg-image {
+  height: 100%;
+  filter: grayscale(0%) brightness(35%);
+}
+
+/* Foreground Container Wrapper */
+.aug-card-foreground-content {
+  position: relative;
+  z-index: 3;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  box-sizing: border-box;
+  background: linear-gradient(to top, rgba(17,17,21,1) 0%, rgba(17,17,21,0.85) 50%, rgba(17,17,21,0) 100%);
+  transition: background 0.4s ease;
+}
+
+.aug-matrix-card:hover .aug-card-foreground-content {
+  background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 100%);
+}
+
+/* Typography States */
+.aug-card-content-type {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #94a3b8;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.aug-card-content-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #ffffff;
+  margin: 0 0 20px 0;
+  letter-spacing: -0.01em;
+}
+
+/* --- DYNAMIC SLIDING DRAWER SYSTEM --- */
+.aug-card-lower-drawer {
+  display: flex;
+  flex-direction: column;
+}
+
+.aug-card-preview-text {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #cbd5e1;
+  margin: 0;
+}
+
+/* Hidden narrative text block that drops into viewport on hover */
+.aug-card-hidden-narrative {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #ffffff;
+  margin: 0;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease;
+}
+
+.aug-matrix-card:hover .aug-card-hidden-narrative {
+  max-height: 160px;
+  opacity: 1;
+  margin-top: 16px;
+}
+
+/* Dynamic Interactive CTA Trigger button */
+.aug-card-action-trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-top: 24px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.aug-matrix-card:hover .aug-card-action-trigger {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.aug-trigger-icon {
+  font-size: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.aug-matrix-card:hover .aug-trigger-icon {
+  transform: translateX(4px);
+}
+
+/* --- THE LIGHT PERSPECTIVE SPECIFIC CARD ARCHITECTURE --- */
+.aug-matrix-card.light-vector {
+  background-color: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+.aug-matrix-card.light-vector .aug-card-foreground-content {
+  background: #f8fafc;
+}
+
+.aug-matrix-card.light-vector .aug-card-content-title,
+.aug-matrix-card.light-vector .aug-card-preview-text {
+  color: #000000;
+}
+
+.aug-matrix-card.light-vector .aug-card-content-type {
+  color: #475569;
+}
+
+.aug-matrix-card.light-vector .aug-card-hidden-narrative,
+.aug-matrix-card.light-vector .aug-card-action-trigger {
+  color: #0066ff; /* Clean Blue Branding Accent Pop */
+}
+
+/* Light Vector Content Positioning */
+.aug-card-vector-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.aug-matrix-card.light-vector:hover .aug-card-vector-canvas {
+  opacity: 0.1;
+}
+
+/* --- VIBRANT POP CARD ACCENT THEME VARIATION --- */
+.aug-matrix-card.vibrant-accent .aug-card-content-type {
+  color: #00e5ff; /* Cyan indicator trace text */
+}
+
+/* --- CARD DECORATIVE CORNER SIGNALS --- */
+.aug-card-corner-indicator {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  font-size: 1.1rem;
+  color: #4b5563;
+  z-index: 4;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.aug-matrix-card:hover .aug-card-corner-indicator {
+  transform: rotate(45deg);
+  color: #0066ff;
+}
+
+.aug-matrix-card.light-vector .aug-card-corner-indicator {
+  color: #cbd5e1;
+}
+
+/* --- SYSTEM RESPONSIVE MEDIA BREAKERS --- */
+@media (max-width: 1400px) {
+  .aug-editorial-matrix {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .aug-section {
+    padding: 80px 0;
+  }
+  
+  .aug-section-header {
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+  }
+
+  .aug-editorial-matrix {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .aug-matrix-card {
+    height: 480px;
+  }
+}
