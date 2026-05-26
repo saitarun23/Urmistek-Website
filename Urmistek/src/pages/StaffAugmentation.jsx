@@ -28,7 +28,7 @@ const talentData = [
     type: "Contract Staffing",
     title: "Flexible workforce solutions tailored for evolving business demands",
     previewText: "We provide flexible staffing solutions for short-term, long-term, contract, and permanent workforce needs.",
-    expandedText: "Short-term, long-term or permanent contracts, tailored to your business needs. The skilled contract solutions recruiters at Logic Planet devote ethics and professionalism to filling temporary openings like our direct hire recruiters. To promptly and effectively meet your critical resource needs, including yearly, contract, project, time-sensitive, seasonal, transitional, staff augmentation, and contract-to-hire positions, our specialists create an unmatched local network of mid-to-senior level professionals.",
+    expandedText: "Short-term, long-term or permanent contracts, tailored to your business needs. The skilled contract solutions recruiters at Urmistek devote ethics and professionalism to filling temporary openings like our direct hire recruiters. To promptly and effectively meet your critical resource needs, including yearly, contract, project, time-sensitive, seasonal, transitional, staff augmentation, and contract-to-hire positions, our specialists create an unmatched local network of mid-to-senior level professionals.",
     ctaLabel: "Scale Capacity",
     theme: "vibrant-accent",
     image: "https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&w=700&q=80",

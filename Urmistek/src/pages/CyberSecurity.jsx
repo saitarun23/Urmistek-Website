@@ -4,28 +4,28 @@ import "../styles/cyberSecurity.css";
 const securityData = [
   {
     title: "Fire Walls",
-    desc: "Advanced firewall ecosystems engineered to neutralize evolving cyber threats across enterprise infrastructures.",
+    desc: "Our cutting-edge firewall solutions provide robust protection against cyber threats. We offer tailored configurations for businesses of all sizes.",
     themeColor: "#1e3a8a", // Permanent Premium Deep Blue
     cardLabel: "NETWORK_DEFENSE",
     vectorType: "matrix"
   },
   {
     title: "Email Protection",
-    desc: "Realtime protection systems defending enterprise communication against phishing, spam, and unauthorized intrusion.",
+    desc: "We provide state-of-the-art email security to prevent phishing, spam, and unauthorized access, ensuring your sensitive data remains protected",
     themeColor: "#4c1d95", // Permanent Premium Deep Purple
     cardLabel: "COMM_INTELLIGENCE",
     vectorType: "nodes"
   },
   {
     title: "Wifi Protection",
-    desc: "Adaptive wireless security intelligence safeguarding connected environments from malicious access attempts.",
+    desc: "Our Wi-Fi security solutions safeguard networks from unauthorized access, hacking attempts, and malware threats.",
     themeColor: "#065f46", // Permanent Premium Deep Emerald
     cardLabel: "WIRELESS_SHIELD",
     vectorType: "waves"
   },
   {
     title: "Security Plans",
-    desc: "Strategic cybersecurity frameworks architected to secure digital operations against future-scale vulnerabilities.",
+    desc: "We design customized security plans to protect digital assets against evolving cyber threats and vulnerabilities.",
     themeColor: "#881337", // Permanent Premium Deep Crimson
     cardLabel: "STRATEGIC_MATRIX",
     vectorType: "grid"

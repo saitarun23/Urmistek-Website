@@ -4,19 +4,19 @@ import "../styles/digitalTransformation.css";
 const systems = [
   {
     title: "Cloud Adoption",
-    text: "Enterprise cloud ecosystems designed for scalable operational transformation.",
+    text: "Collaborate with our cloud experts to determine cloud readiness, define adoption strategy, and envision governance models with guide rails.",
   },
   {
     title: "Architecture Advisory",
-    text: "Future-ready cloud-first infrastructure intelligence and strategic engineering.",
+    text: "Work with our Cloud Engineering CoE to define your Cloud-First Architecture that will help propel your future transformation needs.",
   },
   {
     title: "Migration Services",
-    text: "Secure workload modernization with adaptive migration orchestration systems.",
+    text: "Engage our Migration CoE for Workload Rationalization, App Replatforming, Secure Data Movement, and Cloud Operationalization.",
   },
   {
     title: "Operations Security",
-    text: "Realtime governance, HA/DR resilience, monitoring, and cloud assurance.",
+    text: "Leverage our 24/7 cost-optimized, SLA-driven Managed Services for cloud operations, HA/DR, service monitoring and security assurance.",
   },
 ];
 
@@ -64,7 +64,7 @@ const DigitalTransformation = () => {
                   0{index + 1}
                 </span>
 
-                <div className="quantum-dot"></div>
+                {/* <div className="quantum-dot"></div> */}
 
               </div>
 

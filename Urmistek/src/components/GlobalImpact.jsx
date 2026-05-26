@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FiPlay, FiPause, FiArrowUp, FiArrowDown, FiTerminal } from "react-icons/fi";
+import { FiArrowUp, FiArrowDown } from "react-icons/fi";
 import "../styles/globalimpact.css";
 
 const impactStories = [
@@ -34,7 +34,6 @@ const impactStories = [
 
 const GlobalImpact = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
 
   const handleNext = () => {
     setActiveIndex((prev) => (prev + 1) % impactStories.length);
@@ -57,23 +56,7 @@ const GlobalImpact = () => {
               style={{ backgroundImage: `url(${story.visual})` }}
             />
           ))}
-          {/* Glass Tech Overlay Frame */}
           <div className="viewport-glass-tint" />
-          
-          {/* Bottom Control Telemetry Bar */}
-          {/* <div className="viewport-control-dock">
-            <button 
-              className="dock-playback-btn" 
-              onClick={() => setIsPlaying(!isPlaying)}
-              aria-label={isPlaying ? "Pause Broadcast" : "Play Broadcast"}
-            >
-              {isPlaying ? <FiPause /> : <FiPlay />}
-            </button>
-            <div className="dock-matrix-string">
-              <FiTerminal className="dock-icon" />
-              <span>STREAM_FEED // LIVE_BROADCAST_ACTIVE</span>
-            </div>
-          </div> */}
         </div>
 
         {/* RIGHT PANEL: OVERLAPPING VERTICAL COMMAND STACK */}
@@ -92,10 +75,7 @@ const GlobalImpact = () => {
             <div className="narrative-track-scroller" style={{ transform: `translateY(-${activeIndex * 100}%)` }}>
               {impactStories.map((story) => (
                 <div key={story.id} className="narrative-slide-unit">
-                  <div className="unit-cipher-row">
-                    {/* <span className="unit-cipher-tag">{story.cipher}</span> */}
-                    {/* <span className="unit-metric-pill">{story.metaMetric}</span> */}
-                  </div>
+                  <div className="unit-cipher-row"></div>
                   <h3 className="unit-main-title">{story.title}</h3>
                   <p className="unit-paragraph-desc">{story.description}</p>
                 </div>
@@ -105,17 +85,20 @@ const GlobalImpact = () => {
 
           {/* Console Vertical Navigation Interface */}
           <div className="pane-interface-footer">
-            <button className="console-action-link">
-              <span>Explore Structural Documentation</span>
-              <div className="action-link-bar" />
-            </button>
+            <div className="footer-left-controls">
+              {/* Moved navigation arrows directly above the action link */}
+              <div className="console-navigation-arrows">
+                <button className="nav-arrow-btn" onClick={handlePrev} aria-label="Previous Briefing">
+                  <FiArrowUp />
+                </button>
+                <button className="nav-arrow-btn" onClick={handleNext} aria-label="Next Briefing">
+                  <FiArrowDown />
+                </button>
+              </div>
 
-            <div className="console-navigation-arrows">
-              <button className="nav-arrow-btn" onClick={handlePrev} aria-label="Previous Briefing">
-                <FiArrowUp />
-              </button>
-              <button className="nav-arrow-btn" onClick={handleNext} aria-label="Next Briefing">
-                <FiArrowDown />
+              <button className="console-action-link">
+                <span>Explore Structural Documentation</span>
+                <div className="action-link-bar" />
               </button>
             </div>
           </div>

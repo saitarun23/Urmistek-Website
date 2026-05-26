@@ -12,7 +12,7 @@
 /* Stark Split Layout Framework */
 .broadcast-console-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Exact split presentation */
+  grid-template-columns: 1fr 1fr;
   min-height: 100vh;
   height: 750px;
 }
@@ -26,7 +26,6 @@
   background-color: #050508;
 }
 
-/* Layered Image Strata Stack */
 .viewport-image-strata {
   position: absolute;
   top: 0;
@@ -47,7 +46,6 @@
   z-index: 2;
 }
 
-/* Industrial Tech Glass Shader Tint */
 .viewport-glass-tint {
   position: absolute;
   top: 0;
@@ -58,54 +56,6 @@
               linear-gradient(0deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 40%);
   z-index: 3;
   pointer-events: none;
-}
-
-/* Telemetry Media Control Dock */
-.viewport-control-dock {
-  position: absolute;
-  bottom: 40px;
-  left: 40px;
-  z-index: 4;
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
-.dock-playback-btn {
-  background-color: rgba(255, 255, 255, 0.05);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #ffffff;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.dock-playback-btn:hover {
-  background-color: #ffffff;
-  color: #000000;
-  border-color: #ffffff;
-}
-
-.dock-matrix-string {
-  font-family: monospace;
-  font-size: 0.75rem;
-  color: #64748b;
-  letter-spacing: 0.08em;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.dock-icon {
-  color: #0066ff; /* Signature Urmistek accent */
 }
 
 /* --- RIGHT COLUMN: OVERLAPPING VERTICAL COMMAND STACK --- */
@@ -121,7 +71,6 @@
   z-index: 4;
 }
 
-/* Header Index Layout */
 .pane-header-context {
   display: flex;
   justify-content: space-between;
@@ -158,10 +107,9 @@
   color: #4b5563;
 }
 
-/* Vertical Narrative Sliding Track Window */
 .pane-narrative-window {
   position: relative;
-  height: 360px; /* Locked window containing the shifting slides */
+  height: 360px;
   overflow: hidden;
   margin: auto 0;
 }
@@ -188,24 +136,6 @@
   margin-bottom: 24px;
 }
 
-.unit-cipher-tag {
-  font-family: monospace;
-  font-size: 0.75rem;
-  color: #4b5563;
-  letter-spacing: 0.05em;
-}
-
-.unit-metric-pill {
-  font-family: monospace;
-  font-size: 0.7rem;
-  font-weight: 700;
-  background-color: rgba(0, 102, 255, 0.1);
-  color: #0066ff;
-  padding: 4px 10px;
-  border: 1px solid rgba(0, 102, 255, 0.2);
-  letter-spacing: 0.04em;
-}
-
 .unit-main-title {
   font-size: clamp(1.8rem, 3vw, 2.5rem);
   font-weight: 700;
@@ -222,11 +152,18 @@
   margin: 0;
 }
 
-/* Footer Control Links and Arrow Keys Interface */
+/* Footer Structured Layout */
 .pane-interface-footer {
   display: flex;
+  align-items: flex-end;
   justify-content: space-between;
-  align-items: center;
+}
+
+.footer-left-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 28px; /* Gap between the arrows and the action link underneath */
+  align-items: flex-start;
 }
 
 .console-action-link {
@@ -239,6 +176,7 @@
   cursor: pointer;
   position: relative;
   padding-bottom: 8px;
+  text-align: left;
 }
 
 .action-link-bar {
@@ -255,6 +193,7 @@
   width: 100%;
 }
 
+/* Navigation Arrow Block Positioned Above Text Link */
 .console-navigation-arrows {
   display: flex;
   gap: 1px;
@@ -273,12 +212,31 @@
   justify-content: center;
   font-size: 1.1rem;
   cursor: pointer;
-  transition: all 0.2s ease;
+  position: relative;
+  
+  /* Applying automated, non-stop ambient color pulsing animation */
+  animation: dynamicColorShift 6s infinite ease-in-out;
 }
 
-.nav-arrow-btn:hover {
-  background-color: #0066ff;
-  color: #ffffff;
+/* Staggering the second button animation slightly to create alternate balance loop */
+.nav-arrow-btn:last-child {
+  animation-delay: 3s;
+}
+
+/* AUTO COLOR CHANGING KEYFRAME (Pulses between black, slate blue, and Urmistek corporate blue) */
+@keyframes dynamicColorShift {
+  0% {
+    background-color: #000000;
+    color: #ffffff;
+  }
+  50% {
+    background-color: #004ecc;
+    color: #ffffff;
+  }
+  100% {
+    background-color: #000000;
+    color: #ffffff;
+  }
 }
 
 /* --- SYSTEM RESPONSIVE BREAKER SPECIFICATIONS --- */
@@ -308,11 +266,6 @@
     margin: 40px 0;
   }
   
-  .narrative-slide-unit {
-    height: auto;
-  }
-  
-  /* Reset dynamic vertical translation on tablet/mobile screens */
   .narrative-track-scroller {
     transform: none !important;
     display: block;
@@ -322,22 +275,18 @@
     display: none;
   }
   
-  .narrative-slide-unit:nth-child(1) {
-    display: flex; /* Fallback baseline showing primary layout item */
-  }
-  
-  /* Custom display override matching the active hook state */
   .narrative-track-scroller > .narrative-slide-unit {
     display: none;
   }
-  .narrative-track-scroller > .narrative-slide-unit:nth-child(1n) {
-    display: none;
+  
+  /* Use an "active" class instead of a template expression which is invalid in CSS */
+  .narrative-track-scroller > .narrative-slide-unit.active {
+    display: flex;
   }
   
-  .pane-interface-footer {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 32px;
+  .footer-left-controls {
+    width: 100%;
+    gap: 24px;
   }
   
   .console-navigation-arrows {
