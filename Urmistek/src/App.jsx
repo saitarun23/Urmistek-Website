@@ -11,6 +11,7 @@ import FutureCareer from "./components/FutureCareer";
 import DigitalTransformation from "./pages/DigitalTransformation";
 import CyberSecurity from "./pages/CyberSecurity";
 import StaffAugmentation from "./pages/StaffAugmentation";
+import ContentProduction from "./pages/ContentProduction";
 import UrmistekProducts from "./pages/UrmistekProducts";
 import CSRVision from "./pages/CSRVision";
 import Footer from "./components/Footer";
@@ -39,6 +40,7 @@ function App() {
         <Route path="/digital-transformation" element={<DigitalTransformation />} />
         <Route path="/cyber-security" element={<CyberSecurity />} />
         <Route path="/staff-augmentation" element={<StaffAugmentation />} />
+        <Route path="/content-production" element={<ContentProduction />} />
         <Route path="/products" element={<UrmistekProducts />} />
         <Route path="/csr-vision" element={<CSRVision />} />
 

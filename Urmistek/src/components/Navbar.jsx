@@ -401,6 +401,7 @@ const Navbar = ({ onCareerButtonClick }) => {
                     }}
                     onClick={(e) => {
                       e.stopPropagation(); // Stop click event from bubbling to the parent FlyoutLink
+                      navigate("/content-production");
                       onCareerButtonClick(); // Call the career button logic
                     }}
                   >
