@@ -1,5 +1,7 @@
 import React from 'react';
 import '../styles/hero.css';
+import herovideo from '../assets/images/herovideo2.mp4';
+import logo from '../assets/images/logo.png';
 
 const Hero = () => {
   return (
@@ -7,7 +9,7 @@ const Hero = () => {
       {/* Video Background */}
       <div className="video-background">
         <video autoPlay loop muted playsInline className="hero-video">
-          <source src="src/assets/images/herovideo2.mp4" type="video/mp4" />
+          <source src={herovideo} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <div className="video-overlay"></div>
@@ -20,7 +22,7 @@ const Hero = () => {
           <h1 className="hero-title">
             <span className="title-with-logo">
               B
-              <img src="/src/assets/images/logo.png" alt="Urmistek Logo" className="hero-logo" />
+              <img src={logo} alt="Urmistek Logo" className="hero-logo" />
               ILDING THE
             </span>
             <span className="title-line-two">
