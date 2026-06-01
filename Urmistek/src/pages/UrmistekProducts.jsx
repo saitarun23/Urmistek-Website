@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import '../styles/UrmistekProducts.css';
+import '../styles/urmistekproducts.css';
 
 // Custom Minimalist SVG Icons
 const SearchIcon = () => (
