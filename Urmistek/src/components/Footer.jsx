@@ -63,30 +63,32 @@ const Footer = () => {
             <strong>Australia : </strong>
           </p>
           <p style={{ margin: "5px 0" }}>
-            <strong>Phone:</strong>0452323456
+           17 Plough average <br />Truganina Victoria, 3029
           </p>
           <p style={{ margin: "5px 0" }}>
-            <strong>Address:</strong> 17 Plough average
+            +61 449882345
           </p>
-          <p style={{ margin: "5px 0" }}>
-            <strong>Phone:</strong> Truganina Victoria
-          </p>
-          <p style={{ margin: "5px 0" }}>
+          
+          {/* <p style={{ margin: "5px 0" }}>
+            
+          </p> */}
+          {/* <p style={{ margin: "5px 0" }}>
             <strong>Email:</strong>3029
-          </p>
+          </p> */}
           <br />
           <br />
           <p style={{ margin: "5px 0" }}>
             <strong> India: </strong>
           </p>
           <p style={{ margin: "5px 0" }}>
-            <strong>Phone:</strong>0452323456
-          </p>
-          <p style={{ margin: "5px 0" }}>
-            <strong>Address:</strong>9-1-44/2/1, Opp. Hotel Athidi Grand,
+            9-1-44/2/1, Opp. Hotel Athidi Grand,
           </p>
           <p style={{ margin: "5px 0" }}>AU North Campus, Visakhapatnam,</p>
           <p style={{ margin: "5px 0" }}>Andhra Pradesh 530013</p>
+          <p style={{ margin: "5px 0" }}>
+            +91 9618323745
+          </p>
+          
         </div>
 
         {/* Services Section */}
@@ -113,7 +115,7 @@ const Footer = () => {
         }}
       >
         <p style={{ margin: "0", fontSize: "14px", color: "#aaa" }}>
-          &copy; {new Date().getFullYear()} Urmistek. All rights reserved.
+          &copy; 2024 Urmistek. All rights reserved.
         </p>
       </div>
     </div>

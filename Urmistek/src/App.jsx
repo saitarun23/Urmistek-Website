@@ -6,7 +6,9 @@ import Hero from "./components/Hero";
 import WhatWeThink from "./components/WhatWeThink";
 import GlobalImpact from "./components/GlobalImpact";
 import EnterpriseSystems from "./components/EnterpriseSystems";
+import WhoWeAre from "./pages/WhoWeAre";
 import LeadershipVision from "./pages/LeadershipVision";
+import Client from "./pages/Client";
 import FutureCareer from "./components/FutureCareer"; 
 import DigitalTransformation from "./pages/DigitalTransformation";
 import CyberSecurity from "./pages/CyberSecurity";
@@ -36,7 +38,9 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/who-we-are" element={<WhoWeAre />} />
         <Route path="/leadership-vision" element={<LeadershipVision />} />
+        <Route path="/clients" element={<Client />} />
         <Route path="/digital-transformation" element={<DigitalTransformation />} />
         <Route path="/cyber-security" element={<CyberSecurity />} />
         <Route path="/staff-augmentation" element={<StaffAugmentation />} />

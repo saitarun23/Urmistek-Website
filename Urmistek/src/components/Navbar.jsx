@@ -133,8 +133,8 @@ const Navbar = ({ onCareerButtonClick }) => {
             style={{
               top: "12.5%",
               position: "absolute", // Ensure this element is contained within its parent
-              width: "8vh",
-              height: "8vh",
+              width: "10vh",
+              height: "10vh",
               backgroundImage: 'url("/src/assets/images/logo.png")',
               backgroundSize: "cover",
               backgroundPosition: "center",
@@ -207,7 +207,7 @@ const Navbar = ({ onCareerButtonClick }) => {
                     }}
                     onClick={(e) => {
                       e.stopPropagation();
-                      
+                      navigate("/who-we-are");
                       if (window.innerWidth < 768) toggleMenu();
                     }}
                   >
@@ -249,6 +249,7 @@ const Navbar = ({ onCareerButtonClick }) => {
                     }}
                     onClick={(e) => {
                       e.stopPropagation(); // Stop click event from bubbling to the parent FlyoutLink
+                      navigate("/clients");
                       const section = document.getElementById("clients");
                       if (section) {
                         section.scrollIntoView({ behavior: "smooth" });
@@ -532,10 +533,10 @@ const Navbar = ({ onCareerButtonClick }) => {
           }
         }}
       >
-        <button className="careers-button">
+        {/* <button className="careers-button">
           {" "}
           <div>CONTACT</div>
-        </button>
+        </button> */}
       </div>
 
       <div className="navbar-hamburger" onClick={toggleMenu}>

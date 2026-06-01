@@ -89,7 +89,7 @@
 
 /* Typography States */
 .aug-card-content-type {
-  font-size: 0.75rem;
+  font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   color: #94a3b8;
@@ -229,6 +229,11 @@
 
 .aug-matrix-card.light-vector .aug-card-corner-indicator {
   color: #cbd5e1;
+}
+.expanded-text{
+  color: #2563eb;
+  font-weight: bold;
+  font-size: 1.5rem;
 }
 
 /* --- SYSTEM RESPONSIVE MEDIA BREAKERS --- */

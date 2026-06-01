@@ -27,7 +27,7 @@ body {
   position: absolute;
   z-index: 10;
   overflow: visible;
-  height: 11%;
+  height: 14%;
   padding-right: 1.5vw;
   padding-left: 2rem;
   transition: transform 0.3s ease-in-out;
@@ -84,9 +84,9 @@ body {
   padding: 0;
   align-items: center;
   margin: 10px 0;
-  user-select: none;
+  /* user-select: none; */
   cursor: pointer;
-  font-size: medium;
+  font-size: larger;
 }
 
 .flyout-content {

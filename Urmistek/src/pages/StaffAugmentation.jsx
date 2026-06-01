@@ -5,10 +5,10 @@ import "../styles/staffaugmentation.css";
 const talentData = [
   {
     id: "talent-1",
-    type: "DEDICATED AGILE SQUADS",
-    title: "Scaling production velocity with embedded engineering units",
-    previewText: "Bypass the friction of traditional multi-month recruitment cycles with pre-vetted squads.",
-    expandedText: "We deploy complete, cross-functional engineering cells trained to integrate instantly into your existing sprint ceremonies, backlog systems, and CI/CD development pipelines.",
+    type: "Talent Delivery Models",
+    title: "With Urmistek",
+    previewText: " By customizing your delivery options, you can achieve the right fit for talent to work in sync with your teams.",
+    expandedText:<> <span className="expanded-text">Onsite</span>Resources Bring on technology resources to work hand-in-hand with your teams and in your work environment <span className="expanded-text">Onshore</span> Resources Utilize Miracle's presence across the country to establish remote teams that can help you deliver projects<span className="expanded-text">Offshore</span> Resources Optimize costs by utilizing Miracle's expansive offshore delivery capabilities and skilled talent,"</>,
     ctaLabel: "Deploy Squads",
     theme: "dark-image",
     image: "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?auto=format&fit=crop&w=700&q=80",
@@ -20,7 +20,7 @@ const talentData = [
     previewText: "Bridge critical technical execution gaps with specialized infrastructure architects.",
     expandedText: "Gain immediate access to seasoned experts in large-scale model deployment, secure vector database pipelines, retrieval-augmented generation architectures, and cloud cost optimization.",
     ctaLabel: "Acquire Specialists",
-    theme: "light-vector",
+    theme:  "dark-image",
     hasGraphic: true,
   },
   {
@@ -60,7 +60,7 @@ const talentData = [
     previewText: "Streamline hiring with scalable recruitment solutions that reduce costs, improve efficiency, and connect businesses with top talent.",
     expandedText: "Handle recruitment excellently with reduced cost and boosted efficiency. Over the decade, technical advancements and the rise of globalization have altered the recruitment landscape. Conventional recruiting practices are no longer sufficient for firms in a dynamic market as they confront new trends and difficulties. RPO offers an intelligent, scalable solution that boosts productivity, reduces recruitment expenses, and grants access to top talent to meet the evolving needs of businesses",
     ctaLabel: "Connect With Recruitment Experts",
-    theme: "light-vector",
+    theme: "gradient-overlay",
     hasGraphic: true,
   }
 ];
