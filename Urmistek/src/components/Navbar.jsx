@@ -56,7 +56,7 @@ const FlyoutLink = ({ children, href, FlyoutContent, onClick }) => {
       </a>
       <div
         style={{
-          visibility: "none", // Hide by default
+          visibility: "hidden", // Hide by default
           position: "absolute",
           top: "100%",
           height: "4vh",
