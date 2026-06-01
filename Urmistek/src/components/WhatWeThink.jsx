@@ -106,7 +106,7 @@ const WhatWeThink = () => {
 
         {/* Premium Corporate Matrix Grid */}
         <div className="think-editorial-matrix">
-          {insightsData.map((item, idx) => {
+          {insightsData.map((item) => {
             const isHovered = hoveredCard === item.id;
             
             return (

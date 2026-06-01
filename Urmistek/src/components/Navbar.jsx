@@ -9,11 +9,6 @@ const FlyoutLink = ({ children, href, FlyoutContent, onClick }) => {
   const [isNotVisible, setIsNotVisible] = useState(false);
   const flyoutRef = useRef(null);
 
-  const toggleVisibility = (e) => {
-    e.preventDefault();
-    setIsHovered((prev) => !prev);
-  };
-
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (flyoutRef.current && !flyoutRef.current.contains(event.target)) {
@@ -91,30 +86,11 @@ const Navbar = ({ onCareerButtonClick }) => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobileView, setIsMobileView] = useState(window.innerWidth < 768);
-  const lastScrollY = useRef(0);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  // Handle navbar hiding on scroll
-  const handleScroll = () => {
-    const contentDiv = document.getElementsByClassName("constart")[0];
-    const navbar = document.getElementsByClassName("navbar-container")[0];
-
-    if (contentDiv && navbar) {
-      const currentScrollY = contentDiv.scrollTop;
-
-      if (currentScrollY > lastScrollY.current) {
-        navbar.style.transition = "transform 0.6s ease";
-        navbar.style.transform = "translateY(-100%)"; // Hide navbar
-      } else {
-        navbar.style.transform = "translateY(0)"; // Show navbar
-      }
-
-      lastScrollY.current = currentScrollY;
-    }
-  };
   useEffect(() => {
     function handleResize() {
       setIsMobileView(window.innerWidth < 768);
@@ -158,7 +134,7 @@ const Navbar = ({ onCareerButtonClick }) => {
       {/* Centered Menu */}
       <nav className={`navbar-menu ${isMenuOpen ? "open" : ""}`}>
         <FlyoutLink
-          onClick={(e) => {
+          onClick={() => {
             // Only perform the scroll and toggle logic for the main "Our Company" click
             const section = document.getElementById("our-company");
             const container = document.querySelector(".constart"); // Using className to get the scroll container
@@ -287,7 +263,7 @@ const Navbar = ({ onCareerButtonClick }) => {
         </FlyoutLink>
 
         <FlyoutLink
-          onClick={(e) => {
+          onClick={() => {
             // Only perform the scroll and toggle logic for the main "Our Company" click
             const section = document.getElementById("our-company");
             const container = document.querySelector(".constart"); // Using className to get the scroll container
