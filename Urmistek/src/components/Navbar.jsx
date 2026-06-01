@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/navbar.css"; // Styling for the navbar
+import logoImage from "../assets/images/logo.png";
+import lognameImage from "../assets/images/logoname.png";
 
 // import React, { useState, useRef, useEffect } from 'react';
 
@@ -111,7 +113,7 @@ const Navbar = ({ onCareerButtonClick }) => {
               position: "absolute", // Ensure this element is contained within its parent
               width: "10vh",
               height: "10vh",
-              backgroundImage: 'url("/src/assets/images/logo.png")',
+              backgroundImage: `url(${logoImage})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
@@ -121,11 +123,11 @@ const Navbar = ({ onCareerButtonClick }) => {
             }}
             onMouseEnter={(e) => {
               e.target.style.width = "15vw"; // Expand width
-              e.target.style.backgroundImage = 'url("/src/assets/images/logoname.png")'; // Change background image
+              e.target.style.backgroundImage = `url(${lognameImage})`; // Change background image
             }}
             onMouseLeave={(e) => {
               e.target.style.width = "8vh"; // Reset width
-              e.target.style.backgroundImage = 'url("/src/assets/images/logo.png")'; // Reset background image
+              e.target.style.backgroundImage = `url(${logoImage})`; // Reset background image
             }}
           />
         </Link>
