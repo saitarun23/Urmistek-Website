@@ -1,9 +1,9 @@
 /* ===== PREMIUM CORPORATE EDITORIAL MATRIX LAYOUT ===== */
 
 .think-section {
-  padding: 120px 0;
-  background-color: #ffffff; /* Rich stark black baseline directly honoring the reference style */
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  padding: 60px 0;
+  background-color: #000000; /* Rich stark black baseline directly honoring reference style */
+  font-family: 'Poppins', 'Inter', -apple-system, sans-serif;
   color: #ffffff;
 }
 
@@ -13,58 +13,68 @@
   margin: 0 auto;
 }
 
-/* --- MATRIX ROW HEADER --- */
-.think-section-header {
+/* ==========================================
+   ADVANCED STYLIZED CENTRALIZED HEAD ROW SYS
+   ========================================== */
+.think-premium-header {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  border-bottom: 1px solid #222222;
-  padding-bottom: 32px;
-  margin-bottom: 48px;
-}
-
-.think-sup {
-  font-size: 0.8rem;
-  letter-spacing: 0.15em;
-  font-weight: 700;
-  color: #252729;
-  text-transform: uppercase;
-  display: block;
-  margin-bottom: 12px;
-}
-
-.think-main-title {
-  font-size: clamp(2rem, 3.5vw, 2.75rem);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  margin: 0;
-  color: #000000;
-}
-
-.think-global-filter-btn {
-  background: transparent;
-  border: 1px solid #333333;
-  color: #ffffff;
-  padding: 12px 24px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  border-radius: 0; /* Clean industrial crisp edges */
-  cursor: pointer;
-  display: flex;
+  justify-content: center; /* Horizontally balances layout row to the exact core screen center */
   align-items: center;
-  gap: 12px;
-  transition: border-color 0.2s ease, background-color 0.2s ease;
+  text-align: center; /* Ensures typography breaks read uniformly outwards */
+  max-width: 1100px; 
+  margin: 0 auto 80px auto; /* Even centering bounds inside parent tracking frame wrapper */
 }
 
-.think-global-filter-btn:hover {
-  border-color: #ffffff;
-  background-color: #111111;
+.think-title-layout {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
-/* --- STARK CHESSBOARD INTERACTION GRID --- */
+/* Redesigned Premium Title Head Setup */
+.think-main-title {
+  font-size: clamp(2rem, 3vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: #ffffff;
+
+}
+
+.think-brand-highlight {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* Typing / Word Reveal Architecture Settings */
+.think-typing-container {
+  display: inline;
+}
+
+.think-animated-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(16px); /* Clean upward drift transition animation path */
+  filter: blur(4px); /* Modern blur reveal effect */
+  transition: opacity 0.45s cubic-bezier(0.215, 0.61, 0.355, 1), 
+              transform 0.45s cubic-bezier(0.215, 0.61, 0.355, 1),
+              filter 0.45s ease;
+}
+
+/* Executes flawlessly on continuous enter / exit intersection observer cycles */
+.start-typing .think-animated-word {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* ==========================================
+   STARK CHESSBOARD INTERACTION GRID
+   ========================================== */
 .think-editorial-matrix {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 horizontal blocks matches high end corporate monitor arrays */
+  grid-template-columns: repeat(4, 1fr); 
   gap: 20px;
 }
 
@@ -88,7 +98,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 50%; /* Image cuts nicely half way across standard card rest states */
+  height: 50%; 
   background-size: cover;
   background-position: center;
   filter: grayscale(20%);
@@ -96,7 +106,7 @@
 }
 
 .think-matrix-card:hover .card-bg-image {
-  height: 100%; /* Spans full background exactly like the left accent card on hover */
+  height: 100%; 
   filter: grayscale(0%) brightness(40%);
 }
 
@@ -139,7 +149,7 @@
   transition: color 0.3s ease;
 }
 
-/* --- THE ACCENTURE SLIDING DRAWER SYSTEM --- */
+/* --- THE SLIDING DRAWER SYSTEM --- */
 .card-lower-drawer {
   display: flex;
   flex-direction: column;
@@ -219,7 +229,7 @@
 
 .think-matrix-card.light-vector .card-hidden-narrative,
 .think-matrix-card.light-vector .card-action-trigger {
-  color: #0066ff; /* Sophisticated contrasting accent pop color on expand */
+  color: #0066ff; 
 }
 
 /* Animated Vector canvas location inside light perspective variant */
@@ -261,7 +271,7 @@
 /* --- SYSTEM RESPONSIVE BREAKER BLUEPRINTS --- */
 @media (max-width: 1200px) {
   .think-editorial-matrix {
-    grid-template-columns: repeat(2, 1fr); /* Snaps neatly to a clean balanced 2x2 multi-card layout block */
+    grid-template-columns: repeat(2, 1fr); 
   }
 }
 
@@ -270,15 +280,9 @@
     padding: 80px 0;
   }
   
-  .think-section-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
-  }
-  
-  .think-global-filter-btn {
-    width: 100%;
-    justify-content: space-between;
+  .think-premium-header {
+    margin-bottom: 50px;
+    padding: 0 10px;
   }
 
   .think-editorial-matrix {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FiArrowRight, FiChevronDown, FiPlus } from "react-icons/fi";
 import "../styles/whatwethink.css";
 
@@ -87,21 +87,59 @@ const insightsData = [
 
 const WhatWeThink = () => {
   const [hoveredCard, setHoveredCard] = useState(null);
+  const [isTitleVisible, setIsTitleVisible] = useState(false);
+  const headerRef = useRef(null);
+
+  // Advanced IntersectionObserver that triggers both Scrolling Up & Scrolling Down
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsTitleVisible(true);
+        } else {
+          setIsTitleVisible(false); // Resets state when out of viewport frame for infinite scrolling actions
+        }
+      },
+      { 
+        threshold: 0.1, // Triggers quickly as section edges cross view
+        rootMargin: "-50px 0px -50px 0px" // Adds safe padding markers inside layout view bounds
+      } 
+    );
+
+    if (headerRef.current) {
+      observer.observe(headerRef.current);
+    }
+
+    return () => {
+      if (headerRef.current) observer.unobserve(headerRef.current);
+    };
+  }, []);
+
+  const fullTitleText = "innovation begins with ideas that inspire transformation and redefine possibilities.";
+  const words = fullTitleText.split(" ");
 
   return (
     <section className="think-section" id="insights">
       <div className="think-container">
         
-        {/* Top Accent Navigation Header */}
-        <div className="think-section-header">
-          <div className="think-title-group">
-            {/* <span className="think-sup">GLOBAL INTELLIGENCE</span> */}
-            <h2 className="think-main-title">At Urmistek, innovation begins with ideas that inspire transformation and redefine possibilities.</h2>
+        {/* Centralized Clean Architectural Header Block Row */}
+        <div className="think-premium-header" ref={headerRef}>
+          <div className="think-title-layout">
+            <h2 className="think-main-title">
+             At <span className="think-brand-highlight"> Urmistek, </span>
+              <span className={`think-typing-container ${isTitleVisible ? "start-typing" : ""}`}>
+                {words.map((word, idx) => (
+                  <span 
+                    key={idx} 
+                    className="think-animated-word"
+                    style={{ transitionDelay: `${idx * 100}ms` }} // Elegant staggered velocity timing sequence
+                  >
+                    {word}&nbsp;
+                  </span>
+                ))}
+              </span>
+            </h2>
           </div>
-          {/* <button className="think-global-filter-btn">
-            <span>Browse All Insights</span>
-            <FiChevronDown />
-          </button> */}
         </div>
 
         {/* Premium Corporate Matrix Grid */}
