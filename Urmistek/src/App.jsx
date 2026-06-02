@@ -17,6 +17,7 @@ import ContentProduction from "./pages/ContentProduction";
 import UrmistekProducts from "./pages/UrmistekProducts";
 import CSRVision from "./pages/CSRVision";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 
 function Home() {
   return (
@@ -27,7 +28,7 @@ function Home() {
       <GlobalImpact />
       <FutureCareer />
       <EnterpriseSystems />
-      <Footer />
+      
     </div>
   );
 }
@@ -35,6 +36,7 @@ function Home() {
 function App() {
   return (
     <>
+      <ScrollToTop />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -49,6 +51,7 @@ function App() {
         <Route path="/csr-vision" element={<CSRVision />} />
 
       </Routes>
+      <Footer />
     </>
   );
 }

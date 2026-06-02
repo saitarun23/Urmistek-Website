@@ -4,8 +4,6 @@ import "../styles/navbar.css"; // Styling for the navbar
 import logoImage from "../assets/images/logo.png";
 import lognameImage from "../assets/images/logoname.png";
 
-// import React, { useState, useRef, useEffect } from 'react';
-
 const FlyoutLink = ({ children, href, FlyoutContent, onClick }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isNotVisible, setIsNotVisible] = useState(false);
@@ -29,7 +27,6 @@ const FlyoutLink = ({ children, href, FlyoutContent, onClick }) => {
     setIsNotVisible(true);
 
     if (onClick) {
-      // If the onClick prop is passed, execute it
       onClick(e);
     }
   };
@@ -39,42 +36,42 @@ const FlyoutLink = ({ children, href, FlyoutContent, onClick }) => {
       className="flyout-link"
       ref={flyoutRef}
       style={{ position: "relative" }}
+      onMouseEnter={() => {
+        setIsHovered(true);
+        setIsNotVisible(false);
+      }}
+      onMouseLeave={() => setIsHovered(false)}
     >
       <a
         href={href}
         className="flyout-link-anchor"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
         onClick={(e) => {
-          // Execute internal logic first (close flyout)
           handleLinkClick(e);
-
-          // Then execute the passed `onClick` prop if it exists (this can be your toggleMenu or other logic)
           if (onClick) onClick(e);
         }}
       >
         {children}
         <span className="flyout-link-underline"></span>
       </a>
+      
+      {/* Optimized Hover Bridge Connection zone to fix unstable drop-downs */}
       <div
         style={{
-          visibility: "hidden", // Hide by default
           position: "absolute",
           top: "100%",
-          height: "4vh",
-          width: "10vw",
+          left: 0,
+          height: "30px",
+          width: "100%",
+          zIndex: 5,
         }}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
       ></div>
+
       {FlyoutContent && (
         <div
           className={`flyout-content ${
             isHovered && window.innerWidth > 768 ? "visible" : ""
           } ${isNotVisible ? "display-problem" : ""}`}
-          onClick={handleLinkClick} // Handle click on flyout content
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
+          onClick={handleLinkClick}
           style={{ maxWidth: "1000px" }}
         >
           {FlyoutContent}
@@ -88,10 +85,22 @@ const Navbar = ({ onCareerButtonClick }) => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobileView, setIsMobileView] = useState(window.innerWidth < 768);
+  
+  // State for handling the 3-second auto-changing logo image state
+  const [currentLogo, setCurrentLogo] = useState(logoImage);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  // Logic for Auto Changing Logo Images every 3 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentLogo((prevLogo) => (prevLogo === logoImage ? lognameImage : logoImage));
+    }, 3000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     function handleResize() {
@@ -111,23 +120,15 @@ const Navbar = ({ onCareerButtonClick }) => {
             style={{
               top: "12.5%",
               position: "absolute", // Ensure this element is contained within its parent
-              width: "10vh",
+              width: currentLogo === lognameImage ? "15vw" : "8vh", // YOUR EXACT ORIGINAL SIZES
               height: "10vh",
-              backgroundImage: `url(${logoImage})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
+              backgroundImage: `url(${currentLogo})`,
+              backgroundSize: "cover", // YOUR EXACT ORIGINAL VALUE
+              backgroundPosition: "center", // YOUR EXACT ORIGINAL VALUE
               backgroundRepeat: "no-repeat",
               borderRadius: "0",
-              transition: "all 0.3s ease", // Smooth transition
+              transition: "all 0.3s ease", // YOUR EXACT ORIGINAL VALUE
               zIndex: 1, // Bring it to the front
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.width = "15vw"; // Expand width
-              e.target.style.backgroundImage = `url(${lognameImage})`; // Change background image
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.width = "8vh"; // Reset width
-              e.target.style.backgroundImage = `url(${logoImage})`; // Reset background image
             }}
           />
         </Link>
@@ -137,15 +138,13 @@ const Navbar = ({ onCareerButtonClick }) => {
       <nav className={`navbar-menu ${isMenuOpen ? "open" : ""}`}>
         <FlyoutLink
           onClick={() => {
-            // Only perform the scroll and toggle logic for the main "Our Company" click
             const section = document.getElementById("our-company");
-            const container = document.querySelector(".constart"); // Using className to get the scroll container
+            const container = document.querySelector(".constart");
 
             if (section && container) {
               const containerTop = container.getBoundingClientRect().top;
               const sectionTop = section.getBoundingClientRect().top;
-
-              const offset = sectionTop - containerTop - 300; // Adjust 200 for your navbar height
+              const offset = sectionTop - containerTop - 300;
 
               container.scrollTo({
                 top: container.scrollTop + offset,
@@ -155,7 +154,7 @@ const Navbar = ({ onCareerButtonClick }) => {
 
             if (window.innerWidth < 768) {
               setTimeout(() => {
-                toggleMenu(); // Call the toggleMenu after scrolling with a slight delay
+                toggleMenu();
               }, 100);
             }
           }}
@@ -173,7 +172,8 @@ const Navbar = ({ onCareerButtonClick }) => {
                   <li
                     style={{
                       marginBottom: "8px",
-                      transition: "transform 0.3s ease",
+                      transition: "transform 0.3s ease, color 0.3s ease",
+                      cursor: "pointer",
                     }}
                     onMouseEnter={(e) => {
                       e.target.style.transform = "translateX(10px)";
@@ -194,7 +194,8 @@ const Navbar = ({ onCareerButtonClick }) => {
                   <li
                     style={{
                       marginBottom: "8px",
-                      transition: "transform 0.3s ease",
+                      transition: "transform 0.3s ease, color 0.3s ease",
+                      cursor: "pointer",
                     }}
                     onMouseEnter={(e) => {
                       e.target.style.transform = "translateX(10px)";
@@ -215,7 +216,8 @@ const Navbar = ({ onCareerButtonClick }) => {
                   <li
                     style={{
                       marginBottom: "8px",
-                      transition: "transform 0.3s ease",
+                      transition: "transform 0.3s ease, color 0.3s ease",
+                      cursor: "pointer",
                     }}
                     onMouseEnter={(e) => {
                       e.target.style.transform = "translateX(10px)";
@@ -226,7 +228,7 @@ const Navbar = ({ onCareerButtonClick }) => {
                       e.target.style.color = "#989898";
                     }}
                     onClick={(e) => {
-                      e.stopPropagation(); // Stop click event from bubbling to the parent FlyoutLink
+                      e.stopPropagation();
                       navigate("/clients");
                       const section = document.getElementById("clients");
                       if (section) {
@@ -239,7 +241,8 @@ const Navbar = ({ onCareerButtonClick }) => {
                   <li
                     style={{
                       marginBottom: "8px",
-                      transition: "transform 0.3s ease",
+                      transition: "transform 0.3s ease, color 0.3s ease",
+                      cursor: "pointer",
                     }}
                     onMouseEnter={(e) => {
                       e.target.style.transform = "translateX(10px)";
@@ -250,8 +253,8 @@ const Navbar = ({ onCareerButtonClick }) => {
                       e.target.style.color = "#989898";
                     }}
                     onClick={(e) => {
-                      e.stopPropagation(); // Stop click event from bubbling to the parent FlyoutLink
-                      onCareerButtonClick(); // Call the career button logic
+                      e.stopPropagation();
+                      onCareerButtonClick();
                     }}
                   >
                     Careers
@@ -266,15 +269,13 @@ const Navbar = ({ onCareerButtonClick }) => {
 
         <FlyoutLink
           onClick={() => {
-            // Only perform the scroll and toggle logic for the main "Our Company" click
             const section = document.getElementById("our-company");
-            const container = document.querySelector(".constart"); // Using className to get the scroll container
+            const container = document.querySelector(".constart");
 
             if (section && container) {
               const containerTop = container.getBoundingClientRect().top;
               const sectionTop = section.getBoundingClientRect().top;
-
-              const offset = sectionTop - containerTop - 300; // Adjust 200 for your navbar height
+              const offset = sectionTop - containerTop - 300;
 
               container.scrollTo({
                 top: container.scrollTop + offset,
@@ -284,7 +285,7 @@ const Navbar = ({ onCareerButtonClick }) => {
 
             if (window.innerWidth < 768) {
               setTimeout(() => {
-                toggleMenu(); // Call the toggleMenu after scrolling with a slight delay
+                toggleMenu();
               }, 100);
             }
           }}
@@ -302,7 +303,8 @@ const Navbar = ({ onCareerButtonClick }) => {
                   <li
                     style={{
                       marginBottom: "8px",
-                      transition: "transform 0.3s ease",
+                      transition: "transform 0.3s ease, color 0.3s ease",
+                      cursor: "pointer",
                     }}
                     onMouseEnter={(e) => {
                       e.target.style.transform = "translateX(10px)";
@@ -323,7 +325,8 @@ const Navbar = ({ onCareerButtonClick }) => {
                   <li
                     style={{
                       marginBottom: "8px",
-                      transition: "transform 0.3s ease",
+                      transition: "transform 0.3s ease, color 0.3s ease",
+                      cursor: "pointer",
                     }}
                     onMouseEnter={(e) => {
                       e.target.style.transform = "translateX(10px)";
@@ -344,7 +347,8 @@ const Navbar = ({ onCareerButtonClick }) => {
                   <li
                     style={{
                       marginBottom: "8px",
-                      transition: "transform 0.3s ease",
+                      transition: "transform 0.3s ease, color 0.3s ease",
+                      cursor: "pointer",
                     }}
                     onMouseEnter={(e) => {
                       e.target.style.transform = "translateX(10px)";
@@ -355,7 +359,7 @@ const Navbar = ({ onCareerButtonClick }) => {
                       e.target.style.color = "#3a3939";
                     }}
                     onClick={(e) => {
-                      e.stopPropagation(); // Stop click event from bubbling to the parent FlyoutLink
+                      e.stopPropagation();
                       navigate("/staff-augmentation");
                       const section = document.getElementById("clients");
                       if (section) {
@@ -368,7 +372,8 @@ const Navbar = ({ onCareerButtonClick }) => {
                   <li
                     style={{
                       marginBottom: "8px",
-                      transition: "transform 0.3s ease",
+                      transition: "transform 0.3s ease, color 0.3s ease",
+                      cursor: "pointer",
                     }}
                     onMouseEnter={(e) => {
                       e.target.style.transform = "translateX(10px)";
@@ -379,9 +384,9 @@ const Navbar = ({ onCareerButtonClick }) => {
                       e.target.style.color = "#3a3939";
                     }}
                     onClick={(e) => {
-                      e.stopPropagation(); // Stop click event from bubbling to the parent FlyoutLink
+                      e.stopPropagation();
                       navigate("/content-production");
-                      onCareerButtonClick(); // Call the career button logic
+                      onCareerButtonClick();
                     }}
                   >
                     Content Production
@@ -393,8 +398,6 @@ const Navbar = ({ onCareerButtonClick }) => {
         >
           Our Services
         </FlyoutLink>
-
-        
 
         <FlyoutLink
           onClick={() => {
@@ -417,7 +420,7 @@ const Navbar = ({ onCareerButtonClick }) => {
         >
           <div
             onClick={(e) => {
-              e.preventDefault(); // Prevent default link behavior
+              e.preventDefault();
               const targetElement = document.getElementById("csr");
               if (targetElement) {
                 targetElement.scrollIntoView({
@@ -444,7 +447,7 @@ const Navbar = ({ onCareerButtonClick }) => {
 
             <FlyoutLink
               onClick={(e) => {
-                e.stopPropagation(); // Prevent click from bubbling up
+                e.stopPropagation();
                 toggleMenu();
                 const section = document.getElementById("main3");
                 const container = document.querySelector(".constart");
@@ -452,8 +455,7 @@ const Navbar = ({ onCareerButtonClick }) => {
                 if (section && container) {
                   const containerTop = container.getBoundingClientRect().top;
                   const sectionTop = section.getBoundingClientRect().top;
-
-                  const offset = sectionTop - containerTop + 140; // 60px scroll padding
+                  const offset = sectionTop - containerTop + 140;
 
                   container.scrollTo({
                     top: container.scrollTop + offset,
@@ -487,7 +489,7 @@ const Navbar = ({ onCareerButtonClick }) => {
         className="navbar-careers"
         style={{ overflow: "hidden" }}
         onClick={(e) => {
-          e.stopPropagation(); // Prevent click from bubbling up
+          e.stopPropagation();
 
           const section = document.getElementById("main3");
           const container = document.querySelector(".constart");
@@ -495,8 +497,7 @@ const Navbar = ({ onCareerButtonClick }) => {
           if (section && container) {
             const containerTop = container.getBoundingClientRect().top;
             const sectionTop = section.getBoundingClientRect().top;
-
-            const offset = sectionTop - containerTop + 140; // 60px scroll padding
+            const offset = sectionTop - containerTop + 140;
 
             container.scrollTo({
               top: container.scrollTop + offset,
@@ -511,10 +512,6 @@ const Navbar = ({ onCareerButtonClick }) => {
           }
         }}
       >
-        {/* <button className="careers-button">
-          {" "}
-          <div>CONTACT</div>
-        </button> */}
       </div>
 
       <div className="navbar-hamburger" onClick={toggleMenu}>
