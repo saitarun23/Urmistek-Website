@@ -55,7 +55,7 @@
 
 /* ===== TITLE ===== */
 .hero-title {
-  font-size: clamp(1.8rem, 6vw, 4rem);
+  font-size: clamp(1.8rem, 6vw, 4.2rem);
   font-weight: 600;
   line-height: 1.1;
   margin-bottom: 30px;
@@ -74,13 +74,13 @@
 }
 
 .hero-logo {
-  height: clamp(2.5rem, 8vw, 5.5rem);
+  height: clamp(2.5rem, 7vw, 5.5rem);
   width: auto;
   object-fit: contain;
   margin: 0 -15px;
   filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.5));
   animation: logoGlow 3s ease-in-out infinite;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 }
 
 @keyframes logoGlow {
