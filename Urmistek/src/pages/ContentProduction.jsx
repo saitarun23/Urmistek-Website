@@ -83,9 +83,9 @@ const ContentProduction = () => {
 
               <div className="quantum-card-core">
                 <div className="quantum-card-top">
-                  <span className="quantum-status"></span>
+                  {/* <span className="quantum-status"></span> */}
 
-                  <p>CONTENT MODULE</p>
+                  {/* <p>CONTENT MODULE</p> */}
                 </div>
 
                 <h2>{item.title}</h2>

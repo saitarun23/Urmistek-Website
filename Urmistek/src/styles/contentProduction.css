@@ -137,13 +137,13 @@
 }
 
 .quantum-heading-area h1 {
-  font-size: clamp(5rem,9vw, 9rem);
+  font-size: clamp(4rem,9vw, 6rem);
 
   line-height: 0.82;
 
   font-weight: 600;
 
-  letter-spacing: -0.1em;
+  /* letter-spacing: 0.1em; */
 
   margin: 0;
 
@@ -334,11 +334,11 @@
 .quantum-description {
   max-width: 760px;
 
-  font-size: 1rem;
+  font-size: 1.2rem;
 
   line-height: 2;
 
-  color: #9ca3af;
+  color: #cbc1c1;
 
   margin: 0;
 }
@@ -382,6 +382,63 @@
 
   .quantum-big-number {
     font-size: 5rem;
+  }
+}
+
+/* ===== iPad / Tablet (768px – 1100px) ===== */
+@media (min-width: 768px) and (max-width: 1100px) {
+  .quantum-production {
+    padding: 120px 0;
+  }
+
+  .quantum-hero {
+    margin-bottom: 100px;
+  }
+
+  .quantum-heading-area {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .quantum-heading-area h1 {
+    font-size: clamp(4rem, 8vw, 6.5rem);
+  }
+
+  .quantum-side-description p {
+    font-size: 0.95rem;
+  }
+
+  .quantum-flow-card {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 48px;
+    min-height: auto;
+  }
+
+  .quantum-big-number {
+    font-size: 4.5rem;
+    line-height: 1;
+  }
+
+  .quantum-card-core h2 {
+    font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+  }
+
+  .quantum-description {
+    font-size: 0.95rem;
+    max-width: 100%;
+  }
+
+  .quantum-card-top {
+    margin-bottom: 24px;
+  }
+
+  .quantum-bg-word {
+    font-size: 6vw;
+  }
+
+  .quantum-vertical-word {
+    display: none;
   }
 }
 

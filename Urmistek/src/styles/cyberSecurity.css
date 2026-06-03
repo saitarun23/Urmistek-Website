@@ -77,18 +77,18 @@
 .void-hero-top p {
   margin: 0;
   font-family: monospace;
-  font-size: 0.8rem;
+  font-size: 1.4rem;
   letter-spacing: 0.25em;
-  color: #64748b;
+  color: #a9b0b9;
 }
 
 .void-title {
-  font-size: clamp(3rem, 7.5vw, 7.5rem);
+  font-size: clamp(3rem, 6vw, 7.5rem);
   line-height: 0.9;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: -0.03em;
   margin: 0;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 
 .void-title span {
@@ -213,6 +213,58 @@
 }
 
 /* --- SYSTEM ADAPTATION RESPONSIVE BREAKPOINTS --- */
+
+/* ===== iPad / Tablet (768px – 1200px) ===== */
+@media (min-width: 768px) and (max-width: 1200px) {
+  .void-security-section {
+    padding: 120px 0;
+  }
+
+  .void-hero {
+    margin-bottom: 80px;
+  }
+
+  .void-title {
+    font-size: clamp(2.8rem, 6vw, 5rem);
+  }
+
+  .void-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    min-height: auto;
+  }
+
+  .void-card {
+    position: relative;
+    width: 100%;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    min-height: 300px;
+  }
+
+  /* Offset the 2nd card stagger — visually staggers the two-column grid */
+  .void-card-2,
+  .void-card-4 {
+    margin-top: 48px;
+  }
+
+  .void-card-inner-wrapper {
+    min-height: 300px;
+    padding: 36px;
+  }
+
+  .void-card-content h2 {
+    font-size: 1.75rem;
+  }
+
+  .void-card-content p {
+    font-size: 0.9rem;
+    max-width: 100%;
+  }
+}
+
 @media (max-width: 1200px) {
   .void-layout {
     display: flex;

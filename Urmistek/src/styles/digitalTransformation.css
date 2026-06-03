@@ -1,312 +1,384 @@
-/* ===== QUANTUM DIGITAL EXPERIENCE ===== */
+/* ==========================================================================
+   ===== QUANTUM DIGITAL EXPERIENCE (FULLY RESPONSIVE) =====
+   ========================================================================== */
 
 .quantum-section {
   position: relative;
   min-height: 100vh;
   background: #000;
   overflow: hidden;
-  padding: 140px 0;
+  padding: clamp(80px, 8vw, 140px) 0;
   font-family: "Inter", sans-serif;
   color: #fff;
+  box-sizing: border-box;
+}
+
+.quantum-section *, 
+.quantum-section *::before, 
+.quantum-section *::after {
+  box-sizing: border-box;
 }
 
 /* ===== NOISE GRID ===== */
-
 .quantum-noise {
   position: absolute;
   inset: 0;
-
-  background-image:
-    radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
-
+  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   background-size: 28px 28px;
-
   opacity: 0.3;
+  z-index: 1;
 }
 
-/* ===== ORBS ===== */
-
+/* ===== BLURRED ORBS ===== */
 .quantum-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(140px);
-}
-
-.quantum-orb-one {
-  width: 450px;
-  height: 450px;
-
-  background: rgba(37,99,235,0.22);
-
-  top: -100px;
-  left: -120px;
-}
-
-.quantum-orb-two {
-  width: 400px;
-  height: 400px;
-
-  background: rgba(255,255,255,0.05);
-
-  bottom: -120px;
-  right: -100px;
-}
-
-/* ===== HUGE TEXT ===== */
-
-.quantum-bg-text {
-  position: absolute;
-
-  top: 50%;
-  left: 50%;
-
-  transform: translate(-50%, -50%);
-
-  font-size: 22vw;
-  font-weight: 900;
-
-  letter-spacing: -0.1em;
-
-  color: rgba(255,255,255,0.02);
-
+  filter: blur(clamp(60px, 10vw, 140px));
+  z-index: 1;
   pointer-events: none;
 }
 
+.quantum-orb-one {
+  width: clamp(280px, 40vw, 450px);
+  height: clamp(280px, 40vw, 450px);
+  background: rgba(37, 99, 235, 0.22);
+  top: -10%;
+  left: -10%;
+}
+
+.quantum-orb-two {
+  width: clamp(250px, 35vw, 400px);
+  height: clamp(250px, 35vw, 400px);
+  background: rgba(255, 255, 255, 0.05);
+  bottom: -10%;
+  right: -10%;
+}
+
+/* ===== HUGE BACKGROUND TEXT ===== */
+.quantum-bg-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 22vw;
+  font-weight: 900;
+  letter-spacing: -0.1em;
+  color: rgba(255, 255, 255, 0.015);
+  pointer-events: none;
+  z-index: 1;
+  white-space: nowrap;
+}
+
 /* ===== CONTAINER ===== */
-
 .quantum-container {
-  width: 92%;
+  width: 90%;
   max-width: 1800px;
-  margin: auto;
-
+  margin: 0 auto;
   position: relative;
   z-index: 3;
 }
 
-/* ===== HERO ===== */
-
+/* ===== HERO HEADER ===== */
 .quantum-hero {
-  margin-bottom: 120px;
+  margin-bottom: clamp(40px, 8vw, 120px);
+  margin-top: clamp(20px, 5vw, 60px);
 }
 
 .quantum-mini {
   display: inline-block;
-
-  margin-bottom: 30px;
-
-  font-size: 0.78rem;
+  margin-bottom: clamp(15px, 2vw, 30px);
+  font-size: clamp(0.7rem, 1.5vw, 0.78rem);
   letter-spacing: 0.35em;
-
   color: #6b7280;
+  text-transform: uppercase;
 }
 
 .quantum-hero h1 {
-  font-size: clamp(5rem, 7vw, 9rem);
-
-  line-height: 0.88;
-
-  font-weight: 400;
-
-  letter-spacing: 0.02em;
-
+  font-size: clamp(3rem, 7vw, 9rem);
+  line-height: 0.9;
+  font-weight: 500;
+  letter-spacing: -0.02em;
   margin: 0;
-
-  /* text-transform: uppercase; */
+  font-family: "Sora", "Poppins", sans-serif;
 }
 
 .quantum-hero h1 span {
   display: block;
-
-  background: linear-gradient(
-    to right,
-    #ffffff,
-    #2563eb
-  );
-
+  background: linear-gradient(to right, #ffffff, #2563eb);
+  -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* ===== HORIZONTAL EXPERIENCE ===== */
+/* ===== CAROUSEL / HORIZONTAL EXPERIENCE ===== */
+.quantum-carousel-wrapper {
+  position: relative;
+  width: 100%;
+}
 
 .quantum-horizontal {
   display: flex;
-  gap: 40px;
-
+  gap: clamp(20px, 3vw, 40px);
   overflow-x: auto;
-  padding-bottom: 20px;
-
-  -ms-overflow-style: none;
-
+  scroll-behavior: smooth;
+  padding: 20px 0;
+  
+  /* Smooth momentum scrolling on mobile devices */
+ 
+  
+  /* Hide standard scrollbars cleanly */
+   /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
 }
 
 .quantum-horizontal::-webkit-scrollbar {
-  display: none;
+  display: none; /* Chrome, Safari, Opera */
 }
 
-/* ===== PANEL ===== */
+/* ===== CAROUSEL NAVIGATION ARROWS ===== */
+.quantum-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: #ffffff;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
 
+.quantum-arrow svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+}
+
+.quantum-arrow:hover {
+  background: #2563eb;
+  border-color: #2563eb;
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.4);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.quantum-arrow:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+/* Desktop-only negative offsets rewritten dynamic safely */
+.quantum-arrow-left { left: -24px; }
+.quantum-arrow-right { right: -24px; }
+
+
+/* ===== CAROUSEL PANELS ===== */
 .quantum-panel {
   position: relative;
-
-  min-width: 420px;
-  height: 620px;
-
-  padding: 40px;
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,0.05),
-      rgba(255,255,255,0.02)
-    );
-
+  /* Flex basis governs flexible standard widths seamlessly */
+  flex: 0 0 clamp(300px, 30vw, 420px); 
+  height: clamp(480px, 45vw, 620px);
+  padding: clamp(24px, 4vw, 40px);
+  background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
   border: 1px solid rgba(255,255,255,0.06);
-
+  border-radius: 12px;
   overflow: hidden;
-
-  transition:
-    transform 0.7s ease,
-    border-color 0.7s ease,
-    background 0.7s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+              border-color 0.5s ease,
+              background 0.5s ease,
+              box-shadow 0.5s ease;
 }
 
-/* .quantum-panel:hover {
-  transform:
-    translateY(-20px)
-    rotate(-2deg);
+/* Hover effects optimized for devices supporting hover pointers */
+@media (hover: hover) {
+  .quantum-panel:hover {
+    transform: translateY(-12px);
+    border-color: rgba(37, 99, 235, 0.4);
+    background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(37, 99, 235, 0.05);
+  }
+  
+  .quantum-panel:hover h2 {
+    color: #2563eb;
+  }
+  
+  .quantum-panel:hover .quantum-word {
+    transform: translateX(-15px) scale(1.05);
+    color: rgba(37, 99, 235, 0.05);
+  }
+}
 
-  border-color: rgba(37,99,235,0.35);
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,0.08),
-      rgba(255,255,255,0.03)
-    );
-} */
-
-/* ===== TOP ===== */
-
+/* ===== PANEL COMPONENT INSIDES ===== */
 .quantum-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   position: relative;
   z-index: 3;
 }
 
 .quantum-top span {
-  font-size: 0.85rem;
-
+  font-size: clamp(0.75rem, 1.5vw, 0.85rem);
   letter-spacing: 0.25em;
-
   color: #6b7280;
+  text-transform: uppercase;
 }
-
-/* ===== DOT ===== */
 
 .quantum-dot {
-  width: 14px;
-  height: 14px;
-
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-
   background: #2563eb;
-
-  box-shadow:
-    0 0 20px #2563eb,
-    0 0 60px #2563eb;
+  box-shadow: 0 0 15px #2563eb, 0 0 30px #2563eb;
 }
-
-/* ===== CENTER ===== */
 
 .quantum-center {
   position: relative;
   z-index: 3;
-
-  margin-top: 140px;
+  margin-top: auto; /* Pushes content down elegantly */
+  margin-bottom: clamp(20px, 3vw, 40px);
 }
 
 .quantum-center h2 {
-  font-size: clamp(2.8rem, 4vw, 5rem);
-
-  line-height: 0.95;
-
+  font-size: clamp(2rem, 3.5vw, 3.8rem);
+  line-height: 1;
   font-weight: 800;
-
-  letter-spacing: -0.06em;
-
-  margin: 0 0 30px;
-
-  transition: color 0.5s ease;
-}
-
-.quantum-panel:hover h2 {
-  color: #2563eb;
+  letter-spacing: -0.04em;
+  margin: 0 0 15px 0;
+  transition: color 0.4s ease;
 }
 
 .quantum-center p {
-  max-width: 320px;
-
-  font-size: 1rem;
-  line-height: 2;
-
+  max-width: 100%;
+  font-size: clamp(0.9rem, 1.8vw, 1rem);
+  line-height: 1.6;
   color: #9ca3af;
+  margin: 0;
 }
 
-/* ===== HUGE WORD ===== */
-
+/* WATERMARK BACKGROUND PANELS */
 .quantum-word {
   position: absolute;
-
-  bottom: -20px;
-  right: -10px;
-
-  font-size: 8vw;
+  bottom: -10px;
+  right: -5px;
+  font-size: clamp(5rem, 8vw, 8rem);
   font-weight: 900;
-
-  letter-spacing: -0.08em;
-
-  color: rgba(255,255,255,0.03);
-
-  transition: transform 0.6s ease;
+  letter-spacing: -0.06em;
+  color: rgba(255, 255, 255, 0.025);
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), color 0.6s ease;
+  pointer-events: none;
+  /* user-select: none; */
+  z-index: 2;
 }
 
-.quantum-panel:hover .quantum-word {
-  transform: translateX(-20px);
+
+/* ==========================================================================
+   ===== COMPREHENSIVE RESPONSIVE BREAKPOINTS =====
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   ► IPADS & TABLETS VIEWPORTS (Max-width: 1024px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .quantum-container {
+    width: 88%; /* Slightly wider margin container allocations */
+  }
+  
+  /* Bring arrows inside slightly so they don't leak off screen edges */
+  .quantum-arrow-left { left: -15px; }
+  .quantum-arrow-right { right: -15px; }
+  
+  .quantum-panel {
+    flex: 0 0 360px; /* Locked optimal scaling base on tablet */
+    height: 540px;
+  }
 }
 
-/* ===== RESPONSIVE ===== */
-
+/* --------------------------------------------------------------------------
+   ► SMALL TABLETS / PORTRAIT IPADS (Max-width: 768px)
+   -------------------------------------------------------------------------- */
 @media (max-width: 768px) {
+  .quantum-container {
+    width: 90%;
+  }
 
-  .quantum-section {
-    padding: 100px 0;
+   .quantum-hero {
+    /* margin-bottom: clamp(50px, 10vw, 100px); */
+    margin-top: clamp(100px, 7vw, 40px);
+  }
+  .quantum-hero h1 {
+    font-size: clamp(3rem, 7vw, 9rem);
+    line-height: 0.95;
+    
+  }
+  /* Hide physical desktop navigation arrows on touch tablet screens */
+  .quantum-arrow {
+    display: none !important;
+  }
+  
+  /* Indent carousel to let edges align nicely over container margins */
+  .quantum-horizontal {
+    padding-left: 0;
+    gap: 24px;
   }
 
   .quantum-panel {
-    min-width: 320px;
-    height: 520px;
-
+    flex: 0 0 320px;
+    height: 500px;
     padding: 30px;
   }
+  
+  .quantum-center h2 {
+    font-size: 2.5rem;
+  }
+}
 
-  .quantum-center {
-    margin-top: 100px;
+/* --------------------------------------------------------------------------
+   ► MOBILE DEVICES (Max-width: 480px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 480px) {
+  .quantum-container {
+    width: 88%;
+  }
+
+  .quantum-hero {
+    /* margin-bottom: clamp(50px, 10vw, 100px); */
+    margin-top: clamp(100px, 7vw, 40px);
+  }
+  .quantum-hero h1 {
+    font-size: clamp(3rem, 7vw, 9rem);
+    line-height: 0.95;
+    
+  }
+  
+  .quantum-panel {
+    flex: 0 0 85vw; /* Fluid scaling width relative to viewport width on phones */
+    height: 460px;
+    padding: 24px;
   }
 
   .quantum-center h2 {
-    font-size: 2.3rem;
+    font-size: 2.2rem;
   }
-
+  
   .quantum-center p {
-    max-width: 100%;
+    font-size: 0.9rem;
+    line-height: 1.5;
   }
-
-  .quantum-hero h1 {
-    font-size: clamp(4rem, 18vw, 6rem);
+  
+  .quantum-word {
+    font-size: 5.5rem;
   }
-
 }

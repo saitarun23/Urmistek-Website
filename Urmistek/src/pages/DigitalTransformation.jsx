@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import "../styles/digitalTransformation.css";
 
 const systems = [
@@ -21,6 +21,19 @@ const systems = [
 ];
 
 const DigitalTransformation = () => {
+  const scrollRef = useRef(null);
+
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+      const scrollAmount = 450;
+      if (direction === "left") {
+        scrollRef.current.scrollLeft -= scrollAmount;
+      } else {
+        scrollRef.current.scrollLeft += scrollAmount;
+      }
+    }
+  };
+
   return (
     <section className="quantum-section">
 
@@ -46,15 +59,26 @@ const DigitalTransformation = () => {
 
           <h1>
             <span>Beyond</span>
-            <span>INFRASTRUCTURE</span>
+            <span>Infrastructure</span>
           </h1>
 
         </div>
 
         {/* HORIZONTAL EXPERIENCE */}
-        <div className="quantum-horizontal">
+        <div className="quantum-carousel-wrapper">
+          <button className="quantum-arrow quantum-arrow-left" onClick={() => scroll("left")}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <button className="quantum-arrow quantum-arrow-right" onClick={() => scroll("right")}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+          <div className="quantum-horizontal" ref={scrollRef}>
 
-          {systems.map((item, index) => (
+            {systems.map((item, index) => (
             <div className="quantum-panel" key={index}>
 
               {/* TOP */}
@@ -85,6 +109,7 @@ const DigitalTransformation = () => {
             </div>
           ))}
 
+          </div>
         </div>
 
       </div>
