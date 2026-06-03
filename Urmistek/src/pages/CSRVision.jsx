@@ -45,7 +45,6 @@ const CSRVision = () => {
           </div>
 
           <h1 className="csr-title">
-            ENGINEERING
             <span>IMPACT</span>
             BEYOND BUSINESS
           </h1>
@@ -65,9 +64,9 @@ const CSRVision = () => {
           {csrData.map((item, index) => (
             <div className="csr-card" key={index}>
 
-              <div className="csr-card-number">
+              {/* <div className="csr-card-number">
                 0{index + 1}
-              </div>
+              </div> */}
 
               <div className="csr-card-content">
 
