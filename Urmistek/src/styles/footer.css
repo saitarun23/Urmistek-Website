@@ -1,52 +1,312 @@
-.part5 {
-  height: 85vh;
-  width: 100vw;
-  background-color: rgb(0, 0, 0);
-  color: white;
-  padding: 8%;
-  box-sizing: border-box;
-  /* cursor: none; */
+/* ==========================================================================
+   PREMIUM CORPORATE FOOTER STYLING ARCHITECTURE
+   ========================================================================== */
+
+/* Outer Structure Base Framework */
+.footer-master {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 100px 0 40px 0;
+  font-family: "Poppins", -apple-system, BlinkMacSystemFont, sans-serif;
+  border-top: 1px solid #111111;
+  position: relative;
   overflow: hidden;
-}
-.h22 {
-  font-size: 5vw;
-}
-.box {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 60px;
-  padding: 0 10px;
-  border-top: 1.5px solid #dadada;
-}
-.cursor {
-  height: 20px;
-  width: 20px;
-  border-radius: 50%;
-  position: fixed;
-  background-color: #2a2a2a90;
-  z-index: 1000000;
-  /* color: black; */
-  top: 5%;
-  opacity: 0.8;
-  /* transform: translate(-50%, -50%); */
-  transition: background-image ease 0.4s;
-  /* transition: left linear 1s top linear 1s; */
-  background-size: cover; /* Makes the image cover the entire div */
-  background-repeat: no-repeat; /* Prevents the image from repeating */
-  background-position: center;
-}
-.part5:hover .cursor {
-  background-color: #2a2a2a00;
-}
-.responsive-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 40px;
+  width: 100%;
 }
 
+.footer-container {
+  max-width: 1440px;
+  width: 92%;
+  margin: 0 auto;
+}
+
+/* Four-Column Matrix Setup */
+.footer-grid-matrix {
+  display: grid;
+  grid-template-columns: 1.3fr 1.2fr 0.8fr 1fr; /* Custom asymmetric spacing sizes */
+  gap: 50px;
+  align-items: flex-start;
+}
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- COLUMN 1 ELEMENTS --- */
+.footer-brand-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+  color: #ffffff;
+}
+
+.footer-brand-desc {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: #a3acb9;
+  margin-bottom: 30px;
+  max-width: 360px;
+}
+
+.footer-social-wrap {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+.footer-social-icon {
+  font-size: 1.4rem;
+  color: #ffffff;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s ease;
+}
+
+.footer-social-icon:hover {
+  color: #cdb6ff;
+  transform: translateY(-4px);
+}
+
+/* --- COLUMN 2 ELEMENTS (CONTACT TILES) --- */
+.footer-column-heading {
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 28px;
+  position: relative;
+}
+
+.contact-loc-card {
+  margin-bottom: 24px;
+}
+
+.contact-country-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #cdb6ff;
+  letter-spacing: 0.1em;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.contact-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.contact-row-icon {
+  font-size: 0.95rem;
+  color: #a3acb9;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.contact-row p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #cccccc;
+  margin: 0;
+}
+
+/* --- COLUMN 3 ELEMENTS (LINKS) --- */
+.footer-links-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links-list li {
+  margin-bottom: 14px;
+}
+
+.footer-links-list a {
+  text-decoration: none;
+  font-size: 0.95rem;
+  color: #cccccc;
+  display: inline-block;
+  transition: color 0.3s ease, transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.footer-links-list a:hover {
+  color: #cdb6ff;
+  transform: translateX(4px); /* Interactive drift micro-action */
+}
+
+/* ==========================================================================
+   COLUMN 4: HIGH-END DIGITAL OPERATIONAL BADGE / STICKER
+   ========================================================================== */
+.graphic-sticker-block {
+  align-items: flex-end; /* Pushes sticker completely inside right row boundary layout */
+}
+
+.operations-badge-sticker {
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+  background-color: #0b0b0c;
+  border: 1px dashed #333335;
+  border-radius: 16px;
+  padding: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  transition: border-color 0.4s ease;
+}
+
+.operations-badge-sticker:hover {
+  border-color: #cdb6ff;
+}
+
+/* Technical blueprint lines backdropping graphic layout container */
+.sticker-grid-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.04;
+  background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+}
+
+.sticker-foreground {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sticker-globe-icon {
+  font-size: 2.2rem;
+  color: #cdb6ff;
+  animation: rotateGlobe 12s linear infinite;
+}
+
+@keyframes rotateGlobe {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.sticker-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sticker-tag-small {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: crimson;
+  letter-spacing: 0.15em;
+}
+
+.sticker-tag-main {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+.sticker-status-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #121315;
+  padding: 6px 12px;
+  border-radius: 20px;
+  align-self: flex-start;
+  border: 1px solid #1f2023;
+}
+
+.status-ping-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #00ff66;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #00ff66;
+  animation: pingPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pingPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.status-ping-text {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #8a8d93;
+  letter-spacing: 0.05em;
+}
+
+/* ==========================================================================
+   FOOTER FRAME LOWER LAYER BOUNDS
+   ========================================================================== */
+.footer-bottom-bar {
+  margin-top: 80px;
+  border-top: 1px solid #151517;
+  padding-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.copyright-notice {
+  font-size: 0.85rem;
+  color: #64748b;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   MULTI-DEVICE RESPONSIVE BREAKPOINTS (IPAD / MOBILE VIEWPORTS)
+   ========================================================================== */
+
+/* IPAD & TABLET MULTI-LAYER TRANSITIONS */
+@media (max-width: 1100px) {
+  .footer-grid-matrix {
+    grid-template-columns: 1fr 1fr; /* Snaps cleanly into a 2x2 grids block grid pattern */
+    gap: 40px;
+  }
+  
+  .graphic-sticker-block {
+    align-items: flex-start; /* Corrects placement grid matching for tablet columns */
+  }
+  
+  .operations-badge-sticker {
+    max-width: 100%; /* Spans grid container accurately on tablet layers */
+  }
+}
+
+/* SMARTPHONE BREAKPOINTS */
 @media (max-width: 768px) {
-  .responsive-grid {
-    grid-template-columns: 1fr;
+  .footer-master {
+    padding: 60px 0 30px 0;
+  }
+
+  .footer-grid-matrix {
+    grid-template-columns: 1fr; /* 1 Column uniform stack alignment configuration */
+    gap: 35px;
+  }
+
+  .footer-brand-desc {
+    max-width: 100%;
+  }
+
+  .footer-column-heading {
+    margin-bottom: 20px;
+  }
+
+  .footer-bottom-bar {
+    margin-top: 50px;
+    padding-top: 20px;
   }
 }
