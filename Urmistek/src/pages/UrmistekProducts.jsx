@@ -218,62 +218,6 @@ const UrmistekProducts = () => {
           </div>
         </div>
       </section>
-
-      {/* Section 4: AI use that isn't permitted */}
-      <section className="ub-restriction-section">
-        <h3 className="section-group-title warning-title">System Misuse & Restricted Protocols:</h3>
-        
-        <div className="restriction-layout">
-          <ul className="ub-bullet-list">
-            <li>Deploying unverified neural blocks to inject synthetic background credentials or falsified capabilities into secure operational profile logs.</li>
-            <li>Utilizing adversarial external models to completely bypass technical screening metrics or live evaluation code challenges.</li>
-            <li>Using unauthorized interactive injection scripts during technical system checkouts to artificially generate responses for live evaluations.</li>
-            <li>Interfacing with deepfake layers, synthetic voice modulators, or video frame alterations inside verification modules.</li>
-          </ul>
-          <div className="restriction-image-placeholder">
-            <div className="ambient-user-frame"></div>
-          </div>
-        </div>
-
-        <p className="ub-disclaimer-text">
-          These unauthorized activities directly violate Urmistek's fundamental Responsible AI tenets and trigger instant system account termination. 
-          Our security arrays continuously run behavioral telemetry checks and detection matrix patterns to guarantee a level playing field.
-        </p>
-      </section>
-
-      {/* Section 5: Responsible AI Principles */}
-      <section className="ub-principles-section">
-        <h2 className="section-main-heading">Responsible AI: our principles and promise</h2>
-        
-        <div className="ub-principles-grid">
-          <div className="principle-item">
-            <span className="blue-bullet"></span>
-            <p><strong>Human by design:</strong> Intelligent infrastructure streamlines but never overrides human architectural authority.</p>
-          </div>
-          <div className="principle-item">
-            <span className="blue-bullet"></span>
-            <p><strong>Safety & privacy:</strong> End-to-end compartmentalization shields operational system data and enterprise access vectors.</p>
-          </div>
-          <div className="principle-item">
-            <span className="blue-bullet"></span>
-            <p><strong>Fairness:</strong> Mathematical loss adjustments explicitly curb historical data dependencies and systematic biases.</p>
-          </div>
-          <div className="principle-item">
-            <span className="blue-bullet"></span>
-            <p><strong>Accountability:</strong> Cryptographically logged governance trails oversee all automated structural processing actions.</p>
-          </div>
-          <div className="principle-item">
-            <span className="blue-bullet"></span>
-            <p><strong>Transparency & explainability:</strong> Log outputs provide human-readable logic maps for every major algorithmic calculation.</p>
-          </div>
-          <div className="principle-item">
-            <span className="blue-bullet"></span>
-            <p><strong>Sustainability:</strong> Optimized carbon footprints minimize raw computational load requirements across local hardware systems.</p>
-          </div>
-        </div>
-
-        <a href="#read-more" className="ub-footer-link">Read more about Urmistek's Responsible AI Framework</a>
-      </section>
     </div>
   );
 };
