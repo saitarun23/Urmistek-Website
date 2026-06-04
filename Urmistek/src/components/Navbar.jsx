@@ -530,7 +530,7 @@ const Navbar = ({ onCareerButtonClick }) => {
                 }
               }}
             >
-              <div
+              {/* <div
                 style={{
                   backgroundColor: "white",
                   color: "black",
@@ -539,7 +539,7 @@ const Navbar = ({ onCareerButtonClick }) => {
                 }}
               >
                 Contact
-              </div>
+              </div> */}
             </FlyoutLink>
           </>
         )}
