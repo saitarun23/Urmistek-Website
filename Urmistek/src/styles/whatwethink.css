@@ -2,7 +2,7 @@
 
 .think-section {
   padding: 60px 0;
-  background-color: #000000; /* Rich stark black baseline directly honoring reference style */
+  background-color: #000000;
   font-family: 'Poppins', 'Inter', -apple-system, sans-serif;
   color: #ffffff;
 }
@@ -13,16 +13,15 @@
   margin: 0 auto;
 }
 
-/* ==========================================
-   ADVANCED STYLIZED CENTRALIZED HEAD ROW SYS
-   ========================================== */
+/* ===== HEADER ===== */
+
 .think-premium-header {
   display: flex;
-  justify-content: center; /* Horizontally balances layout row to the exact core screen center */
+  justify-content: center;
   align-items: center;
-  text-align: center; /* Ensures typography breaks read uniformly outwards */
-  max-width: 1100px; 
-  margin: 0 auto 80px auto; /* Even centering bounds inside parent tracking frame wrapper */
+  text-align: center;
+  max-width: 1100px;
+  margin: 0 auto 80px auto;
 }
 
 .think-title-layout {
@@ -31,7 +30,6 @@
   width: 100%;
 }
 
-/* Redesigned Premium Title Head Setup */
 .think-main-title {
   font-size: clamp(2rem, 3vw, 2.5rem);
   font-weight: 500;
@@ -39,7 +37,6 @@
   letter-spacing: -0.01em;
   margin: 0;
   color: #ffffff;
-
 }
 
 .think-brand-highlight {
@@ -47,7 +44,6 @@
   font-weight: 700;
 }
 
-/* Typing / Word Reveal Architecture Settings */
 .think-typing-container {
   display: inline;
 }
@@ -55,30 +51,30 @@
 .think-animated-word {
   display: inline-block;
   opacity: 0;
-  transform: translateY(16px); /* Clean upward drift transition animation path */
-  filter: blur(4px); /* Modern blur reveal effect */
-  transition: opacity 0.45s cubic-bezier(0.215, 0.61, 0.355, 1), 
-              transform 0.45s cubic-bezier(0.215, 0.61, 0.355, 1),
-              filter 0.45s ease;
+  transform: translateY(16px);
+  filter: blur(4px);
+  transition:
+    opacity 0.45s cubic-bezier(0.215, 0.61, 0.355, 1),
+    transform 0.45s cubic-bezier(0.215, 0.61, 0.355, 1),
+    filter 0.45s ease;
 }
 
-/* Executes flawlessly on continuous enter / exit intersection observer cycles */
 .start-typing .think-animated-word {
   opacity: 1;
   transform: translateY(0);
   filter: blur(0);
 }
 
-/* ==========================================
-   STARK CHESSBOARD INTERACTION GRID
-   ========================================== */
+/* ===== GRID ===== */
+
 .think-editorial-matrix {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); 
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
 
-/* Core Base Card Mechanics */
+/* ===== BASE CARD ===== */
+
 .think-matrix-card {
   position: relative;
   height: 520px;
@@ -92,29 +88,86 @@
   cursor: pointer;
 }
 
-/* Card Background Image States */
+/* ===== BACKGROUND IMAGE ===== */
+
 .card-bg-image {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 50%; 
+  height: 50%;
   background-size: cover;
   background-position: center;
   filter: grayscale(20%);
   transition: height 0.4s cubic-bezier(0.25, 1, 0.5, 1), filter 0.4s ease;
 }
 
-.think-matrix-card:hover .card-bg-image {
-  height: 100%; 
+/* Desktop: hover triggers */
+@media (hover: hover) and (pointer: fine) {
+  .think-matrix-card:hover .card-bg-image {
+    height: 100%;
+    filter: grayscale(0%) brightness(40%);
+  }
+
+  .think-matrix-card:hover .card-foreground-content {
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 100%);
+  }
+
+  .think-matrix-card:hover .card-hidden-narrative {
+    max-height: 160px;
+    opacity: 1;
+    margin-top: 14px;
+  }
+
+  .think-matrix-card:hover .card-action-trigger {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .think-matrix-card:hover .card-corner-indicator {
+    transform: rotate(45deg);
+    color: #0066ff;
+  }
+
+  .think-matrix-card.light-vector:hover .card-vector-canvas {
+    opacity: 0.15;
+  }
+}
+
+/* Touch/mobile: .is-expanded class triggers */
+.think-matrix-card.is-expanded .card-bg-image {
+  height: 100%;
   filter: grayscale(0%) brightness(40%);
 }
 
-/* Foreground Container Wrapper */
+.think-matrix-card.is-expanded .card-foreground-content {
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 100%);
+}
+
+.think-matrix-card.is-expanded .card-hidden-narrative {
+  max-height: 200px;
+  opacity: 1;
+  margin-top: 14px;
+}
+
+.think-matrix-card.is-expanded .card-action-trigger {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.think-matrix-card.is-expanded .card-corner-indicator {
+  transform: rotate(0deg);
+  color: #0066ff;
+  background: rgba(0,102,255,0.12);
+  border-color: rgba(0,102,255,0.4);
+}
+
+/* ===== FOREGROUND CONTENT ===== */
+
 .card-foreground-content {
   position: relative;
   z-index: 3;
-  padding: 32px;
+  padding: 28px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -124,79 +177,64 @@
   transition: background 0.4s ease;
 }
 
-.think-matrix-card:hover .card-foreground-content {
-  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 100%);
-}
+/* ===== TYPOGRAPHY ===== */
 
-/* Typography States */
 .card-content-type {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   color: #a3acb9;
   text-transform: uppercase;
   display: block;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .card-content-title {
-  font-size: 1.4rem;
+  font-size: 1.25rem;
   font-weight: 600;
   line-height: 1.35;
   color: #ffffff;
-  margin: 0 0 20px 0;
+  margin: 0 0 16px 0;
   letter-spacing: -0.01em;
   transition: color 0.3s ease;
 }
 
-/* --- THE SLIDING DRAWER SYSTEM --- */
+/* ===== DRAWER ===== */
+
 .card-lower-drawer {
   display: flex;
   flex-direction: column;
 }
 
 .card-preview-text {
-  font-size: 0.95rem;
-  line-height: 1.5;
+  font-size: 0.9rem;
+  line-height: 1.55;
   color: #cccccc;
   margin: 0;
 }
 
-/* Hidden narrative text block that drops into viewport on hover */
 .card-hidden-narrative {
-  font-size: 0.95rem;
-  line-height: 1.55;
+  font-size: 0.9rem;
+  line-height: 1.6;
   color: #ffffff;
   margin: 0;
   max-height: 0;
   opacity: 0;
   overflow: hidden;
-  transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease;
+  transition: max-height 0.45s ease, opacity 0.35s ease, margin-top 0.3s ease;
 }
 
-.think-matrix-card:hover .card-hidden-narrative {
-  max-height: 150px;
-  opacity: 1;
-  margin-top: 16px;
-}
-
-/* Dynamic Interactive CTA Trigger button */
 .card-action-trigger {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 700;
   color: #ffffff;
-  margin-top: 24px;
+  margin-top: 20px;
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.think-matrix-card:hover .card-action-trigger {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 .trigger-icon {
@@ -204,18 +242,50 @@
   transition: transform 0.2s ease;
 }
 
-.think-matrix-card:hover .trigger-icon {
+.think-matrix-card:hover .trigger-icon,
+.think-matrix-card.is-expanded .trigger-icon {
   transform: translateX(4px);
 }
 
-/* --- SPECIALIZED CARD VARIATION STYLES (Light Slate Perspective) --- */
+/* ===== CORNER BUTTON ===== */
+
+.card-corner-indicator {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(0,0,0,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: #888888;
+  z-index: 5;
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+  /* Reset button defaults */
+  padding: 0;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* ===== LIGHT VECTOR CARD ===== */
+
 .think-matrix-card.light-vector {
   background-color: #f8fafc;
   border-color: #e2e8f0;
 }
 
 .think-matrix-card.light-vector .card-foreground-content {
-  background: #f8fafc;
+  background: linear-gradient(to top, #f8fafc 60%, rgba(248,250,252,0) 100%);
+}
+
+.think-matrix-card.light-vector.is-expanded .card-foreground-content {
+  background: linear-gradient(to top, rgba(240,245,255,0.97) 0%, rgba(240,245,255,0.6) 100%);
 }
 
 .think-matrix-card.light-vector .card-content-title,
@@ -229,10 +299,21 @@
 
 .think-matrix-card.light-vector .card-hidden-narrative,
 .think-matrix-card.light-vector .card-action-trigger {
-  color: #0066ff; 
+  color: #0066ff;
 }
 
-/* Animated Vector canvas location inside light perspective variant */
+.think-matrix-card.light-vector .card-corner-indicator {
+  color: #aab4c0;
+  border-color: #d1d9e0;
+  background: rgba(255,255,255,0.7);
+}
+
+.think-matrix-card.light-vector.is-expanded .card-corner-indicator {
+  color: #0066ff;
+  background: rgba(0,102,255,0.08);
+  border-color: rgba(0,102,255,0.3);
+}
+
 .card-vector-canvas {
   position: absolute;
   top: 0;
@@ -242,54 +323,74 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: opacity 0.3s ease;
 }
 
-.think-matrix-card.light-vector:hover .card-vector-canvas {
-  opacity: 0.15;
-}
+/* ===== RESPONSIVE — TABLET (iPad) ===== */
 
-/* --- CARD DECORATIVE CORNER SIGNALS --- */
-.card-corner-indicator {
-  position: absolute;
-  top: 24px;
-  right: 24px;
-  font-size: 1.1rem;
-  color: #444444;
-  z-index: 4;
-  transition: transform 0.3s ease, color 0.3s ease;
-}
-
-.think-matrix-card:hover .card-corner-indicator {
-  transform: rotate(45deg);
-  color: #0066ff;
-}
-
-.think-matrix-card.light-vector .card-corner-indicator {
-  color: #cbd5e1;
-}
-
-/* --- SYSTEM RESPONSIVE BREAKER BLUEPRINTS --- */
 @media (max-width: 1200px) {
   .think-editorial-matrix {
-    grid-template-columns: repeat(2, 1fr); 
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .think-matrix-card {
+    height: 480px;
   }
 }
 
-@media (max-width: 768px) {
+/* ===== RESPONSIVE — MOBILE ===== */
+
+@media (max-width: 640px) {
   .think-section {
-    padding: 80px 0;
+    padding: 60px 0;
   }
-  
+
   .think-premium-header {
-    margin-bottom: 50px;
-    padding: 0 10px;
+    margin-bottom: 40px;
+    padding: 0 4px;
+  }
+
+  .think-main-title {
+    font-size: clamp(1.5rem, 5vw, 2rem);
   }
 
   .think-editorial-matrix {
     grid-template-columns: 1fr;
+    gap: 14px;
   }
-  
+
+  /* On mobile, cards are shorter by default and expand taller when open */
   .think-matrix-card {
-    height: 460px;
+    height: 320px;
+    transition: height 0.45s cubic-bezier(0.25, 1, 0.5, 1),
+                all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .think-matrix-card.is-expanded {
+    height: 520px;
+  }
+
+  /* Make sure text is readable on small screens */
+  .card-content-title {
+    font-size: 1.1rem;
+  }
+
+  .card-preview-text,
+  .card-hidden-narrative {
+    font-size: 0.88rem;
+  }
+
+  .card-corner-indicator {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    /* Larger tap target on mobile */
+    top: 16px;
+    right: 16px;
+  }
+
+  .card-foreground-content {
+    padding: 22px;
   }
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { FiArrowRight, FiChevronDown, FiPlus } from "react-icons/fi";
+import { FiArrowRight, FiPlus, FiX } from "react-icons/fi";
 import "../styles/whatwethink.css";
 
 const insightsData = [
@@ -82,57 +82,72 @@ const insightsData = [
     ctaLabel: "Download Report",
     theme: "vibrant-accent",
     image: "https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&w=700&q=80",
-  }
+  },
 ];
 
 const WhatWeThink = () => {
   const [hoveredCard, setHoveredCard] = useState(null);
+  const [expandedCard, setExpandedCard] = useState(null); // for touch devices
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
   const [isTitleVisible, setIsTitleVisible] = useState(false);
   const headerRef = useRef(null);
 
-  // Advanced IntersectionObserver that triggers both Scrolling Up & Scrolling Down
+  // Detect touch device
+  useEffect(() => {
+    const checkTouch = () => {
+      setIsTouchDevice(window.matchMedia("(hover: none) and (pointer: coarse)").matches);
+    };
+    checkTouch();
+    window.addEventListener("resize", checkTouch);
+    return () => window.removeEventListener("resize", checkTouch);
+  }, []);
+
+  // Intersection observer for title animation
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsTitleVisible(true);
-        } else {
-          setIsTitleVisible(false); // Resets state when out of viewport frame for infinite scrolling actions
-        }
+        setIsTitleVisible(entry.isIntersecting);
       },
-      { 
-        threshold: 0.1, // Triggers quickly as section edges cross view
-        rootMargin: "-50px 0px -50px 0px" // Adds safe padding markers inside layout view bounds
-      } 
+      {
+        threshold: 0.1,
+        rootMargin: "-50px 0px -50px 0px",
+      }
     );
-
-    if (headerRef.current) {
-      observer.observe(headerRef.current);
-    }
-
+    if (headerRef.current) observer.observe(headerRef.current);
     return () => {
       if (headerRef.current) observer.unobserve(headerRef.current);
     };
   }, []);
 
-  const fullTitleText = "innovation begins with ideas that inspire transformation and redefine possibilities.";
+  const fullTitleText =
+    "innovation begins with ideas that inspire transformation and redefine possibilities.";
   const words = fullTitleText.split(" ");
+
+  const handleCardToggle = (id) => {
+    if (!isTouchDevice) return;
+    setExpandedCard((prev) => (prev === id ? null : id));
+  };
+
+  const isActive = (id) => {
+    if (isTouchDevice) return expandedCard === id;
+    return hoveredCard === id;
+  };
 
   return (
     <section className="think-section" id="insights">
       <div className="think-container">
-        
-        {/* Centralized Clean Architectural Header Block Row */}
+
+        {/* Header */}
         <div className="think-premium-header" ref={headerRef}>
           <div className="think-title-layout">
             <h2 className="think-main-title">
-             At <span className="think-brand-highlight"> Urmistek, </span>
+              At <span className="think-brand-highlight">Urmistek,&nbsp;</span>
               <span className={`think-typing-container ${isTitleVisible ? "start-typing" : ""}`}>
                 {words.map((word, idx) => (
-                  <span 
-                    key={idx} 
+                  <span
+                    key={idx}
                     className="think-animated-word"
-                    style={{ transitionDelay: `${idx * 100}ms` }} // Elegant staggered velocity timing sequence
+                    style={{ transitionDelay: `${idx * 100}ms` }}
                   >
                     {word}&nbsp;
                   </span>
@@ -142,22 +157,27 @@ const WhatWeThink = () => {
           </div>
         </div>
 
-        {/* Premium Corporate Matrix Grid */}
+        {/* Card Grid */}
         <div className="think-editorial-matrix">
           {insightsData.map((item) => {
-            const isHovered = hoveredCard === item.id;
-            
+            const active = isActive(item.id);
+
             return (
-              <div 
+              <div
                 key={item.id}
-                className={`think-matrix-card ${item.theme} ${isHovered ? "is-expanded" : ""}`}
-                onMouseEnter={() => setHoveredCard(item.id)}
-                onMouseLeave={() => setHoveredCard(null)}
+                className={`think-matrix-card ${item.theme} ${active ? "is-expanded" : ""}`}
+                onMouseEnter={() => !isTouchDevice && setHoveredCard(item.id)}
+                onMouseLeave={() => !isTouchDevice && setHoveredCard(null)}
               >
-                {/* Background Layer logic */}
-                {item.image && <div className="card-bg-image" style={{ backgroundImage: `url(${item.image})` }} />}
-                
-                {/* Special Inline Technical Vector simulation for 'Perspective' card */}
+                {/* Background image */}
+                {item.image && (
+                  <div
+                    className="card-bg-image"
+                    style={{ backgroundImage: `url(${item.image})` }}
+                  />
+                )}
+
+                {/* Vector graphic for Perspective cards */}
                 {item.hasGraphic && (
                   <div className="card-vector-canvas">
                     <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -168,18 +188,17 @@ const WhatWeThink = () => {
                   </div>
                 )}
 
-                {/* Card Main Foreground Wrapper */}
+                {/* Foreground content */}
                 <div className="card-foreground-content">
                   <div className="card-upper">
                     <span className="card-content-type">{item.type}</span>
                     <h3 className="card-content-title">{item.title}</h3>
                   </div>
 
-                  {/* Dynamic Height Sliding Compartment */}
+                  {/* Sliding drawer */}
                   <div className="card-lower-drawer">
                     <p className="card-preview-text">{item.previewText}</p>
                     <p className="card-hidden-narrative">{item.expandedText}</p>
-                    
                     <div className="card-action-trigger">
                       <span>{item.ctaLabel}</span>
                       <FiArrowRight className="trigger-icon" />
@@ -187,10 +206,14 @@ const WhatWeThink = () => {
                   </div>
                 </div>
 
-                {/* Corner Indicator Plus Icon */}
-                <div className="card-corner-indicator">
-                  <FiPlus />
-                </div>
+                {/* Touch toggle button — + to open, X to close */}
+                <button
+                  className="card-corner-indicator"
+                  onClick={() => handleCardToggle(item.id)}
+                  aria-label={active ? "Collapse card" : "Expand card"}
+                >
+                  {isTouchDevice && active ? <FiX /> : <FiPlus />}
+                </button>
               </div>
             );
           })}
