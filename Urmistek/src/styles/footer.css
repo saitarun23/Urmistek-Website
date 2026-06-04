@@ -48,6 +48,7 @@
   color: #a3acb9;
   margin-bottom: 30px;
   max-width: 360px;
+  font-family: "Poppins", -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 .footer-social-wrap {
@@ -119,6 +120,7 @@
   list-style: none;
   padding: 0;
   margin: 0;
+  font-family: "Poppins", -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 .footer-links-list li {
