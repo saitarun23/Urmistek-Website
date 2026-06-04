@@ -2,7 +2,7 @@
 
 .aug-section {
   padding: 120px 0;
-  background-color: #000000; /* Clean off-white surface framework */
+  background-color: #000000;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   color: #ffffff;
 }
@@ -13,9 +13,10 @@
   margin: 0 auto;
 }
 
-/* --- MATRIX ROW HEADER --- */
+/* ===== HEADER ===== */
+
 .aug-section-header {
-  border-bottom: 1px solid #dce2e2;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
   padding-bottom: 40px;
   margin-bottom: 48px;
 }
@@ -30,18 +31,20 @@
   max-width: 1100px;
 }
 
-/* --- STARK INTERACTION GRID LAYOUT --- */
+/* ===== GRID ===== */
+
 .aug-editorial-matrix {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
 }
 
-/* Core Base Card Mechanics */
+/* ===== BASE CARD ===== */
+
 .aug-matrix-card {
   position: relative;
   height: 520px;
-  background-color: #111115; /* Standardized Dark Background Core */
+  background-color: #111115;
   border: 1px solid #1e1e24;
   overflow: hidden;
   display: flex;
@@ -51,7 +54,8 @@
   cursor: pointer;
 }
 
-/* Card Background Image States */
+/* ===== BACKGROUND IMAGE ===== */
+
 .aug-card-bg-image {
   position: absolute;
   top: 0;
@@ -64,16 +68,76 @@
   transition: height 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
 }
 
-.aug-matrix-card:hover .aug-card-bg-image {
+/* ===== DESKTOP HOVER (fine pointer only) ===== */
+
+@media (hover: hover) and (pointer: fine) {
+  .aug-matrix-card:hover .aug-card-bg-image {
+    height: 100%;
+    filter: grayscale(0%) brightness(35%);
+  }
+
+  .aug-matrix-card:hover .aug-card-foreground-content {
+    background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 100%);
+  }
+
+  .aug-matrix-card:hover .aug-card-hidden-narrative,
+  .aug-matrix-card:hover .aug-delivery-list {
+    max-height: 260px;
+    opacity: 1;
+    margin-top: 14px;
+  }
+
+  .aug-matrix-card:hover .aug-card-action-trigger {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .aug-matrix-card:hover .aug-card-corner-indicator {
+    transform: rotate(45deg);
+    color: #0066ff;
+  }
+
+  .aug-matrix-card.light-vector:hover .aug-card-vector-canvas {
+    opacity: 0.1;
+  }
+}
+
+/* ===== TOUCH EXPANDED STATE ===== */
+
+.aug-matrix-card.is-expanded .aug-card-bg-image {
   height: 100%;
   filter: grayscale(0%) brightness(35%);
 }
 
-/* Foreground Container Wrapper */
+.aug-matrix-card.is-expanded .aug-card-foreground-content {
+  background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 100%);
+}
+
+.aug-matrix-card.is-expanded .aug-card-hidden-narrative,
+.aug-matrix-card.is-expanded .aug-delivery-list {
+  max-height: 320px;
+  opacity: 1;
+  margin-top: 14px;
+}
+
+.aug-matrix-card.is-expanded .aug-card-action-trigger {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.aug-matrix-card.is-expanded .aug-card-corner-indicator {
+  color: #0066ff;
+  background: rgba(0,102,255,0.12);
+  border-color: rgba(0,102,255,0.4);
+  transform: rotate(0deg);
+}
+
+/* ===== FOREGROUND ===== */
+
 .aug-card-foreground-content {
   position: relative;
   z-index: 3;
-  padding: 32px;
+  padding: 28px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -83,78 +147,104 @@
   transition: background 0.4s ease;
 }
 
-.aug-matrix-card:hover .aug-card-foreground-content {
-  background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 100%);
-}
+/* ===== TYPE LABEL ===== */
 
-/* Typography States */
 .aug-card-content-type {
-  font-size: 1.5rem;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   color: #94a3b8;
   text-transform: uppercase;
   display: block;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
+/* ===== TITLE ===== */
+
 .aug-card-content-title {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 700;
   line-height: 1.4;
   color: #ffffff;
-  margin: 0 0 20px 0;
+  margin: 0 0 16px 0;
   letter-spacing: -0.01em;
 }
 
-/* --- DYNAMIC SLIDING DRAWER SYSTEM --- */
+/* ===== DRAWER ===== */
+
 .aug-card-lower-drawer {
   display: flex;
   flex-direction: column;
 }
 
 .aug-card-preview-text {
-  font-size: 0.95rem;
-  line-height: 1.5;
+  font-size: 0.9rem;
+  line-height: 1.6;
   color: #cbd5e1;
   margin: 0;
 }
 
-/* Hidden narrative text block that drops into viewport on hover */
+/* Plain narrative text */
 .aug-card-hidden-narrative {
-  font-size: 0.95rem;
-  line-height: 1.6;
+  font-size: 0.9rem;
+  line-height: 1.65;
   color: #ffffff;
   margin: 0;
   max-height: 0;
   opacity: 0;
   overflow: hidden;
-  transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease;
+  transition: max-height 0.45s ease, opacity 0.35s ease, margin-top 0.3s ease;
 }
 
-.aug-matrix-card:hover .aug-card-hidden-narrative {
-  max-height: 160px;
-  opacity: 1;
-  margin-top: 16px;
+/* ===== TALENT DELIVERY MODEL — 3-ITEM LIST ===== */
+
+.aug-delivery-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.45s ease, opacity 0.35s ease, margin-top 0.3s ease;
 }
 
-/* Dynamic Interactive CTA Trigger button */
+.aug-delivery-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 14px;
+  border-left: 2px solid #0066ff;
+  background: rgba(0,102,255,0.07);
+  border-radius: 0 6px 6px 0;
+}
+
+.aug-delivery-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #3b8dff;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.aug-delivery-desc {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.8);
+}
+
+/* ===== CTA ===== */
+
 .aug-card-action-trigger {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 700;
   color: #ffffff;
-  margin-top: 24px;
+  margin-top: 18px;
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.aug-matrix-card:hover .aug-card-action-trigger {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 .aug-trigger-icon {
@@ -162,23 +252,54 @@
   transition: transform 0.2s ease;
 }
 
-.aug-matrix-card:hover .aug-trigger-icon {
+.aug-matrix-card:hover .aug-trigger-icon,
+.aug-matrix-card.is-expanded .aug-trigger-icon {
   transform: translateX(4px);
 }
 
-/* --- THE LIGHT PERSPECTIVE SPECIFIC CARD ARCHITECTURE --- */
+/* ===== CORNER BUTTON ===== */
+
+.aug-card-corner-indicator {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(0,0,0,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: #888888;
+  z-index: 5;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition: transform 0.3s ease, color 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+
+/* ===== LIGHT VECTOR CARD ===== */
+
 .aug-matrix-card.light-vector {
   background-color: #f8fafc;
   border-color: #e2e8f0;
 }
 
 .aug-matrix-card.light-vector .aug-card-foreground-content {
-  background: #f8fafc;
+  background: linear-gradient(to top, #f8fafc 60%, rgba(248,250,252,0) 100%);
+}
+
+.aug-matrix-card.light-vector.is-expanded .aug-card-foreground-content {
+  background: linear-gradient(to top, rgba(240,245,255,0.97) 0%, rgba(240,245,255,0.6) 100%);
 }
 
 .aug-matrix-card.light-vector .aug-card-content-title,
 .aug-matrix-card.light-vector .aug-card-preview-text {
-  color: #000000;
+  color: #111111;
 }
 
 .aug-matrix-card.light-vector .aug-card-content-type {
@@ -187,10 +308,21 @@
 
 .aug-matrix-card.light-vector .aug-card-hidden-narrative,
 .aug-matrix-card.light-vector .aug-card-action-trigger {
-  color: #0066ff; /* Clean Blue Branding Accent Pop */
+  color: #0066ff;
 }
 
-/* Light Vector Content Positioning */
+.aug-matrix-card.light-vector .aug-card-corner-indicator {
+  color: #aab4c0;
+  border-color: #d1d9e0;
+  background: rgba(255,255,255,0.7);
+}
+
+.aug-matrix-card.light-vector.is-expanded .aug-card-corner-indicator {
+  color: #0066ff;
+  background: rgba(0,102,255,0.08);
+  border-color: rgba(0,102,255,0.3);
+}
+
 .aug-card-vector-canvas {
   position: absolute;
   top: 0;
@@ -200,67 +332,34 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: opacity 0.3s ease;
 }
 
-.aug-matrix-card.light-vector:hover .aug-card-vector-canvas {
-  opacity: 0.1;
-}
+/* ===== VIBRANT ACCENT ===== */
 
-/* --- VIBRANT POP CARD ACCENT THEME VARIATION --- */
 .aug-matrix-card.vibrant-accent .aug-card-content-type {
-  color: #00e5ff; /* Cyan indicator trace text */
+  color: #00e5ff;
 }
 
-/* --- CARD DECORATIVE CORNER SIGNALS --- */
-.aug-card-corner-indicator {
-  position: absolute;
-  top: 24px;
-  right: 24px;
-  font-size: 1.1rem;
-  color: #4b5563;
-  z-index: 4;
-  transition: transform 0.3s ease, color 0.3s ease;
-}
+/* ===== RESPONSIVE — DESKTOP WIDE (1200–1440px) ===== */
 
-.aug-matrix-card:hover .aug-card-corner-indicator {
-  transform: rotate(45deg);
-  color: #0066ff;
-}
-
-.aug-matrix-card.light-vector .aug-card-corner-indicator {
-  color: #cbd5e1;
-}
-.expanded-text{
-  color: #2563eb;
-  font-weight: bold;
-  font-size: 1.5rem;
-}
-
-/* --- SYSTEM RESPONSIVE MEDIA BREAKERS --- */
 @media (max-width: 1400px) {
   .aug-editorial-matrix {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
   }
 }
 
-/* ===== iPad / Tablet (768px – 1400px) ===== */
-@media (min-width: 768px) and (max-width: 1400px) {
+/* ===== RESPONSIVE — TABLET / iPAD (768–1200px) ===== */
+
+@media (max-width: 1200px) {
   .aug-section {
     padding: 100px 0;
   }
 
-  .aug-section-header {
-    padding-bottom: 32px;
-    margin-bottom: 40px;
-  }
-
-  .aug-main-title {
-    font-size: clamp(1.6rem, 2.8vw, 2.2rem);
-  }
-
   .aug-editorial-matrix {
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    gap: 18px;
   }
 
   .aug-matrix-card {
@@ -268,39 +367,80 @@
   }
 
   .aug-card-foreground-content {
-    padding: 28px;
+    padding: 24px;
   }
 
   .aug-card-content-type {
-    font-size: 1.25rem;
+    font-size: 0.68rem;
   }
 
   .aug-card-content-title {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
   }
 
   .aug-card-preview-text,
-  .aug-card-hidden-narrative {
-    font-size: 0.9rem;
+  .aug-card-hidden-narrative,
+  .aug-delivery-desc {
+    font-size: 0.85rem;
   }
 }
 
-@media (max-width: 768px) {
+/* ===== RESPONSIVE — MOBILE (≤640px) ===== */
+
+@media (max-width: 640px) {
   .aug-section {
-    padding: 80px 0;
+    padding: 70px 0;
   }
-  
+
   .aug-section-header {
-    margin-bottom: 32px;
-    padding-bottom: 24px;
+    margin-bottom: 28px;
+    padding-bottom: 22px;
+  }
+
+  .aug-main-title {
+    font-size: clamp(1.4rem, 5vw, 1.8rem);
   }
 
   .aug-editorial-matrix {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 14px;
   }
-  
+
+  /* Compact by default, expands on tap */
   .aug-matrix-card {
-    height: 480px;
+    height: 300px;
+    transition: height 0.45s cubic-bezier(0.25, 1, 0.5, 1),
+                all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .aug-matrix-card.is-expanded {
+    height: 560px;
+  }
+
+  .aug-card-content-title {
+    font-size: 1rem;
+  }
+
+  .aug-card-preview-text,
+  .aug-card-hidden-narrative,
+  .aug-delivery-desc {
+    font-size: 0.84rem;
+  }
+
+  .aug-delivery-label {
+    font-size: 0.76rem;
+  }
+
+  /* Larger tap target */
+  .aug-card-corner-indicator {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    top: 14px;
+    right: 14px;
+  }
+
+  .aug-card-foreground-content {
+    padding: 20px;
   }
 }
