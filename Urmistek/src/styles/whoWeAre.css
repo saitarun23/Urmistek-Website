@@ -15,13 +15,10 @@
 .spectrum-grid {
   position: absolute;
   inset: 0;
-
   background-image:
     linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-
   background-size: 90px 90px;
-
   opacity: 0.4;
 }
 
@@ -36,9 +33,7 @@
 .spectrum-radial-one {
   width: 520px;
   height: 520px;
-
   background: rgba(0,140,255,0.16);
-
   top: -180px;
   left: -120px;
 }
@@ -46,9 +41,7 @@
 .spectrum-radial-two {
   width: 420px;
   height: 420px;
-
   background: rgba(140,0,255,0.14);
-
   bottom: -120px;
   right: -100px;
 }
@@ -57,19 +50,13 @@
 
 .spectrum-floating-word {
   position: absolute;
-
   top: 50%;
   left: 50%;
-
   transform: translate(-50%, -50%);
-
   font-size: 18vw;
   font-weight: 900;
-
   letter-spacing: -0.1em;
-
   color: rgba(255,255,255,0.02);
-
   pointer-events: none;
 }
 
@@ -79,7 +66,6 @@
   width: 92%;
   max-width: 1700px;
   margin: auto;
-
   position: relative;
   z-index: 3;
 }
@@ -87,106 +73,199 @@
 /* ===== HERO ===== */
 
 .spectrum-hero {
-  margin-bottom: 120px;
+  margin-bottom: 80px;
 }
 
-.spectrum-topbar {
+/* ===== BRAND MANIFESTO WRAPPER ===== */
+
+.brand-manifesto {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 18px;
-
-  margin-bottom: 35px;
+  justify-content: center;
+  padding: 60px 0 50px;
+  overflow: hidden;
 }
 
-.spectrum-line {
-  width: 60px;
-  height: 1px;
+/* ===== MANIFESTO INNER ===== */
 
-  background: linear-gradient(
-    to right,
-    #008cff,
-    #8c00ff
-  );
+.manifesto-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
 }
 
-.spectrum-topbar p {
+/* ===== EYEBROW ===== */
+
+.manifesto-eyebrow {
   margin: 0;
-
-  font-size: 0.8rem;
-  letter-spacing: 0.35em;
-
-  color: #6b7280;
-}
-
-.spectrum-hero-grid {
-  display: grid;
-  grid-template-columns: 1fr 380px;
-  gap: 100px;
-  align-items: end;
-}
-
-/* ===== LEFT ===== */
-
-.spectrum-left h1 {
-  font-size: clamp(5rem, 9vw, 9rem);
-
-  line-height: 0.82;
-
-  font-weight: 600;
-
-  letter-spacing: -0.1em;
-
-  margin: 0;
-
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
 }
 
-.spectrum-left h1 span {
-  display: block;
+/* ===== HORIZONTAL LETTERS ROW ===== */
 
-  background: linear-gradient(
-    to right,
-    #ffffff,
-    #008cff,
-    #8c00ff
-  );
+.brand-letters {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  gap: 0;
+}
 
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* ===== SINGLE LETTER COLUMN ===== */
+
+.letter-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  cursor: default;
+  padding: 0 6px;
+
+  opacity: 0;
+  transform: translateY(18px);
+  animation: colFadeUp 0.5s ease forwards;
+  transition: transform 0.3s ease;
+}
+
+.letter-col:hover {
+  transform: translateY(-8px);
+}
+
+@keyframes colFadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* thin vertical divider between columns */
+.letter-col + .letter-col::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 1px;
+  background: rgba(255,255,255,0.07);
+}
+
+/* ===== CIRCLE ===== */
+
+.letter-circle {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  border: 2px solid #0078e7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease, border-color 0.3s ease;
+  flex-shrink: 0;
+}
+
+.letter-col:hover .letter-circle {
+  background: #0078e7;
+  border-color: #0078e7;
+}
+
+/* ===== LETTER CHARACTER ===== */
+
+.letter {
+  font-size: 1.9rem;
+  font-weight: 900;
+  color: #0078e7;
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+
+.letter-col:hover .letter {
+  color: #fff;
+}
+
+/* ===== CONNECTOR LINE ===== */
+
+.letter-connector {
+  width: 2px;
+  height: 18px;
+  background: linear-gradient(to bottom, #0078e7, transparent);
+  opacity: 0.45;
+  flex-shrink: 0;
+}
+
+/* ===== PHRASE TEXT — READABLE SIZE ===== */
+
+.letter-phrase {
+  margin: 0;
+  font-size: clamp(0.82rem, 2vw, 1.2rem);
+  font-weight: 500;
+  color: rgba(255,255,255,0.78);
+  text-align: center;
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+  transition: color 0.3s ease;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+.letter-col:hover .letter-phrase {
+  color: #1a8aff;
+}
+
+/* ===== BRAND NAME STRIP ===== */
+
+.brand-name-strip {
+  display: flex;
+  gap: 3px;
+  margin-top: 8px;
+}
+
+.brand-name-char {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 900;
+  color: rgba(255,255,255,0.05);
+  letter-spacing: 0.08em;
+  line-height: 1;
+  opacity: 0;
+  animation: charFade 0.4s ease forwards;
+}
+
+@keyframes charFade {
+  to { opacity: 1; }
 }
 
 /* ===== RIGHT ===== */
 
 .spectrum-right {
   position: relative;
-
   padding-left: 30px;
 }
 
 .spectrum-pulse {
   position: absolute;
-
   left: 0;
   top: 10px;
-
   width: 12px;
   height: 12px;
-
   border-radius: 50%;
-
   background: #008cff;
-
-  box-shadow:
-    0 0 20px #008cff,
-    0 0 60px #008cff;
+  box-shadow: 0 0 20px #008cff, 0 0 60px #008cff;
 }
 
 .spectrum-right p {
   margin: 0;
-
   font-size: 1rem;
   line-height: 2;
-
   color: #9ca3af;
 }
 
@@ -202,17 +281,11 @@
 
 .spectrum-main-panel {
   position: relative;
-
   min-height: 650px;
-
   overflow: hidden;
-
   padding: 70px;
-
   border: 1px solid rgba(255,255,255,0.08);
-
   background: rgba(255,255,255,0.03);
-
   backdrop-filter: blur(20px);
 }
 
@@ -220,17 +293,12 @@
 
 .spectrum-panel-glow {
   position: absolute;
-
   top: -120px;
   right: -120px;
-
   width: 300px;
   height: 300px;
-
   border-radius: 50%;
-
   background: rgba(255,255,255,0.05);
-
   filter: blur(80px);
 }
 
@@ -243,36 +311,25 @@
 
 .spectrum-label {
   display: inline-block;
-
   margin-bottom: 40px;
-
   font-size: 0.8rem;
-
   letter-spacing: 0.35em;
-
   color: #6b7280;
 }
 
 .spectrum-panel-content h2 {
   max-width: 760px;
-
   font-size: clamp(3rem, 5vw, 5.5rem);
-
   line-height: 0.92;
-
   font-weight: 800;
-
   letter-spacing: -0.06em;
-
   margin: 0 0 40px;
 }
 
 .spectrum-panel-content p {
   max-width: 760px;
-
   font-size: 1rem;
   line-height: 2;
-
   color: #9ca3af;
 }
 
@@ -280,15 +337,11 @@
 
 .spectrum-big-text {
   position: absolute;
-
   right: 20px;
   bottom: -20px;
-
   font-size: 7vw;
   font-weight: 900;
-
   letter-spacing: -0.08em;
-
   color: rgba(255,255,255,0.03);
 }
 
@@ -304,25 +357,16 @@
 
 .spectrum-mini-card {
   position: relative;
-
   overflow: hidden;
-
   padding: 40px;
-
   border: 1px solid rgba(255,255,255,0.08);
-
   background: rgba(255,255,255,0.03);
-
   backdrop-filter: blur(18px);
-
-  transition:
-    transform 0.6s ease,
-    background 0.6s ease;
+  transition: transform 0.6s ease, background 0.6s ease;
 }
 
 .spectrum-mini-card:hover {
   transform: translateX(15px);
-
   background: rgba(255,255,255,0.05);
 }
 
@@ -332,64 +376,84 @@
   display: flex;
   align-items: center;
   gap: 14px;
-
   margin-bottom: 35px;
 }
 
 .spectrum-mini-dot {
   width: 12px;
   height: 12px;
-
   border-radius: 50%;
-
   background: #8c00ff;
-
-  box-shadow:
-    0 0 20px #8c00ff,
-    0 0 60px #8c00ff;
+  box-shadow: 0 0 20px #8c00ff, 0 0 60px #8c00ff;
 }
 
 .spectrum-mini-top span {
   font-size: 0.78rem;
-
   letter-spacing: 0.28em;
-
   color: #6b7280;
 }
 
 .spectrum-mini-card h3 {
   font-size: 1.7rem;
-
   line-height: 1.4;
-
   font-weight: 700;
-
   letter-spacing: -0.03em;
-
   margin: 0;
-
   color: #fff;
 }
 
 /* ===== RESPONSIVE ===== */
 
 @media (max-width: 1100px) {
-
-  .spectrum-hero-grid,
   .spectrum-experience {
     grid-template-columns: 1fr;
   }
+}
 
+@media (max-width: 1024px) {
+  .letter-circle {
+    width: 56px;
+    height: 56px;
+  }
+  .letter {
+    font-size: 1.5rem;
+  }
+  .letter-phrase {
+    font-size: 0.78rem;
+  }
 }
 
 @media (max-width: 768px) {
-
   .spectrum-section {
     padding: 100px 0;
   }
 
-  .spectrum-left h1 {
-    font-size: clamp(4rem, 18vw, 6rem);
+  .brand-letters {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px 0;
+  }
+
+  .letter-col {
+    flex: 0 0 25%;
+    padding: 10px 0;
+  }
+
+  .letter-col + .letter-col::before {
+    display: none;
+  }
+
+  .letter-circle {
+    width: 52px;
+    height: 52px;
+  }
+
+  .letter {
+    font-size: 1.4rem;
+  }
+
+  .letter-phrase {
+    font-size: 0.72rem;
   }
 
   .spectrum-main-panel {
@@ -408,5 +472,4 @@
   .spectrum-mini-card h3 {
     font-size: 1.3rem;
   }
-
 }

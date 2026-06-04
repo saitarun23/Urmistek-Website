@@ -1,64 +1,70 @@
 import React from "react";
 import "../styles/whoWeAre.css";
 
+const letters = [
+  { letter: "U", phrase: "Unified" },
+  { letter: "R", phrase: "Resilient" },
+  { letter: "M", phrase: "Modernization" },
+  { letter: "I", phrase: "Innovation" },
+  { letter: "S", phrase: "Solutions" },
+  { letter: "T", phrase: "Transformative" },
+  { letter: "E", phrase: "Excellence" },
+  { letter: "K", phrase: "Knowledge" },
+];
+
 const WhoWeAre = () => {
   return (
     <section className="spectrum-section">
 
       {/* BACKGROUND SYSTEM */}
       <div className="spectrum-grid"></div>
-
       <div className="spectrum-radial spectrum-radial-one"></div>
       <div className="spectrum-radial spectrum-radial-two"></div>
 
       {/* MASSIVE FLOATING WORD */}
-      <div className="spectrum-floating-word">
-        URMISTEK
-      </div>
+      <div className="spectrum-floating-word">URMISTEK</div>
 
       <div className="spectrum-container">
 
-        {/* HERO */}
+        {/* HERO — HORIZONTAL BRAND MANIFESTO */}
         <div className="spectrum-hero">
+          <div className="brand-manifesto">
 
-            {/* <div className="spectrum-topbar">
+            <div className="manifesto-inner">
+              {/* <p className="manifesto-eyebrow">Who We Are</p> */}
 
-                <span className="spectrum-line"></span>
+              {/* Horizontal letters */}
+              <div className="brand-letters">
+                {letters.map(({ letter, phrase }, i) => (
+                  <div
+                    className="letter-col"
+                    key={letter}
+                    style={{ animationDelay: `${i * 70}ms` }}
+                  >
+                    <div className="letter-circle">
+                      <span className="letter">{letter}</span>
+                    </div>
+                    <div className="letter-connector" aria-hidden="true" />
+                    <p className="letter-phrase">{phrase}</p>
+                  </div>
+                ))}
+              </div>
 
-                <p>
-                WHO WE ARE • DIGITAL TRANSFORMATION COMPANY
-                </p>
-
-            </div>
-    */}
-          <div className="spectrum-hero-grid">
-
-            <div className="spectrum-left">
-
-              <h1>
-                DIGITAL
-                <span>EVOLUTION</span>
-                PARTNERS
-              </h1>
-
-            </div>
-
-            <div className="spectrum-right">
-
-              {/* <div className="spectrum-pulse"></div> */}
-
-              {/* <p>
-                As frontrunners of technology advancement, Urmistek empowers
-                leading enterprises across 23 countries to accelerate digital
-                transformation journeys, expand digital horizons, and engineer
-                future-ready business ecosystems through innovation-driven
-                thinking.
-              </p> */}
-
+              {/* Brand name strip */}
+              {/* <div className="brand-name-strip" aria-hidden="true">
+                {"URMISTEK".split("").map((l, i) => (
+                  <span
+                    key={i}
+                    className="brand-name-char"
+                    style={{ animationDelay: `${560 + i * 50}ms` }}
+                  >
+                    {l}
+                  </span>
+                ))}
+              </div> */}
             </div>
 
           </div>
-
         </div>
 
         {/* EXPERIENCE LAYOUT */}
@@ -66,17 +72,15 @@ const WhoWeAre = () => {
 
           {/* LEFT PANEL */}
           <div className="spectrum-main-panel">
-
             <div className="spectrum-panel-glow"></div>
 
             <div className="spectrum-panel-content">
-
               <span className="spectrum-label">
                 GLOBAL TRANSFORMATION NETWORK
               </span>
 
               <h2>
-                Engineering intelligent digital ecosystems for globally
+                Digital ecosystems for globally
                 connected enterprises.
               </h2>
 
@@ -86,64 +90,42 @@ const WhoWeAre = () => {
                 modernize enterprise experiences, and unlock innovation-driven
                 growth across evolving global markets.
               </p>
-
             </div>
 
-            <div className="spectrum-big-text">
-              FUTURE
-            </div>
-
+            <div className="spectrum-big-text">FUTURE</div>
           </div>
 
           {/* RIGHT STACK */}
           <div className="spectrum-side-stack">
 
             <div className="spectrum-mini-card">
-
               <div className="spectrum-mini-top">
-
                 <div className="spectrum-mini-dot"></div>
-
                 <span>GLOBAL REACH</span>
-
               </div>
-
               <h3>
                 23 Countries Connected Through Digital Innovation Ecosystems.
               </h3>
-
             </div>
 
             <div className="spectrum-mini-card">
-
               <div className="spectrum-mini-top">
-
                 <div className="spectrum-mini-dot"></div>
-
                 <span>INNOVATION CULTURE</span>
-
               </div>
-
               <h3>
                 Accelerating enterprise transformation with intelligent digital thinking.
               </h3>
-
             </div>
 
             <div className="spectrum-mini-card">
-
               <div className="spectrum-mini-top">
-
                 <div className="spectrum-mini-dot"></div>
-
                 <span>ENTERPRISE MODERNIZATION</span>
-
               </div>
-
               <h3>
                 Future-ready infrastructures designed for scalable digital growth.
               </h3>
-
             </div>
 
           </div>
