@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
@@ -20,6 +20,10 @@ import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import SplashScreen from "./components/SplashScreen";
 
+// sessionStorage persists for the browser tab session —
+// splash plays once on first "/" visit, never again on route changes
+const hasSplashPlayed = () => sessionStorage.getItem("splashPlayed") === "true";
+
 function Home() {
   return (
     <div className="constart">
@@ -33,31 +37,31 @@ function Home() {
 }
 
 function App() {
-  const [splashDone, setSplashDone] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
 
-  // When splash finishes, restore scroll on <body>
-  const handleSplashFinish = () => {
-    document.body.style.overflow = "auto";
-    document.body.style.overflowX = "hidden"; // keep if your layout needs it
-    setSplashDone(true);
-  };
+  // Only show splash if we're on "/" and it hasn't played yet this tab session
+  const [showSplash, setShowSplash] = useState(
+    isHomePage && !hasSplashPlayed()
+  );
 
-  // Lock scroll while splash is showing
+  // Lock scroll only while splash is active
   useEffect(() => {
-    if (!splashDone) {
-      document.body.style.overflow = "hidden";
-    }
-  }, [splashDone]);
+    document.body.style.overflow = showSplash ? "hidden" : "auto";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [showSplash]);
+
+  const handleSplashFinish = () => {
+    sessionStorage.setItem("splashPlayed", "true"); // mark as played for this tab
+    setShowSplash(false);
+  };
 
   return (
     <>
-      {!splashDone && <SplashScreen onFinish={handleSplashFinish} />}
+      {showSplash && <SplashScreen onFinish={handleSplashFinish} />}
 
-      {/* 
-        Render the full app underneath so it's mounted and ready.
-        It stays hidden behind the splash (z-index) until splashDone.
-        This avoids any layout shift or blank flash when the splash exits.
-      */}
       <ScrollToTop />
       <Navbar />
       <Routes>
