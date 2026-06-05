@@ -1,0 +1,91 @@
+.splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 2s ease-in-out, filter 2s ease-in-out; /* Smooth fade-out and blur transition */
+  z-index: 1000; /* Ensure it's above other elements */
+}
+.mainwrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  bottom: 4%;
+}
+.logomain {
+  width: 60vh;
+  height: 60vh;
+  overflow: hidden;
+}
+.quote {
+  display: flex;
+  justify-content: center; /* Center words */
+  align-items: center;
+  gap: 10px; /* Adjust the gap between words */
+}
+
+.word {
+  display: inline-block;
+}
+
+.logomain {
+  transition: opacity 1s ease-in-out;
+}
+/* Add the fade-in animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px); /* Slight downward movement */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* Move to original position */
+  }
+}
+
+.quote {
+  display: inline-block;
+}
+
+.word {
+  display: inline-block;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+
+/* Styling for the quote text */
+.quote {
+  font-size: 6vh;
+  color: #d298ff;
+  font-family: Arial, sans-serif;
+  width: 91vh;
+}
+
+@media (max-width: 768px) {
+  .quote {
+    /* Show on mobile */
+    font-size: 5vw; /* Smaller font size for phones */
+    width: 80vw; /* Adjust width also */
+    text-align: center; /* Optional: center the text nicely */
+    margin: 0 auto; /* Optional: center horizontally */
+  }
+}
+
+/* Apply blur effect to the entire splash screen */
+.splash-screen.blurring {
+  filter: blur(3px); /* Adjust the blur intensity here */
+}
+
+/* Optional: If you want to hide the splash screen completely after fade-out */
+.splash-screen.hidden {
+  opacity: 0;
+}
