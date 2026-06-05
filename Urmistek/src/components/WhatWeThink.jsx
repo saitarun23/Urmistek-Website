@@ -11,7 +11,8 @@ const insightsData = [
     expandedText: "We outline architectural frameworks designed to embed decentralized, continuous threat monitoring directly into your live production pipelines, securing corporate telemetry assets at scale.",
     ctaLabel: "Explore Perspective",
     theme: "dark-image",
-    image: "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?auto=format&fit=crop&w=700&q=80",
+    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=700&q=80",
+    
   },
   {
     id: "insight-2",
@@ -21,7 +22,7 @@ const insightsData = [
     expandedText: "We break down how deploying pre-orchestrated Agentic workflows within secure enterprise clusters reduces cross-departmental processing friction and unlocks billions in latent operational efficiency.",
     ctaLabel: "Read Report",
     theme: "gradient-overlay",
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=700&q=80",
+    image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=700&q=80",
   },
   {
     id: "insight-3",
@@ -31,7 +32,7 @@ const insightsData = [
     expandedText: "True scale requires robust continuous integration pipelines, automated prompt-telemetry tracking, and aggressive quantization to reliably serve production-grade intelligence models to millions of edge endpoints.",
     ctaLabel: "Explore Perspective",
     theme: "vibrant-accent",
-    image: "https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&w=700&q=80",
+    image: "https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=700&q=80",
   },
   {
     id: "insight-4",
@@ -41,7 +42,7 @@ const insightsData = [
     expandedText: "Discover why composability is the definitive strategic engineering paradigm for organizations seeking infinite operations scalability and frictionless third-party migrations.",
     ctaLabel: "Download Report",
     theme: "gradient-overlay",
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=700&q=80",
+    image: "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=700&q=80",
   }
 ];
 

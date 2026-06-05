@@ -24,7 +24,7 @@ const talentData = [
     ],
     ctaLabel: "Deploy Squads",
     theme: "dark-image",
-    image: "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?auto=format&fit=crop&w=700&q=80",
+    image: "https://images.unsplash.com/photo-1604871000636-074fa5117945?auto=format&fit=crop&w=700&q=80",
   },
   {
     id: "talent-2",
@@ -34,7 +34,7 @@ const talentData = [
     expandedText: "Gain immediate access to seasoned experts in large-scale model deployment, secure vector database pipelines, retrieval-augmented generation architectures, and cloud cost optimization.",
     ctaLabel: "Acquire Specialists",
     theme: "dark-image",
-    hasGraphic: true,
+    image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=700&q=80",
   },
   {
     id: "talent-3",
@@ -54,7 +54,7 @@ const talentData = [
     expandedText: "Our knowledgeable recruiting advisors find suitable applicants from far-flung places throughout the globe, guaranteeing the right individuals are equipped with the best tools to achieve outstanding results.",
     ctaLabel: "Secure Frontend Talent",
     theme: "gradient-overlay",
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=700&q=80",
+    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=700&q=80",
   },
   {
     id: "talent-5",
@@ -64,7 +64,7 @@ const talentData = [
     expandedText: "Empower your projects with top tech talent. We source specialists in IoT, AI, ML, AR/VR, front-end and back-end technologies — essential for rapid digital transformation and increasing project complexities.",
     ctaLabel: "Connect With Tech Experts",
     theme: "gradient-overlay",
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=700&q=80",
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=700&q=80",
   },
   {
     id: "talent-6",
@@ -74,7 +74,7 @@ const talentData = [
     expandedText: "RPO offers an intelligent, scalable solution that boosts productivity, reduces recruitment expenses, and grants access to top talent — meeting the evolving needs of businesses in a dynamic market.",
     ctaLabel: "Connect With Recruitment Experts",
     theme: "gradient-overlay",
-    hasGraphic: true,
+    image: "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?auto=format&fit=crop&w=700&q=80",
   },
 ];
 
