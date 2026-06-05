@@ -1,275 +1,204 @@
-/* ===== SPECTRUM WHO WE ARE EXPERIENCE ===== */
+/* ══════════════════════════════════════════
+   WHO WE ARE — clean typographic redesign
+══════════════════════════════════════════ */
 
-.spectrum-section {
+.wwa-section {
   position: relative;
   min-height: 100vh;
   overflow: hidden;
   background: #030303;
-  padding: 120px 0;
-  font-family: "Inter", sans-serif;
+  padding: 130px 0 120px;
   color: #fff;
+  font-family: "Inter", sans-serif;
 }
 
-/* ===== GRID ===== */
-
-.spectrum-grid {
-  position: absolute;
-  inset: 0;
+/* grid + radials */
+.wwa-grid {
+  position: absolute; inset: 0;
   background-image:
-    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-  background-size: 90px 90px;
-  opacity: 0.4;
-}
-
-/* ===== RADIALS ===== */
-
-.spectrum-radial {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(140px);
-}
-
-.spectrum-radial-one {
-  width: 520px;
-  height: 520px;
-  background: rgba(0,140,255,0.16);
-  top: -180px;
-  left: -120px;
-}
-
-.spectrum-radial-two {
-  width: 420px;
-  height: 420px;
-  background: rgba(140,0,255,0.14);
-  bottom: -120px;
-  right: -100px;
-}
-
-/* ===== FLOATING WORD ===== */
-
-.spectrum-floating-word {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 18vw;
-  font-weight: 900;
-  letter-spacing: -0.1em;
-  color: rgba(255,255,255,0.02);
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 80px 80px;
   pointer-events: none;
 }
 
-/* ===== CONTAINER ===== */
+.wwa-radial {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(160px);
+  pointer-events: none;
+}
+.wwa-radial-a {
+  width: 560px; height: 560px;
+  background: rgba(0,120,231,0.11);
+  top: -200px; left: -160px;
+}
+.wwa-radial-b {
+  width: 440px; height: 440px;
+  background: rgba(120,0,255,0.09);
+  bottom: -140px; right: -120px;
+}
 
-.spectrum-container {
+/* container */
+.wwa-container {
   width: 92%;
   max-width: 1700px;
   margin: auto;
   position: relative;
-  z-index: 3;
-}
-
-/* ===== HERO ===== */
-
-.spectrum-hero {
-  margin-bottom: 80px;
-}
-
-/* ===== BRAND MANIFESTO WRAPPER ===== */
-
-.brand-manifesto {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 60px 0 50px;
-  overflow: hidden;
-}
-
-/* ===== MANIFESTO INNER ===== */
-
-.manifesto-inner {
-  position: relative;
   z-index: 2;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 32px;
 }
 
-/* ===== EYEBROW ===== */
+/* ══════════════════════════════════════════
+   BRAND BLOCK
+══════════════════════════════════════════ */
 
-.manifesto-eyebrow {
-  margin: 0;
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.3);
+.wwa-brand-block {
+  margin-bottom: 100px;
+  padding-bottom: 60px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 
-/* ===== HORIZONTAL LETTERS ROW ===== */
+/* ── TYPEWRITER PHASE ── */
+.wwa-wordrow {
+  margin-bottom: 0;
+  line-height: 1;
+}
 
-.brand-letters {
+.wwa-typeword {
+  font-size: clamp(5rem, 13vw, 12rem);
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  color: #0078e7;
+  display: inline-block;
+}
+
+.wwa-cursor {
+  display: inline-block;
+  margin-left: 2px;
+  color: #0078e7;
+  animation: blink 0.75s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ── SLIDING PHASE — letter chars ── */
+.wwa-letters {
   display: flex;
-  flex-direction: row;
+  gap: 0;
+  align-items: baseline;
+  flex-wrap: nowrap;
+}
+
+.wwa-lchar {
+  font-size: clamp(5rem, 13vw, 12rem);
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  color: rgba(255,255,255,0.12);
+  cursor: pointer;
+  transition: color 0.35s ease;
+  line-height: 1;
+  /* user-select: none; */
+}
+
+.wwa-lchar--active {
+  color: #0078e7;
+}
+
+/* ── MEANING AREA ── */
+.wwa-meaning-wrap {
+  margin-top: 48px;
+  display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  width: 100%;
-  gap: 0;
+  gap: 24px;
 }
 
-/* ===== SINGLE LETTER COLUMN ===== */
-
-.letter-col {
+.wwa-meaning {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  cursor: default;
-  padding: 0 6px;
-
-  opacity: 0;
-  transform: translateY(18px);
-  animation: colFadeUp 0.5s ease forwards;
-  transition: transform 0.3s ease;
 }
 
-.letter-col:hover {
-  transform: translateY(-8px);
+/* slide-in from right (next) */
+.wwa-meaning--next {
+  animation: slideNext 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+/* slide-in from left (prev) */
+.wwa-meaning--prev {
+  animation: slidePrev 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-@keyframes colFadeUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes slideNext {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slidePrev {
+  from { opacity: 0; transform: translateY(-22px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-/* thin vertical divider between columns */
-.letter-col + .letter-col::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 1px;
-  background: rgba(255,255,255,0.07);
-}
-
-/* ===== CIRCLE ===== */
-
-.letter-circle {
-  width: 68px;
-  height: 68px;
-  border-radius: 50%;
-  border: 2px solid #0078e7;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.3s ease, border-color 0.3s ease;
-  flex-shrink: 0;
-}
-
-.letter-col:hover .letter-circle {
-  background: #0078e7;
-  border-color: #0078e7;
-}
-
-/* ===== LETTER CHARACTER ===== */
-
-.letter {
-  font-size: 1.9rem;
-  font-weight: 900;
-  color: #0078e7;
-  line-height: 1;
-  transition: color 0.3s ease;
-}
-
-.letter-col:hover .letter {
+/* phrase line */
+.wwa-phrase {
+  margin: 0 0 16px;
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
   color: #fff;
 }
 
-/* ===== CONNECTOR LINE ===== */
-
-.letter-connector {
-  width: 2px;
-  height: 18px;
-  background: linear-gradient(to bottom, #0078e7, transparent);
-  opacity: 0.45;
-  flex-shrink: 0;
+.wwa-phrase-letter {
+  color: #0078e7;
 }
 
-/* ===== PHRASE TEXT — READABLE SIZE ===== */
+.wwa-phrase-word {
+  color: #fff;
+}
 
-.letter-phrase {
+/* description */
+.wwa-desc {
   margin: 0;
-  font-size: clamp(0.82rem, 2vw, 1.2rem);
-  font-weight: 500;
-  color: rgba(255,255,255,0.78);
-  text-align: center;
-  line-height: 1.45;
-  letter-spacing: 0.01em;
-  transition: color 0.3s ease;
-  word-break: break-word;
-  hyphens: auto;
+  font-size: clamp(0.9rem, 1.4vw, 1.05rem);
+  line-height: 1.85;
+  color: rgba(255,255,255,0.42);
+  max-width: 680px;
 }
 
-.letter-col:hover .letter-phrase {
-  color: #1a8aff;
-}
-
-/* ===== BRAND NAME STRIP ===== */
-
-.brand-name-strip {
+/* counter */
+.wwa-counter {
   display: flex;
-  gap: 3px;
-  margin-top: 8px;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  flex-shrink: 0;
+  padding-top: 6px;
 }
 
-.brand-name-char {
-  font-size: clamp(2rem, 3.5vw, 3rem);
-  font-weight: 900;
-  color: rgba(255,255,255,0.05);
-  letter-spacing: 0.08em;
+.wwa-counter-num {
+  font-size: 2.4rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: rgba(255,255,255,0.08);
   line-height: 1;
-  opacity: 0;
-  animation: charFade 0.4s ease forwards;
 }
 
-@keyframes charFade {
-  to { opacity: 1; }
+.wwa-counter-sep {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.12);
+  letter-spacing: 0.1em;
 }
 
-/* ===== RIGHT ===== */
-
-.spectrum-right {
-  position: relative;
-  padding-left: 30px;
-}
-
-.spectrum-pulse {
-  position: absolute;
-  left: 0;
-  top: 10px;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #008cff;
-  box-shadow: 0 0 20px #008cff, 0 0 60px #008cff;
-}
-
-.spectrum-right p {
-  margin: 0;
+.wwa-counter-total {
   font-size: 1rem;
-  line-height: 2;
-  color: #9ca3af;
+  font-weight: 600;
+  color: rgba(255,255,255,0.1);
+  letter-spacing: -0.02em;
 }
 
-/* ===== EXPERIENCE ===== */
+/* ══════════════════════════════════════════
+   EXPERIENCE GRID  (unchanged logic, cleaned)
+══════════════════════════════════════════ */
 
 .spectrum-experience {
   display: grid;
@@ -277,199 +206,138 @@
   gap: 50px;
 }
 
-/* ===== MAIN PANEL ===== */
-
 .spectrum-main-panel {
   position: relative;
-  min-height: 650px;
+  min-height: 620px;
   overflow: hidden;
   padding: 70px;
-  border: 1px solid rgba(255,255,255,0.08);
-  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  background: rgba(255,255,255,0.025);
   backdrop-filter: blur(20px);
 }
 
-/* ===== GLOW ===== */
-
 .spectrum-panel-glow {
   position: absolute;
-  top: -120px;
-  right: -120px;
-  width: 300px;
-  height: 300px;
+  top: -120px; right: -120px;
+  width: 300px; height: 300px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.04);
   filter: blur(80px);
 }
 
-/* ===== CONTENT ===== */
-
-.spectrum-panel-content {
-  position: relative;
-  z-index: 3;
-}
+.spectrum-panel-content { position: relative; z-index: 2; }
 
 .spectrum-label {
   display: inline-block;
-  margin-bottom: 40px;
-  font-size: 0.8rem;
-  letter-spacing: 0.35em;
-  color: #6b7280;
+  margin-bottom: 36px;
+  font-size: 0.75rem;
+  letter-spacing: 0.34em;
+  color: rgba(255,255,255,0.28);
+  text-transform: uppercase;
 }
 
 .spectrum-panel-content h2 {
-  max-width: 760px;
-  font-size: clamp(3rem, 5vw, 5.5rem);
-  line-height: 0.92;
+  font-size: clamp(2.6rem, 4.5vw, 5rem);
+  line-height: 0.94;
   font-weight: 800;
-  letter-spacing: -0.06em;
-  margin: 0 0 40px;
+  letter-spacing: -0.055em;
+  margin: 0 0 36px;
+  color: #fff;
 }
 
 .spectrum-panel-content p {
-  max-width: 760px;
   font-size: 1rem;
   line-height: 2;
-  color: #9ca3af;
+  color: rgba(255,255,255,0.4);
+  max-width: 700px;
 }
-
-/* ===== BIG TEXT ===== */
 
 .spectrum-big-text {
   position: absolute;
-  right: 20px;
-  bottom: -20px;
+  right: 16px; bottom: -16px;
   font-size: 7vw;
   font-weight: 900;
   letter-spacing: -0.08em;
-  color: rgba(255,255,255,0.03);
+  color: rgba(255,255,255,0.025);
+  pointer-events: none;
 }
-
-/* ===== SIDE STACK ===== */
 
 .spectrum-side-stack {
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 24px;
 }
 
-/* ===== MINI CARD ===== */
-
 .spectrum-mini-card {
-  position: relative;
-  overflow: hidden;
-  padding: 40px;
-  border: 1px solid rgba(255,255,255,0.08);
-  background: rgba(255,255,255,0.03);
-  backdrop-filter: blur(18px);
-  transition: transform 0.6s ease, background 0.6s ease;
+  padding: 36px 40px;
+  border: 1px solid rgba(255,255,255,0.07);
+  background: rgba(255,255,255,0.02);
+  backdrop-filter: blur(16px);
+  transition: transform 0.5s ease, background 0.5s ease;
 }
 
 .spectrum-mini-card:hover {
-  transform: translateX(15px);
-  background: rgba(255,255,255,0.05);
+  transform: translateX(12px);
+  background: rgba(255,255,255,0.04);
 }
-
-/* ===== TOP ===== */
 
 .spectrum-mini-top {
   display: flex;
   align-items: center;
-  gap: 14px;
-  margin-bottom: 35px;
+  gap: 12px;
+  margin-bottom: 28px;
 }
 
 .spectrum-mini-dot {
-  width: 12px;
-  height: 12px;
+  width: 10px; height: 10px;
   border-radius: 50%;
   background: #8c00ff;
-  box-shadow: 0 0 20px #8c00ff, 0 0 60px #8c00ff;
+  flex-shrink: 0;
 }
 
 .spectrum-mini-top span {
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   letter-spacing: 0.28em;
-  color: #6b7280;
+  color: rgba(255,255,255,0.3);
+  text-transform: uppercase;
 }
 
 .spectrum-mini-card h3 {
-  font-size: 1.7rem;
+  font-size: 1.55rem;
   line-height: 1.4;
   font-weight: 700;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.025em;
   margin: 0;
   color: #fff;
 }
 
-/* ===== RESPONSIVE ===== */
+/* ══════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════ */
 
 @media (max-width: 1100px) {
-  .spectrum-experience {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 1024px) {
-  .letter-circle {
-    width: 56px;
-    height: 56px;
-  }
-  .letter {
-    font-size: 1.5rem;
-  }
-  .letter-phrase {
-    font-size: 0.78rem;
-  }
+  .spectrum-experience { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 768px) {
-  .spectrum-section {
-    padding: 100px 0;
-  }
+  .wwa-section { padding: 90px 0 80px; }
+  .wwa-brand-block { margin-bottom: 64px; }
 
-  .brand-letters {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 16px 0;
-  }
+  .wwa-lchar,
+  .wwa-typeword { font-size: clamp(3.2rem, 12vw, 5rem); }
 
-  .letter-col {
-    flex: 0 0 25%;
-    padding: 10px 0;
-  }
+  .wwa-meaning-wrap { flex-direction: column; gap: 12px; }
+  .wwa-counter { flex-direction: row; align-items: center; gap: 6px; }
+  .wwa-counter-num { font-size: 1.4rem; }
 
-  .letter-col + .letter-col::before {
-    display: none;
-  }
+  .spectrum-main-panel { padding: 32px; min-height: auto; }
+  .spectrum-panel-content h2 { font-size: 2.2rem; }
+  .spectrum-mini-card { padding: 28px 28px; }
+  .spectrum-mini-card h3 { font-size: 1.25rem; }
+}
 
-  .letter-circle {
-    width: 52px;
-    height: 52px;
-  }
-
-  .letter {
-    font-size: 1.4rem;
-  }
-
-  .letter-phrase {
-    font-size: 0.72rem;
-  }
-
-  .spectrum-main-panel {
-    padding: 35px;
-    min-height: auto;
-  }
-
-  .spectrum-panel-content h2 {
-    font-size: 2.5rem;
-  }
-
-  .spectrum-mini-card {
-    padding: 30px;
-  }
-
-  .spectrum-mini-card h3 {
-    font-size: 1.3rem;
-  }
+@media (max-width: 480px) {
+  .wwa-lchar,
+  .wwa-typeword { font-size: clamp(2.8rem, 14vw, 4rem); }
+  .wwa-letters { gap: 0; }
 }
