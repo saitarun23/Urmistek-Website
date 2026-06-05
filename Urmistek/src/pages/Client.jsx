@@ -4,7 +4,7 @@ import "../styles/client.css";
 import transforma from "../assets/images/TransfFormat.jpg";
 import apexcovantage from "../assets/images/apexcovantage.jpg";
 import mariapps from "../assets/images/MariApps.jpg";
-import codemantra from "../assets/images/Codemantra.png";
+import codemantra from "../assets/images/codemantra.png";
 import LuminaDatamatics from "../assets/images/LuminaDatamatics.png";
 import vr from "../assets/images/vr.png";
 import peacock from "../assets/images/peacock.png";
