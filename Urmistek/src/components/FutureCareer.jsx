@@ -35,11 +35,11 @@ const FutureCareer = () => {
             design, systems, and innovation converge into the future.
           </p>
 
-          <button className="future-btn">
+          {/* <button className="future-btn">
             <span>EXPLORE NOW</span>
 
             <div className="future-btn-hover"></div>
-          </button>
+          </button> */}
 
         </div>
 

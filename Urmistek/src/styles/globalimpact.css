@@ -84,29 +84,6 @@
   color: #64748b;
 }
 
-.pane-serial-tracker {
-  display: flex;
-  align-items: baseline;
-  gap: 4px;
-  font-weight: 700;
-}
-
-.tracker-current {
-  font-size: 1.5rem;
-  color: #0066ff;
-}
-
-.tracker-divider {
-  font-size: 0.9rem;
-  color: #22222a;
-  margin: 0 4px;
-}
-
-.tracker-total {
-  font-size: 0.95rem;
-  color: #4b5563;
-}
-
 .pane-narrative-window {
   position: relative;
   height: 360px;
@@ -162,38 +139,11 @@
 .footer-left-controls {
   display: flex;
   flex-direction: column;
-  gap: 28px; /* Gap between the arrows and the action link underneath */
+  gap: 28px;
   align-items: flex-start;
 }
 
-.console-action-link {
-  background: transparent;
-  border: none;
-  padding: 0;
-  color: #ffffff;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  position: relative;
-  padding-bottom: 8px;
-  text-align: left;
-}
-
-.action-link-bar {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 40px;
-  height: 2px;
-  background-color: #0066ff;
-  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.console-action-link:hover .action-link-bar {
-  width: 100%;
-}
-
-/* Navigation Arrow Block Positioned Above Text Link */
+/* Navigation Arrow Block */
 .console-navigation-arrows {
   display: flex;
   gap: 1px;
@@ -213,87 +163,179 @@
   font-size: 1.1rem;
   cursor: pointer;
   position: relative;
-  
-  /* Applying automated, non-stop ambient color pulsing animation */
   animation: dynamicColorShift 6s infinite ease-in-out;
 }
 
-/* Staggering the second button animation slightly to create alternate balance loop */
 .nav-arrow-btn:last-child {
   animation-delay: 3s;
 }
 
-/* AUTO COLOR CHANGING KEYFRAME (Pulses between black, slate blue, and Urmistek corporate blue) */
 @keyframes dynamicColorShift {
-  0% {
-    background-color: #000000;
-    color: #ffffff;
-  }
-  50% {
-    background-color: #004ecc;
-    color: #ffffff;
-  }
-  100% {
-    background-color: #000000;
-    color: #ffffff;
-  }
+  0%   { background-color: #000000; color: #ffffff; }
+  50%  { background-color: #004ecc; color: #ffffff; }
+  100% { background-color: #000000; color: #ffffff; }
 }
 
-/* --- SYSTEM RESPONSIVE BREAKER SPECIFICATIONS --- */
+/* ═══════════════════════════════════════
+   TABLET — iPad (768px – 1024px)
+═══════════════════════════════════════ */
+
 @media (max-width: 1024px) {
   .broadcast-console-grid {
     grid-template-columns: 1fr;
     height: auto;
     min-height: auto;
   }
-  
+
   .console-visual-viewport {
-    height: 400px;
+    height: 420px;
   }
-  
+
   .viewport-glass-tint {
-    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 50%);
+    background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 55%);
   }
 
   .console-content-pane {
-    padding: 40px 24px;
+    padding: 48px 48px 44px;
     border-left: none;
     border-top: 1px solid #111115;
   }
-  
+
+  .pane-narrative-window {
+    height: 300px;
+    margin: 36px 0;
+  }
+
+
+  .narrative-slide-unit {
+    height: 300px;
+  }
+
+  .unit-main-title {
+    font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+  }
+
+  .pane-interface-footer {
+    align-items: center;
+  }
+
+  .console-navigation-arrows {
+    width: auto;
+  }
+}
+
+/* ═══════════════════════════════════════
+   MOBILE (< 768px)
+═══════════════════════════════════════ */
+
+@media (max-width: 767px) {
+  .broadcast-console-grid {
+    grid-template-columns: 1fr;
+    height: auto;
+    min-height: auto;
+  }
+
+  .console-visual-viewport {
+    height: 52vw;
+    min-height: 220px;
+  }
+
+  .viewport-glass-tint {
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 60%);
+  }
+
+  .console-content-pane {
+    padding: 36px 24px 32px;
+    border-left: none;
+    border-top: 1px solid #111115;
+  }
+
   .pane-narrative-window {
     height: auto;
-    margin: 40px 0;
+    overflow: visible;
+    margin: 28px 0 24px;
   }
-  
+
+  /* On mobile disable translateY — show only active slide with fade */
   .narrative-track-scroller {
     transform: none !important;
     display: block;
+    height: auto;
   }
-  
+
   .narrative-slide-unit {
     display: none;
+    height: auto;
+    flex-shrink: unset;
   }
-  
-  .narrative-track-scroller > .narrative-slide-unit {
-    display: none;
-  }
-  
-  /* Use an "active" class instead of a template expression which is invalid in CSS */
-  .narrative-track-scroller > .narrative-slide-unit.active {
+
+  /* JS sets no active class on mobile units, so we target by index via sibling trick.
+     Instead, we add an "active" class in JSX for mobile — but since original JSX
+     doesn't add it, we show the first by default and rely on the translateY being 0.
+     The cleanest solution: keep all units visible stacked, clip with overflow hidden,
+     and let translateY still work with a fixed height. */
+  .narrative-track-scroller {
+    transform: none !important;
     display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 260px;
   }
-  
+
+  .narrative-slide-unit {
+    display: flex;
+    height: 260px;
+    flex-shrink: 0;
+  }
+
+  /* Re-enable translateY scrolling on mobile via a wrapper trick */
+  .pane-narrative-window {
+    height: 260px;
+    overflow: hidden;
+    margin: 28px 0 24px;
+  }
+
+  .narrative-track-scroller {
+    transform: translateY(var(--slide-offset, 0));
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    height: auto;
+  }
+
+  .unit-main-title {
+    font-size: 1.4rem;
+  }
+
+  .unit-paragraph-desc {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .pane-interface-footer {
+    align-items: center;
+    justify-content: flex-start;
+  }
+
   .footer-left-controls {
-    width: 100%;
-    gap: 24px;
+    gap: 0;
   }
-  
+
   .console-navigation-arrows {
-    width: 100%;
+    width: auto;
   }
-  
+
   .nav-arrow-btn {
-    flex: 1;
+    width: 50px;
+    height: 50px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .console-content-pane {
+    padding: 28px 18px 26px;
+  }
+
+  .unit-main-title {
+    font-size: 1.25rem;
   }
 }

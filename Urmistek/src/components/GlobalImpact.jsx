@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FiArrowUp, FiArrowDown } from "react-icons/fi";
 import "../styles/globalimpact.css";
 
@@ -32,25 +32,44 @@ const impactStories = [
   }
 ];
 
+const AUTO_INTERVAL = 4000;
+
 const GlobalImpact = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const intervalRef = useRef(null);
 
+  const startAutoPlay = () => {
+    clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % impactStories.length);
+    }, AUTO_INTERVAL);
+  };
+
+  // Start auto-play on mount
+  useEffect(() => {
+    startAutoPlay();
+    return () => clearInterval(intervalRef.current);
+  }, []);
+
+  // Manual nav — reset timer so it doesn't jump immediately after click
   const handleNext = () => {
     setActiveIndex((prev) => (prev + 1) % impactStories.length);
+    startAutoPlay();
   };
 
   const handlePrev = () => {
     setActiveIndex((prev) => (prev - 1 + impactStories.length) % impactStories.length);
+    startAutoPlay();
   };
 
   return (
     <section className="broadcast-section" id="case-studies">
       <div className="broadcast-console-grid">
-        
+
         {/* LEFT CANVAS: FIXED VISUAL MULTIPLEXER */}
         <div className="console-visual-viewport">
           {impactStories.map((story, idx) => (
-            <div 
+            <div
               key={story.id}
               className={`viewport-image-strata ${idx === activeIndex ? "active" : ""}`}
               style={{ backgroundImage: `url(${story.visual})` }}
@@ -63,11 +82,6 @@ const GlobalImpact = () => {
         <div className="console-content-pane">
           <div className="pane-header-context">
             <span className="pane-badge">GLOBAL INITIATIVES</span>
-            <div className="pane-serial-tracker">
-              <span className="tracker-current">{impactStories[activeIndex].index}</span>
-              <span className="tracker-divider">/</span>
-              <span className="tracker-total">0{impactStories.length}</span>
-            </div>
           </div>
 
           {/* Dynamic Slideway Compartment */}
@@ -86,7 +100,6 @@ const GlobalImpact = () => {
           {/* Console Vertical Navigation Interface */}
           <div className="pane-interface-footer">
             <div className="footer-left-controls">
-              {/* Moved navigation arrows directly above the action link */}
               <div className="console-navigation-arrows">
                 <button className="nav-arrow-btn" onClick={handlePrev} aria-label="Previous Briefing">
                   <FiArrowUp />
@@ -95,11 +108,6 @@ const GlobalImpact = () => {
                   <FiArrowDown />
                 </button>
               </div>
-
-              <button className="console-action-link">
-                <span>Explore Structural Documentation</span>
-                <div className="action-link-bar" />
-              </button>
             </div>
           </div>
 

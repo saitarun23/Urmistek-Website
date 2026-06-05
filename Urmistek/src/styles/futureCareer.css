@@ -12,7 +12,7 @@
 
 /* ===== GRID EFFECT ===== */
 
-.future-grid {
+/* .future-grid {
   position: absolute;
   inset: 0;
 
@@ -23,7 +23,7 @@
   background-size: 80px 80px;
 
   mask-image: radial-gradient(circle at center, black 30%, transparent 85%);
-}
+} */
 
 /* ===== GLOW EFFECTS ===== */
 
@@ -96,9 +96,10 @@
   font-size: clamp(5rem, 11vw, 11rem);
   line-height: 0.88;
   font-weight: 900;
-  letter-spacing: -0.09em;
+  letter-spacing: -0.06em;
   margin: 0;
   text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.059);
 }
 
 .future-title span {
