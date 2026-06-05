@@ -150,7 +150,7 @@
 /* ===== TYPE LABEL ===== */
 
 .aug-card-content-type {
-  font-size: 0.72rem;
+  font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   color: #94a3b8;
@@ -178,7 +178,7 @@
 }
 
 .aug-card-preview-text {
-  font-size: 0.9rem;
+  font-size: 1rem;
   line-height: 1.6;
   color: #cbd5e1;
   margin: 0;

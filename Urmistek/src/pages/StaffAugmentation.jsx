@@ -166,10 +166,10 @@ const StaffAugmentation = () => {
                       <p className="aug-card-hidden-narrative">{item.expandedText}</p>
                     )}
 
-                    <div className="aug-card-action-trigger">
+                    {/* <div className="aug-card-action-trigger">
                       <span>{item.ctaLabel}</span>
                       <FiArrowRight className="aug-trigger-icon" />
-                    </div>
+                    </div> */}
                   </div>
                 </div>
 

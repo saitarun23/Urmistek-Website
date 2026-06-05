@@ -168,7 +168,7 @@ const Client = () => {
   return (
     <section className="cnc-section">
       <div className="cnc-grid-bg" aria-hidden="true" />
-      <div className="cnc-ghost" aria-hidden="true">CLIENTS</div>
+      {/* <div className="cnc-ghost" aria-hidden="true">CLIENTS</div> */}
 
       <div className="cnc-wrap">
 
