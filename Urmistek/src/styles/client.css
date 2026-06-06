@@ -341,7 +341,7 @@
 ════════════════════════════════ */
 @media (max-width: 400px) {
   .cnc-wrap { padding: 0 12px; }
-  .cnc-hero__h1 { font-size: clamp(38px, 14vw, 64px); }
+  .cnc-hero__h1 { font-size: clamp(32px, 11vw, 64px); }
   .cnc-grid { grid-template-columns: 1fr; }
   .cnc-card { min-height: 300px; }
   .cnc-card__logo-zone { height: 130px; }
