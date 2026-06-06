@@ -188,13 +188,13 @@ const Client = () => {
         </div>
 
         {/* Footer */}
-        <footer className="cnc-footer">
+        {/* <footer className="cnc-footer">
           <span>URMISTEK</span>
           <span className="cnc-rule cnc-rule--flex" />
           <span>Global Digital Engineering</span>
           <span className="cnc-rule cnc-rule--flex" />
           <span>2025</span>
-        </footer>
+        </footer> */}
 
       </div>
     </section>
