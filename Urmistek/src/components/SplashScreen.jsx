@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../styles/SplashScreen.css";
-import logo1 from "../assets/images/logo.png";
+import logo1 from "../assets/images/urm.png";
 
 const SplashScreen = ({ onFinish }) => {
   const [visible, setVisible] = useState(true);
