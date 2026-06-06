@@ -22,26 +22,6 @@
   color: var(--t1);
 }
 
-
-
-/* ── GHOST ── */
-.cnc-ghost {
-  position: absolute;
-  top: 11%;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: var(--fd);
-  font-size: clamp(90px, 18vw, 260px);
-  font-weight: 800;
-  letter-spacing: -0.06em;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(255,255,255,0.03);
-  pointer-events: none;
-  white-space: nowrap;
-  /* user-select: none; */
-  z-index: 0;
-}
-
 /* ── WRAP ── */
 .cnc-wrap {
   max-width: 1360px;
@@ -179,7 +159,7 @@
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  min-height: 400px;
+  min-height: 460px;
   transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
               box-shadow 0.4s ease;
 }
@@ -221,7 +201,7 @@
 .cnc-card__logo-zone {
   position: relative;
   z-index: 2;
-  height: 150px;
+  height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -230,14 +210,14 @@
 }
 
 .cnc-card__logo-wrap {
-  width: 130px;
-  height: 68px;
+  width: 180px;
+  height: 100px;
   background: rgba(255,255,255,0.95);
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 14px;
+  padding: 12px 18px;
   overflow: hidden;
   transition: transform 0.5s ease;
 }
@@ -253,11 +233,11 @@
   display: block;
 }
 
-/* ── CONTENT ── */
+/* ── CONTENT — always visible ── */
 .cnc-card__content {
   position: relative;
   z-index: 2;
-  padding: 24px 24px 20px;
+  padding: 24px 24px 48px;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -278,53 +258,40 @@
   font-weight: 700;
   letter-spacing: -0.03em;
   color: #ffffff;
-  margin: 0 0 0;
+  margin: 0 0 12px;
   line-height: 1.15;
 }
 
+/* desc always visible — no hover, no transition */
 .cnc-card__desc {
   font-size: 0.82rem;
   line-height: 1.75;
   color: rgba(255,255,255,0.65);
   font-weight: 300;
-  margin: 12px 0 0;
-  overflow: hidden;
-  transition: max-height 0.5s ease, opacity 0.45s ease;
+  margin: 0;
 }
 
-/* ── PILLS ── */
-.cnc-card__pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: auto;
-  padding-top: 20px;
-}
-
-.cnc-card__pill {
-  display: inline-block;
-  padding: 5px 12px;
-  border-radius: 99px;
-  font-size: 10px;
-  letter-spacing: 0.05em;
-  font-weight: 500;
-  background: rgba(255,255,255,0.12);
-  color: rgba(255,255,255,0.85);
-  border: 1px solid rgba(255,255,255,0.18);
-  transition: background 0.3s;
-}
-
-.cnc-card:hover .cnc-card__pill {
-  background: rgba(255,255,255,0.18);
-}
-
-/* ── ARROW ── */
+/* ── ARROW — always visible, links out ── */
 .cnc-card__arrow {
   position: absolute;
   bottom: 20px;
   right: 20px;
   z-index: 3;
-  transition: transform 0.4s ease, opacity 0.4s ease;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.cnc-card__arrow:hover {
+  background: rgba(255,255,255,0.28);
+  transform: translate(2px, -2px);
 }
 
 /* ── FOOTER ── */
@@ -341,24 +308,42 @@
   color: var(--t3);
 }
 
-/* ════════ RESPONSIVE ════════ */
+/* ════════════════════════════════
+   TABLET — iPad (768px – 1100px)
+════════════════════════════════ */
 @media (max-width: 1100px) {
   .cnc-grid { grid-template-columns: repeat(2, 1fr); }
   .cnc-wrap { padding: 0 32px; }
+  .cnc-card__logo-zone { height: 180px; }
+  .cnc-card__logo-wrap { width: 160px; height: 90px; }
 }
 
+/* ════════════════════════════════
+   MOBILE (< 640px)
+════════════════════════════════ */
 @media (max-width: 640px) {
   .cnc-section { padding: 80px 0 48px; }
   .cnc-wrap { padding: 0 16px; }
-  .cnc-grid { grid-template-columns: 1fr; gap: 12px; }
+  .cnc-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .cnc-hero__h1 { font-size: clamp(46px, 13vw, 80px); gap: 0 12px; margin-bottom: 28px; }
   .cnc-hero__sub { font-size: 0.95rem; }
   .cnc-rule { display: none; }
   .cnc-card { min-height: 340px; }
+  .cnc-card__logo-zone { height: 140px; }
+  .cnc-card__logo-wrap { width: 120px; height: 70px; padding: 10px 12px; }
+  .cnc-card__name { font-size: 16px; }
+  .cnc-card__desc { font-size: 0.75rem; }
   .cnc-footer { flex-direction: column; align-items: flex-start; gap: 10px; }
 }
 
+/* ════════════════════════════════
+   SMALL PHONES (< 400px)
+════════════════════════════════ */
 @media (max-width: 400px) {
   .cnc-wrap { padding: 0 12px; }
   .cnc-hero__h1 { font-size: clamp(38px, 14vw, 64px); }
+  .cnc-grid { grid-template-columns: 1fr; }
+  .cnc-card { min-height: 300px; }
+  .cnc-card__logo-zone { height: 130px; }
+  .cnc-card__logo-wrap { width: 110px; height: 64px; }
 }

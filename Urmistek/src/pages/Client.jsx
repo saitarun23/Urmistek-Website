@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "../styles/client.css";
 
 import transforma from "../assets/images/TransfFormat.jpg";
@@ -16,6 +16,7 @@ const clients = [
     name: "Transforma",
     tag: "Transformation Systems",
     color: "#0e7490",
+    href: "https://www.transforma.ai",
     desc: "Driving enterprise-scale transformation ecosystems through intelligent modernisation, scalable automation, and next-generation digital operations.",
     pills: ["Digital Modernisation", "Process Automation", "Cloud Migration"],
   },
@@ -24,6 +25,7 @@ const clients = [
     name: "ApexCovantage",
     tag: "Enterprise Infrastructure",
     color: "#b45309",
+    href: "https://www.apexcovantage.com",
     desc: "Accelerating enterprise engineering with advanced cloud ecosystems, connected infrastructure platforms, and future-ready transformation architectures.",
     pills: ["Cloud Architecture", "DevOps Engineering", "Infrastructure Scale"],
   },
@@ -32,6 +34,7 @@ const clients = [
     name: "MariApps",
     tag: "Digital Maritime",
     color: "#065f46",
+    href: "https://www.mariapps.com",
     desc: "Building intelligent maritime technology ecosystems focused on operational efficiency, connected logistics, and digital-first shipping innovation.",
     pills: ["Fleet Management", "Port Logistics", "Maritime IoT"],
   },
@@ -40,6 +43,7 @@ const clients = [
     name: "CodeMantra",
     tag: "Content Intelligence",
     color: "#5b21b6",
+    href: "https://www.codemantra.com",
     desc: "Empowering content-driven enterprises with intelligent management, scalable digital-asset ecosystems, and next-generation content transformation.",
     pills: ["Content Transformation", "Digital Publishing", "Asset Management"],
   },
@@ -48,6 +52,7 @@ const clients = [
     name: "Lumina Datamatics",
     tag: "Data-Driven Solutions",
     color: "#92400e",
+    href: "https://www.luminadatamatics.com",
     desc: "Enabling data-centric enterprises with intelligent data management, scalable analytics ecosystems, and next-generation transformation solutions.",
     pills: ["Data Analytics", "Content Services", "EdTech Solutions"],
   },
@@ -56,6 +61,7 @@ const clients = [
     name: "VR",
     tag: "Immersive Experiences",
     color: "#9d174d",
+    href: "#",
     desc: "Creating immersive digital experiences through intelligent VR solutions, scalable virtual ecosystems, and next-generation experiential transformation.",
     pills: ["VR Development", "AR Integration", "Spatial Computing"],
   },
@@ -64,6 +70,7 @@ const clients = [
     name: "Peacock",
     tag: "Innovation Partners",
     color: "#14532d",
+    href: "#",
     desc: "Fostering innovation-driven partnerships with enterprises to create cutting-edge solutions and accelerate digital transformation at scale.",
     pills: ["Innovation Labs", "R&D Partnership", "Product Strategy"],
   },
@@ -72,20 +79,17 @@ const clients = [
     name: "Carenest",
     tag: "Healthcare Solutions",
     color: "#1e3a8a",
+    href: "#",
     desc: "Transforming healthcare delivery with intelligent solutions, scalable digital platforms, and next-generation medical innovation ecosystems.",
     pills: ["Health Tech", "Patient Platforms", "Clinical Automation"],
   },
 ];
 
 function ClientCard({ client, index }) {
-  const [hovered, setHovered] = useState(false);
-
   return (
     <div
       className="cnc-card"
       style={{ backgroundColor: client.color }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
     >
       {/* watermark index */}
       <span className="cnc-card__watermark">0{index + 1}</span>
@@ -100,37 +104,21 @@ function ClientCard({ client, index }) {
         </div>
       </div>
 
-      {/* content */}
+      {/* content — always visible, no hover logic */}
       <div className="cnc-card__content">
         <p className="cnc-card__tag">{client.tag}</p>
         <h3 className="cnc-card__name">{client.name}</h3>
-
-        <p
-          className="cnc-card__desc"
-          style={{
-            maxHeight: hovered ? "120px" : "0",
-            opacity: hovered ? 1 : 0,
-          }}
-        >
-          {client.desc}
-        </p>
-
-        {/* <div className="cnc-card__pills">
-          {client.pills.map((p, i) => (
-            <span key={i} className="cnc-card__pill">
-              {p}
-            </span>
-          ))}
-        </div> */}
+        <p className="cnc-card__desc">{client.desc}</p>
       </div>
 
-      {/* arrow */}
-      <div
+      {/* arrow — always visible, links to company */}
+      <a
+        href={client.href}
+        target="_blank"
+        rel="noopener noreferrer"
         className="cnc-card__arrow"
-        style={{
-          opacity: hovered ? 1 : 0,
-          transform: hovered ? "translate(0,0)" : "translate(8px,-8px)",
-        }}
+        aria-label={`Visit ${client.name}`}
+        onClick={(e) => e.stopPropagation()}
       >
         <svg width="20" height="20" viewBox="0 0 22 22" fill="none">
           <path
@@ -141,7 +129,7 @@ function ClientCard({ client, index }) {
             strokeLinejoin="round"
           />
         </svg>
-      </div>
+      </a>
     </div>
   );
 }
@@ -152,10 +140,7 @@ function Ticker() {
       <div className="cnc-ticker">
         {[...clients, ...clients].map((c, i) => (
           <span key={i} className="cnc-tick">
-            <span
-              className="cnc-tick__dot"
-              style={{ background: c.color }}
-            />
+            <span className="cnc-tick__dot" style={{ background: c.color }} />
             {c.name}
           </span>
         ))}
@@ -168,7 +153,6 @@ const Client = () => {
   return (
     <section className="cnc-section">
       <div className="cnc-grid-bg" aria-hidden="true" />
-      {/* <div className="cnc-ghost" aria-hidden="true">CLIENTS</div> */}
 
       <div className="cnc-wrap">
 
