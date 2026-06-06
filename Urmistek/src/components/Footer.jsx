@@ -70,7 +70,7 @@ const Footer = () => {
             <h3 className="footer-column-heading">Services</h3>
             <ul className="footer-links-list">
               <li><a href="/staff-augmentation">Staffing Solutions</a></li>
-              <li><a href="/cybersecurity">Cybersecurity</a></li>
+              <li><a href="/cyber-security">Cybersecurity</a></li>
               <li><a href="/content-production">Content Production</a></li>
               <li><a href="/clients">Client Development</a></li>
               <li><a href="/products">AI/ML Offerings</a></li>
@@ -81,7 +81,7 @@ const Footer = () => {
           {/* COLUMN 4: Premium Technical Sticker / Brand Sticker Graphic Area */}
           <div className="footer-column graphic-sticker-block">
             <div className="operations-badge-sticker">
-              <div className="sticker-grid-lines"></div>
+              {/* <div className="sticker-grid-lines"></div> */}
               <div className="sticker-foreground">
                 <FiGlobe className="sticker-globe-icon" />
                 <div className="sticker-meta">

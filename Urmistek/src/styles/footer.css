@@ -165,7 +165,7 @@
 }
 
 /* Technical blueprint lines backdropping graphic layout container */
-.sticker-grid-lines {
+/* .sticker-grid-lines {
   position: absolute;
   top: 0;
   left: 0;
@@ -175,7 +175,7 @@
   background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px);
   background-size: 20px 20px;
   pointer-events: none;
-}
+} */
 
 .sticker-foreground {
   position: relative;
@@ -186,9 +186,13 @@
 }
 
 .sticker-globe-icon {
-  font-size: 2.2rem;
+  font-size: 3rem;
   color: #cdb6ff;
   animation: rotateGlobe 12s linear infinite;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  
 }
 
 @keyframes rotateGlobe {
@@ -203,10 +207,11 @@
 }
 
 .sticker-tag-small {
-  font-size: 0.7rem;
+  font-size: 2rem;
   font-weight: 700;
-  color: crimson;
-  letter-spacing: 0.15em;
+  color: #0078e7;
+  /* letter-spacing: 0.1em; */
+  text-align: center;
 }
 
 .sticker-tag-main {
@@ -215,6 +220,7 @@
   color: #ffffff;
   line-height: 1.4;
   letter-spacing: -0.01em;
+  text-align: center;
 }
 
 .sticker-status-bar {
