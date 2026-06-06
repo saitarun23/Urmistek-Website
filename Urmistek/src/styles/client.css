@@ -183,7 +183,7 @@
 }
 
 /* ── DIAGONAL PATTERN OVERLAY ── */
-.cnc-card__pattern {
+/* .cnc-card__pattern {
   position: absolute;
   inset: 0;
   background-image: repeating-linear-gradient(
@@ -195,7 +195,7 @@
   );
   z-index: 1;
   pointer-events: none;
-}
+} */
 
 /* ── LOGO ZONE ── */
 .cnc-card__logo-zone {
