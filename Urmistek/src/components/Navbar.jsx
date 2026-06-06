@@ -289,10 +289,7 @@ const Navbar = ({ onCareerButtonClick }) => {
                     onClick={(e) => {
                       e.stopPropagation();
                       navigate("/clients");
-                      const section = document.getElementById("clients");
-                      if (section) {
-                        section.scrollIntoView({ behavior: "smooth" });
-                      }
+                      if (window.innerWidth <= 1024) toggleMenu();
                     }}
                   >
                     Clients
@@ -420,10 +417,7 @@ const Navbar = ({ onCareerButtonClick }) => {
                     onClick={(e) => {
                       e.stopPropagation();
                       navigate("/staff-augmentation");
-                      const section = document.getElementById("clients");
-                      if (section) {
-                        section.scrollIntoView({ behavior: "smooth" });
-                      }
+                      if (window.innerWidth <= 1024) toggleMenu();
                     }}
                   >
                     Staff Augmentation
@@ -445,7 +439,7 @@ const Navbar = ({ onCareerButtonClick }) => {
                     onClick={(e) => {
                       e.stopPropagation();
                       navigate("/content-production");
-                      onCareerButtonClick();
+                      if (window.innerWidth <= 1024) toggleMenu();
                     }}
                   >
                     Content Production
