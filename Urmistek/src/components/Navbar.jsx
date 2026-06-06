@@ -225,7 +225,7 @@ const Navbar = ({ onCareerButtonClick }) => {
                     listStyle: "none",
                     padding: 0,
                     margin: 0,
-                    color: "#989898",
+                    color: "black",
                   }}
                 >
                   <li
@@ -240,7 +240,7 @@ const Navbar = ({ onCareerButtonClick }) => {
                     }}
                     onMouseLeave={(e) => {
                       e.target.style.transform = "translateX(0)";
-                      e.target.style.color = "#989898";
+                      e.target.style.color = "black";
                     }}
                     onClick={(e) => {
                       e.stopPropagation();
@@ -262,7 +262,7 @@ const Navbar = ({ onCareerButtonClick }) => {
                     }}
                     onMouseLeave={(e) => {
                       e.target.style.transform = "translateX(0)";
-                      e.target.style.color = "#989898";
+                      e.target.style.color = "black";
                     }}
                     onClick={(e) => {
                       e.stopPropagation();
@@ -284,7 +284,7 @@ const Navbar = ({ onCareerButtonClick }) => {
                     }}
                     onMouseLeave={(e) => {
                       e.target.style.transform = "translateX(0)";
-                      e.target.style.color = "#989898";
+                      e.target.style.color = "black";
                     }}
                     onClick={(e) => {
                       e.stopPropagation();
@@ -309,7 +309,7 @@ const Navbar = ({ onCareerButtonClick }) => {
                     }}
                     onMouseLeave={(e) => {
                       e.target.style.transform = "translateX(0)";
-                      e.target.style.color = "#989898";
+                      e.target.style.color = "black";
                     }}
                     onClick={(e) => {
                       e.stopPropagation();
@@ -356,7 +356,7 @@ const Navbar = ({ onCareerButtonClick }) => {
                     listStyle: "none",
                     padding: 0,
                     margin: 0,
-                    color: "#989898",
+                    color: "black",
                   }}
                 >
                   <li
@@ -371,7 +371,7 @@ const Navbar = ({ onCareerButtonClick }) => {
                     }}
                     onMouseLeave={(e) => {
                       e.target.style.transform = "translateX(0)";
-                      e.target.style.color = "#3a3939";
+                      e.target.style.color = "black";
                     }}
                     onClick={(e) => {
                       e.stopPropagation();
@@ -393,7 +393,7 @@ const Navbar = ({ onCareerButtonClick }) => {
                     }}
                     onMouseLeave={(e) => {
                       e.target.style.transform = "translateX(0)";
-                      e.target.style.color = "#3a3939";
+                      e.target.style.color = "black";
                     }}
                     onClick={(e) => {
                       e.stopPropagation();
@@ -415,7 +415,7 @@ const Navbar = ({ onCareerButtonClick }) => {
                     }}
                     onMouseLeave={(e) => {
                       e.target.style.transform = "translateX(0)";
-                      e.target.style.color = "#3a3939";
+                      e.target.style.color = "black";
                     }}
                     onClick={(e) => {
                       e.stopPropagation();
@@ -440,7 +440,7 @@ const Navbar = ({ onCareerButtonClick }) => {
                     }}
                     onMouseLeave={(e) => {
                       e.target.style.transform = "translateX(0)";
-                      e.target.style.color = "#3a3939";
+                      e.target.style.color = "black";
                     }}
                     onClick={(e) => {
                       e.stopPropagation();
