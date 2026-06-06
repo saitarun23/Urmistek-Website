@@ -16,7 +16,7 @@ const clients = [
     name: "Transforma",
     tag: "Transformation Systems",
     color: "#0e7490",
-    href: "https://www.transforma.ai",
+    href: "https://www.transforma.in/",
     desc: "Driving enterprise-scale transformation ecosystems through intelligent modernisation, scalable automation, and next-generation digital operations.",
     pills: ["Digital Modernisation", "Process Automation", "Cloud Migration"],
   },
