@@ -172,17 +172,23 @@ const UrmistekProducts = () => {
               <h3>Healthcare AI Platform</h3>
             </div>
             <p className="showcase-intro">
-              Advanced predictive intelligence modules custom-tailored for clinical data optimization, hospital administration efficiency, and diagnostics infrastructure acceleration.
+              Improving patient care at emergency rooms through intelligent systems that accelerate clinical decision-making, optimize triage workflows, and enhance emergency department efficiency and patient outcomes.
             </p>
             <div className="feature-tags">
-              <span>HL7/FHIR Compliant</span>
-              <span>Predictive Care</span>
-              <span>Secure Telemetry</span>
+              <span>Standardized Triage</span>
+              <span>Chief Complaint Identification</span>
+              <span>Evidence Based Carepathway</span>
+              <span>Streamlined Discharge</span>
+              <span>Population level analytics</span>
+              <span>Remote ER</span>
             </div>
             <ul className="showcase-features">
-              <li><strong>Clinical Workflow Automation:</strong> Uses secure language frameworks to process doctor-patient logs into structured electronic health records automatically.</li>
-              <li><strong>Resource Allocation Forecasting:</strong> Evaluates ongoing admissions trends to model precisely when and where critical medical assets will face peak demand.</li>
-              <li><strong>Diagnostic Decision Support:</strong> Computer vision layers run real-time checks across medical imagery to surface minor structural anomalies instantly for radiologist review.</li>
+              <li><strong>Standardized Triage:</strong> Systematizes patient intake protocols to ensure consistent, rapid assessment of severity levels and clinical urgency indicators across all patients.</li>
+              <li><strong>Chief Complaint Identification:</strong> Automatically identifies and categorizes chief complaints using natural language processing to route patients to appropriate care pathways and specialist teams.</li>
+              <li><strong>Evidence Based Carepathway:</strong> Guides clinical teams through evidence-based treatment protocols optimized for emergency settings, reducing variation and improving adherence to best practices.</li>
+              <li><strong>Streamlined Discharge:</strong> Automates discharge planning and follow-up scheduling to accelerate patient flow, reduce length of stay, and ensure continuity of post-emergency care.</li>
+              <li><strong>Population level analytics:</strong> Tracks aggregate patient outcomes, epidemiological trends, and resource utilization patterns to identify improvement opportunities and predict demand surges.</li>
+              <li><strong>Remote ER:</strong> Enables telemedicine consultation, remote monitoring, and distributed clinical collaboration to extend expert care beyond physical emergency department boundaries.</li>
             </ul>
           </div>
         </div>
